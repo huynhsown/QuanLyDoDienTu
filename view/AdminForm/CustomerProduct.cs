@@ -87,7 +87,8 @@ namespace QuanLyDoDienTu.view.AdminForm
                 int pro_id = Convert.ToInt32(dgv_listOrder.Rows[e.RowIndex].Cells["col_selectedPro"].Value);
                 if (dgv_listOrder.Columns[e.ColumnIndex].Name == "col_Edit")
                 {
-
+                    CustomerEditProduct customerEditProduct = new CustomerEditProduct(pro_id);
+                    customerEditProduct.ShowDialog();
                 }
                 else if (dgv_listOrder.Columns[e.ColumnIndex].Name == "col_Delete")
                 {

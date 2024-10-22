@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -59,6 +59,31 @@ namespace QuanLyDoDienTu.view.AdminForm
         private void kHÁCHHÀNGToolStripMenuItem_Click(object sender, EventArgs e)
         {
             loadForm(new CustomerManageForm());
+        }
+
+        private void cÔNGVIỆCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loadForm(new JobManageForm());
+        }
+
+        private void nHÀSẢNXUẤTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loadForm(new ManufacturerManagerForm());
+        }
+
+        private void ứNGDỤNGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loadForm(new ApplicationManageForm());
+        }
+
+        private void sẢNPHẨMToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loadForm(new ProductManageForm());
+        }
+
+        private void dOANHTHUToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loadForm(new StatisticManageForm());
         }
     }
 }

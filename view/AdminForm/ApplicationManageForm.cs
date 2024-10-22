@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,23 +11,40 @@ using System.Windows.Forms;
 
 namespace QuanLyDoDienTu.view.AdminForm
 {
-    public partial class ProductManageForm : Form
+    public partial class ApplicationManageForm : Form
     {
-        public ProductManageForm()
+        public ApplicationManageForm()
         {
             InitializeComponent();
         }
-
         private MY_DB myDB = new MY_DB();
-
-        private void ProductManageForm_Load(object sender, EventArgs e)
+        private void btn_add_Click(object sender, EventArgs e)
         {
-            loadProduct();
+            ApplicationInformation appInformation = new ApplicationInformation();
+            appInformation.ShowDialog();
         }
 
-        private void loadProduct()
+        private void dgv_listProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            String query = @"SELECT * FROM SAN_PHAM";
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                int id = Convert.ToInt32(dgv_listApplication.Rows[e.RowIndex].Cells["col_Id"].Value);
+                if (dgv_listApplication.Columns[e.ColumnIndex].Name == "col_Edit")
+                {
+                    ApplicationInformation appInformation = new ApplicationInformation(id);
+                    appInformation.ShowDialog();
+
+                }
+            }
+        }
+
+        private void ApplicationManageForm_Load(object sender, EventArgs e)
+        {
+            loadApplication();
+        }
+
+        private void loadApplication() {
+            String query = @"SELECT * FROM UNG_DUNG";
             try
             {
                 SqlConnection connection = myDB.getConnection;
@@ -42,7 +59,7 @@ namespace QuanLyDoDienTu.view.AdminForm
                     foreach (DataRow row in dataTable.Rows)
                     {
                         object[] rowData = row.ItemArray;
-                        dgv_listProduct.Rows.Add(rowData); // Thêm vào DataGridView
+                        dgv_listApplication.Rows.Add(rowData); // ThÃªm vÃ o DataGridView
                     }
                 }
                 connection.Close();
@@ -53,26 +70,7 @@ namespace QuanLyDoDienTu.view.AdminForm
                 MessageBox.Show(ex.Message);
             }
 
-        }
 
-        private void dgv_listProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                int id = Convert.ToInt32(dgv_listProduct.Rows[e.RowIndex].Cells["col_Id"].Value);
-                if (dgv_listProduct.Columns[e.ColumnIndex].Name == "col_Edit")
-                {
-                    ProductInformation productInformation = new ProductInformation(id);
-                    productInformation.ShowDialog();
-
-                }
-            }
-        }
-
-        private void btn_add_Click(object sender, EventArgs e)
-        {
-            ProductInformation productInformation = new ProductInformation();
-            productInformation.ShowDialog();
         }
     }
 }

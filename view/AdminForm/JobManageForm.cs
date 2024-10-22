@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,23 +11,18 @@ using System.Windows.Forms;
 
 namespace QuanLyDoDienTu.view.AdminForm
 {
-    public partial class ProductManageForm : Form
+    public partial class JobManageForm : Form
     {
-        public ProductManageForm()
+        private MY_DB myDB = new MY_DB();
+        public JobManageForm()
         {
             InitializeComponent();
+
         }
 
-        private MY_DB myDB = new MY_DB();
-
-        private void ProductManageForm_Load(object sender, EventArgs e)
+        private void loadJob()
         {
-            loadProduct();
-        }
-
-        private void loadProduct()
-        {
-            String query = @"SELECT * FROM SAN_PHAM";
+            String query = @"SELECT * FROM CONG_VIEC";
             try
             {
                 SqlConnection connection = myDB.getConnection;
@@ -42,7 +37,7 @@ namespace QuanLyDoDienTu.view.AdminForm
                     foreach (DataRow row in dataTable.Rows)
                     {
                         object[] rowData = row.ItemArray;
-                        dgv_listProduct.Rows.Add(rowData); // Thêm vào DataGridView
+                        dgv_listJob.Rows.Add(rowData); // ThÃªm vÃ o DataGridView
                     }
                 }
                 connection.Close();
@@ -55,15 +50,20 @@ namespace QuanLyDoDienTu.view.AdminForm
 
         }
 
-        private void dgv_listProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void JobManageForm_Load(object sender, EventArgs e)
+        {
+            loadJob();
+        }
+
+        private void dgv_listJob_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                int id = Convert.ToInt32(dgv_listProduct.Rows[e.RowIndex].Cells["col_Id"].Value);
-                if (dgv_listProduct.Columns[e.ColumnIndex].Name == "col_Edit")
+                int id = Convert.ToInt32(dgv_listJob.Rows[e.RowIndex].Cells["col_Id"].Value);
+                if (dgv_listJob.Columns[e.ColumnIndex].Name == "col_Edit")
                 {
-                    ProductInformation productInformation = new ProductInformation(id);
-                    productInformation.ShowDialog();
+                    JobInformation jobInformation = new JobInformation(id);
+                    jobInformation.ShowDialog();
 
                 }
             }
@@ -71,8 +71,8 @@ namespace QuanLyDoDienTu.view.AdminForm
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            ProductInformation productInformation = new ProductInformation();
-            productInformation.ShowDialog();
+            JobInformation jobInformation = new JobInformation();
+            jobInformation.ShowDialog();
         }
     }
 }
