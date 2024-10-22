@@ -1,6 +1,6 @@
 ﻿namespace QuanLyDoDienTu.view.AdminForm
 {
-    partial class StaffManageForm
+    partial class PurchaseOrder
     {
         /// <summary>
         /// Required designer variable.
@@ -28,45 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            btn_addStaff = new Guna.UI2.WinForms.Guna2Button();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             dgv_listStaff = new Guna.UI2.WinForms.Guna2DataGridView();
+            btn_addStaff = new Guna.UI2.WinForms.Guna2Button();
             col_Id = new DataGridViewTextBoxColumn();
-            col_Name = new DataGridViewTextBoxColumn();
-            col_Birth = new DataGridViewTextBoxColumn();
-            col_Gender = new DataGridViewTextBoxColumn();
-            col_Phone = new DataGridViewTextBoxColumn();
-            col_Email = new DataGridViewTextBoxColumn();
-            col_Address = new DataGridViewTextBoxColumn();
-            col_Job = new DataGridViewTextBoxColumn();
-            col_workShift = new DataGridViewButtonColumn();
+            col_Date = new DataGridViewTextBoxColumn();
+            col_Value = new DataGridViewTextBoxColumn();
+            col_Quantity = new DataGridViewTextBoxColumn();
+            col_Price = new DataGridViewTextBoxColumn();
+            col_NameProduct = new DataGridViewTextBoxColumn();
+            col_NameManufacturer = new DataGridViewTextBoxColumn();
             col_Edit = new DataGridViewButtonColumn();
             col_delete = new DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)dgv_listStaff).BeginInit();
             SuspendLayout();
-            // 
-            // btn_addStaff
-            // 
-            btn_addStaff.BorderRadius = 15;
-            btn_addStaff.CustomizableEdges = customizableEdges1;
-            btn_addStaff.DisabledState.BorderColor = Color.DarkGray;
-            btn_addStaff.DisabledState.CustomBorderColor = Color.DarkGray;
-            btn_addStaff.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btn_addStaff.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btn_addStaff.FillColor = Color.FromArgb(128, 128, 255);
-            btn_addStaff.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_addStaff.ForeColor = Color.White;
-            btn_addStaff.Location = new Point(45, 590);
-            btn_addStaff.Name = "btn_addStaff";
-            btn_addStaff.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btn_addStaff.Size = new Size(159, 35);
-            btn_addStaff.TabIndex = 23;
-            btn_addStaff.Text = "Thêm nhân viên";
-            btn_addStaff.Click += btn_addStaff_Click;
             // 
             // dgv_listStaff
             // 
@@ -84,7 +63,7 @@
             dgv_listStaff.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgv_listStaff.ColumnHeadersHeight = 22;
             dgv_listStaff.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgv_listStaff.Columns.AddRange(new DataGridViewColumn[] { col_Id, col_Name, col_Birth, col_Gender, col_Phone, col_Email, col_Address, col_Job, col_workShift, col_Edit, col_delete });
+            dgv_listStaff.Columns.AddRange(new DataGridViewColumn[] { col_Id, col_Date, col_Value, col_Quantity, col_Price, col_NameProduct, col_NameManufacturer, col_Edit, col_delete });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -101,8 +80,8 @@
             dgv_listStaff.RowHeadersVisible = false;
             dgv_listStaff.RowHeadersWidth = 51;
             dgv_listStaff.RowTemplate.Height = 29;
-            dgv_listStaff.Size = new Size(1164, 525);
-            dgv_listStaff.TabIndex = 24;
+            dgv_listStaff.Size = new Size(1166, 467);
+            dgv_listStaff.TabIndex = 26;
             dgv_listStaff.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgv_listStaff.ThemeStyle.AlternatingRowsStyle.Font = null;
             dgv_listStaff.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
@@ -124,83 +103,80 @@
             dgv_listStaff.ThemeStyle.RowsStyle.Height = 29;
             dgv_listStaff.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgv_listStaff.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            dgv_listStaff.CellContentClick += dgv_listStaff_CellContentClick_1;
+            // 
+            // btn_addStaff
+            // 
+            btn_addStaff.BorderRadius = 15;
+            btn_addStaff.CustomizableEdges = customizableEdges1;
+            btn_addStaff.DisabledState.BorderColor = Color.DarkGray;
+            btn_addStaff.DisabledState.CustomBorderColor = Color.DarkGray;
+            btn_addStaff.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btn_addStaff.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btn_addStaff.FillColor = Color.FromArgb(128, 128, 255);
+            btn_addStaff.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_addStaff.ForeColor = Color.White;
+            btn_addStaff.Location = new Point(63, 517);
+            btn_addStaff.Name = "btn_addStaff";
+            btn_addStaff.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btn_addStaff.Size = new Size(171, 44);
+            btn_addStaff.TabIndex = 25;
+            btn_addStaff.Text = "Thêm đơn nhập hàng";
             // 
             // col_Id
             // 
             col_Id.FillWeight = 60F;
-            col_Id.HeaderText = "Mã nhân viên";
+            col_Id.HeaderText = "Mã đơn ";
             col_Id.MinimumWidth = 6;
             col_Id.Name = "col_Id";
             col_Id.ReadOnly = true;
             // 
-            // col_Name
+            // col_Date
             // 
-            col_Name.FillWeight = 83.728035F;
-            col_Name.HeaderText = "Họ tên";
-            col_Name.MinimumWidth = 6;
-            col_Name.Name = "col_Name";
-            col_Name.ReadOnly = true;
+            col_Date.FillWeight = 83.728035F;
+            col_Date.HeaderText = "Ngày nhập";
+            col_Date.MinimumWidth = 6;
+            col_Date.Name = "col_Date";
+            col_Date.ReadOnly = true;
             // 
-            // col_Birth
+            // col_Value
             // 
-            col_Birth.FillWeight = 83.728035F;
-            col_Birth.HeaderText = "Ngày sinh";
-            col_Birth.MinimumWidth = 6;
-            col_Birth.Name = "col_Birth";
-            col_Birth.ReadOnly = true;
+            col_Value.FillWeight = 83.728035F;
+            col_Value.HeaderText = "Giá trị";
+            col_Value.MinimumWidth = 6;
+            col_Value.Name = "col_Value";
+            col_Value.ReadOnly = true;
             // 
-            // col_Gender
+            // col_Quantity
             // 
-            col_Gender.FillWeight = 40F;
-            col_Gender.HeaderText = "Giới tính";
-            col_Gender.MinimumWidth = 6;
-            col_Gender.Name = "col_Gender";
-            col_Gender.ReadOnly = true;
+            col_Quantity.FillWeight = 40F;
+            col_Quantity.HeaderText = "Số lượng";
+            col_Quantity.MinimumWidth = 6;
+            col_Quantity.Name = "col_Quantity";
+            col_Quantity.ReadOnly = true;
             // 
-            // col_Phone
+            // col_Price
             // 
-            col_Phone.FillWeight = 83.728035F;
-            col_Phone.HeaderText = "SĐT";
-            col_Phone.MinimumWidth = 6;
-            col_Phone.Name = "col_Phone";
-            col_Phone.ReadOnly = true;
+            col_Price.FillWeight = 83.728035F;
+            col_Price.HeaderText = "Đơn giá";
+            col_Price.MinimumWidth = 6;
+            col_Price.Name = "col_Price";
+            col_Price.ReadOnly = true;
             // 
-            // col_Email
+            // col_NameProduct
             // 
-            col_Email.FillWeight = 83.728035F;
-            col_Email.HeaderText = "Email";
-            col_Email.MinimumWidth = 6;
-            col_Email.Name = "col_Email";
-            col_Email.ReadOnly = true;
+            col_NameProduct.FillWeight = 83.728035F;
+            col_NameProduct.HeaderText = "Tên sản phẩm";
+            col_NameProduct.MinimumWidth = 6;
+            col_NameProduct.Name = "col_NameProduct";
+            col_NameProduct.ReadOnly = true;
             // 
-            // col_Address
+            // col_NameManufacturer
             // 
-            col_Address.FillWeight = 83.728035F;
-            col_Address.HeaderText = "Địa chỉ";
-            col_Address.MinimumWidth = 6;
-            col_Address.Name = "col_Address";
-            col_Address.ReadOnly = true;
-            // 
-            // col_Job
-            // 
-            col_Job.FillWeight = 83.728035F;
-            col_Job.HeaderText = "Công việc";
-            col_Job.MinimumWidth = 6;
-            col_Job.Name = "col_Job";
-            col_Job.ReadOnly = true;
-            // 
-            // col_workShift
-            // 
-            col_workShift.FillWeight = 45F;
-            col_workShift.HeaderText = "Ca làm ";
-            col_workShift.MinimumWidth = 6;
-            col_workShift.Name = "col_workShift";
-            col_workShift.ReadOnly = true;
-            col_workShift.Resizable = DataGridViewTriState.True;
-            col_workShift.SortMode = DataGridViewColumnSortMode.Automatic;
-            col_workShift.Text = "Xem";
-            col_workShift.UseColumnTextForButtonValue = true;
+            col_NameManufacturer.FillWeight = 83.728035F;
+            col_NameManufacturer.HeaderText = "Tên nhà sản xuất";
+            col_NameManufacturer.MinimumWidth = 6;
+            col_NameManufacturer.Name = "col_NameManufacturer";
+            col_NameManufacturer.ReadOnly = true;
             // 
             // col_Edit
             // 
@@ -222,35 +198,31 @@
             col_delete.Text = "Xóa";
             col_delete.UseColumnTextForButtonValue = true;
             // 
-            // StaffManageForm
+            // PurchaseOrder
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
-            ClientSize = new Size(1164, 678);
+            ClientSize = new Size(1166, 712);
             Controls.Add(dgv_listStaff);
             Controls.Add(btn_addStaff);
-            FormBorderStyle = FormBorderStyle.None;
-            Name = "StaffManageForm";
-            Text = "StaffManageForm";
-            Load += StaffManageForm_Load;
+            Name = "PurchaseOrder";
+            Text = "PurchaseOrder";
             ((System.ComponentModel.ISupportInitialize)dgv_listStaff).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
-        private Guna.UI2.WinForms.Guna2Button btn_addStaff;
+
         private Guna.UI2.WinForms.Guna2DataGridView dgv_listStaff;
         private DataGridViewTextBoxColumn col_Id;
-        private DataGridViewTextBoxColumn col_Name;
-        private DataGridViewTextBoxColumn col_Birth;
-        private DataGridViewTextBoxColumn col_Gender;
-        private DataGridViewTextBoxColumn col_Phone;
-        private DataGridViewTextBoxColumn col_Email;
-        private DataGridViewTextBoxColumn col_Address;
-        private DataGridViewTextBoxColumn col_Job;
-        private DataGridViewButtonColumn col_workShift;
+        private DataGridViewTextBoxColumn col_Date;
+        private DataGridViewTextBoxColumn col_Value;
+        private DataGridViewTextBoxColumn col_Quantity;
+        private DataGridViewTextBoxColumn col_Price;
+        private DataGridViewTextBoxColumn col_NameProduct;
+        private DataGridViewTextBoxColumn col_NameManufacturer;
         private DataGridViewButtonColumn col_Edit;
         private DataGridViewButtonColumn col_delete;
+        private Guna.UI2.WinForms.Guna2Button btn_addStaff;
     }
 }

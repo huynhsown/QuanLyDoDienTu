@@ -83,6 +83,14 @@ namespace QuanLyDoDienTu.view.AdminForm
                 {
                     int id = Convert.ToInt32(dgv_listStaff.Rows[e.RowIndex].Cells["col_Id"].Value);
                 }
+
+                else if (dgv_listStaff.Columns[e.ColumnIndex].Name == "col_workShift")
+                {
+                    int id = Convert.ToInt32(dgv_listStaff.Rows[e.RowIndex].Cells["col_Id"].Value);
+                  
+                    StaffWorkShiftManageForm staffWorkShiftManageForm = new StaffWorkShiftManageForm(id);
+                    staffWorkShiftManageForm.ShowDialog();
+                }
             }
         }
     }

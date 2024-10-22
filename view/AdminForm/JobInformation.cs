@@ -5,45 +5,30 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace QuanLyDoDienTu.view.AdminForm
 {
-    public partial class ProductInformation : Form
+    public partial class JobInformation : Form
     {
-        private int proid;
+        private int jobid;
         private bool isEdit = false;
         private MY_DB myDB = new MY_DB();
-        public ProductInformation(int proid)
+        public JobInformation(int jobid)
         {
             InitializeComponent();
-            this.proid = proid;
+            this.jobid = jobid;
             isEdit = true;
             btn_Add.Visible = false;
-        }
 
-        public ProductInformation()
+        }
+        public JobInformation()
         {
             InitializeComponent();
             btn_Edit.Visible = false;
-        }
-
-        private void btn_Add_Click(object sender, EventArgs e)
-        {
-            SqlConnection conn = myDB.getConnection;
-            myDB.openConnection();
-            string query = "INSERT INTO SAN_PHAM (TenSP, Gia, SoLuong, TinhTrang) values (@name, @price, @quantity, @state)";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@name", tb_Name.Text);
-            cmd.Parameters.AddWithValue("@price", int.Parse(tb_Price.Text));
-            cmd.Parameters.AddWithValue("@quantity", int.Parse(tb_Quantity.Text));
-            cmd.Parameters.AddWithValue("@state", tb_State.Text);
-
-            cmd.ExecuteNonQuery();
-            myDB.closeConnection();
-            MessageBox.Show("Thêm sản phẩm thành công", "Add", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
 
@@ -51,26 +36,42 @@ namespace QuanLyDoDienTu.view.AdminForm
         {
             SqlConnection conn = myDB.getConnection;
             myDB.openConnection();
-            string query = "UPDATE SAN_PHAM SET TenSP = @name, Gia = @price, SoLuong = @quantity, TinhTrang = @state WHERE MaSP = @proid";
+            string query = "UPDATE CONG_VIEC SET TenCV = @name, Luong = @salary WHERE MaCV = @jobid";
             SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@proid", int.Parse(tb_Id.Text));
+            cmd.Parameters.AddWithValue("@jobid", int.Parse(tb_Id.Text));
             cmd.Parameters.AddWithValue("@name", tb_Name.Text);
-            cmd.Parameters.AddWithValue("@price", int.Parse(tb_Price.Text));
-            cmd.Parameters.AddWithValue("@quantity", int.Parse(tb_Quantity.Text));
-            cmd.Parameters.AddWithValue("@state", tb_State.Text);
+            cmd.Parameters.AddWithValue("@salary", int.Parse(tb_Salary.Text));
 
             cmd.ExecuteNonQuery();
             myDB.closeConnection();
-            MessageBox.Show("Cập nhật sản phẩm thành công", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Cập nhật công việc thành công", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        
+        private void btn_Add_Click(object sender, EventArgs e)
+        {
+            SqlConnection conn = myDB.getConnection;
+            myDB.openConnection();
+            string query = "INSERT INTO CONG_VIEC (TenCV, Luong) values (@name, @salary)";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@name", tb_Name.Text);
+            cmd.Parameters.AddWithValue("@salary", int.Parse(tb_Salary.Text));
 
-        private void ProductInformation_Load(object sender, EventArgs e)
+
+            cmd.ExecuteNonQuery();
+            myDB.closeConnection();
+            MessageBox.Show("Thêm công việc thành công", "Add", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btn_Cancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void JobInformation_Load(object sender, EventArgs e)
         {
             if (isEdit)
             {
-                String query = @"SELECT * FROM SAN_PHAM WHERE MaSP = @maSP";
+                String query = @"SELECT * FROM CONG_VIEC WHERE MaCV = @maCV";
                 try
                 {
                     int maSP;
@@ -81,7 +82,7 @@ namespace QuanLyDoDienTu.view.AdminForm
                     // Query Staff Infomation
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@maSP", proid); // Gán giá trị cho tham số
+                        command.Parameters.AddWithValue("@maCV", jobid); // Gán giá trị cho tham số
 
                         SqlDataAdapter adapter = new SqlDataAdapter(command);
                         DataTable dataTable = new DataTable();
@@ -97,11 +98,10 @@ namespace QuanLyDoDienTu.view.AdminForm
 
                         // Lấy dữ liệu từ DataTable
                         DataRow dr = dataTable.Rows[0];
-                        tb_Id.Text = dr["MaSP"].ToString(); // Gán giá trị Mã NV vào TextBox
-                        tb_Name.Text = dr["TenSP"].ToString();
-                        tb_Price.Text = dr["Gia"].ToString();
-                        tb_Quantity.Text = dr["SoLuong"].ToString();
-                        tb_State.Text = dr["TinhTrang"].ToString();
+                        tb_Id.Text = dr["MaCV"].ToString(); // Gán giá trị Mã NV vào TextBox
+                        tb_Name.Text = dr["TenCV"].ToString();
+                        tb_Salary.Text = dr["Luong"].ToString();
+                
                     }
                     connection.Close();
                 }
