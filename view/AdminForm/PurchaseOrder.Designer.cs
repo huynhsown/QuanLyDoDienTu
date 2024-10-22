@@ -103,7 +103,6 @@
             dgv_listStaff.ThemeStyle.RowsStyle.Height = 29;
             dgv_listStaff.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgv_listStaff.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            dgv_listStaff.CellContentClick += dgv_listStaff_CellContentClick;
             // 
             // btn_addStaff
             // 
