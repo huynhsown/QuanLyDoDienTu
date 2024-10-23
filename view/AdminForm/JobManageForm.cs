@@ -74,5 +74,45 @@ namespace QuanLyDoDienTu.view.AdminForm
             JobInformation jobInformation = new JobInformation();
             jobInformation.ShowDialog();
         }
+
+        private void btn_Search_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = myDB.getConnection;
+                conn.Open();
+
+                string query = "SELECT * FROM CONG_VIEC WHERE TenCV LIKE '%' + @tencv + '%'";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@tencv", tb_search.Text);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dataTable = new DataTable();
+
+                // Fill the DataTable with the query result
+                adapter.Fill(dataTable);
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    dgv_listJob.Rows.Clear(); // Clear DataGridView rows before adding new ones
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        object[] rowData = row.ItemArray;
+                        dgv_listJob.Rows.Add(rowData); // Add data to DataGridView
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không có dữ liệu");
+                }
+
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

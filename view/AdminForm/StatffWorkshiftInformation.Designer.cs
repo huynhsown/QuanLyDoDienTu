@@ -1,6 +1,6 @@
 ﻿namespace QuanLyDoDienTu.view.AdminForm
 {
-    partial class WorkshiftInformation
+    partial class StatffWorkshiftInformation
     {
         /// <summary>
         /// Required designer variable.

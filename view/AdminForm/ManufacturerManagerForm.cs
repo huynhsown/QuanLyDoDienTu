@@ -75,5 +75,45 @@ namespace QuanLyDoDienTu.view.AdminForm
             ManufacturerInformation manuInformation = new ManufacturerInformation();
             manuInformation.ShowDialog();
         }
+
+        private void btn_Search_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = myDB.getConnection;
+                conn.Open();
+
+                string query = "SELECT * FROM NHA_SAN_XUAT WHERE TenNSX LIKE '%' + @tennsx + '%'";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@tennsx", tb_search.Text);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dataTable = new DataTable();
+
+                // Fill the DataTable with the query result
+                adapter.Fill(dataTable);
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    dgv_listManufacturer.Rows.Clear(); // Clear DataGridView rows before adding new ones
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        object[] rowData = row.ItemArray;
+                        dgv_listManufacturer.Rows.Add(rowData); // Add data to DataGridView
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không có dữ liệu");
+                }
+
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

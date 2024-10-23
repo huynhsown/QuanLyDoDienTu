@@ -47,7 +47,7 @@
             dtp_Date.CustomizableEdges = customizableEdges1;
             dtp_Date.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             dtp_Date.Format = DateTimePickerFormat.Short;
-            dtp_Date.Location = new Point(62, 88);
+            dtp_Date.Location = new Point(181, 77);
             dtp_Date.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dtp_Date.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dtp_Date.Name = "dtp_Date";
@@ -62,7 +62,7 @@
             guna2DateTimePicker1.CustomizableEdges = customizableEdges3;
             guna2DateTimePicker1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             guna2DateTimePicker1.Format = DateTimePickerFormat.Short;
-            guna2DateTimePicker1.Location = new Point(558, 88);
+            guna2DateTimePicker1.Location = new Point(655, 77);
             guna2DateTimePicker1.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             guna2DateTimePicker1.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             guna2DateTimePicker1.Name = "guna2DateTimePicker1";
@@ -74,7 +74,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(62, 65);
+            label1.Location = new Point(181, 54);
             label1.Name = "label1";
             label1.Size = new Size(126, 20);
             label1.TabIndex = 86;
@@ -83,7 +83,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(558, 65);
+            label2.Location = new Point(655, 54);
             label2.Name = "label2";
             label2.Size = new Size(127, 20);
             label2.TabIndex = 87;
@@ -91,11 +91,11 @@
             // 
             // chartRevenue
             // 
-            chartRevenue.Location = new Point(191, 184);
+            chartRevenue.Location = new Point(239, 162);
             chartRevenue.Name = "chartRevenue";
             series1.Name = "Series1";
             chartRevenue.Series.Add(series1);
-            chartRevenue.Size = new Size(494, 399);
+            chartRevenue.Size = new Size(599, 409);
             chartRevenue.TabIndex = 88;
             chartRevenue.Text = "chart1";
             // 
@@ -103,6 +103,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(1164, 678);
             Controls.Add(chartRevenue);
             Controls.Add(label2);

@@ -38,7 +38,7 @@ namespace QuanLyDoDienTu.view.AdminForm
                     foreach (DataRow row in dataTable.Rows)
                     {
                         object[] rowData = row.ItemArray;
-                        dgv_listStaff.Rows.Add(rowData); // Thêm vào DataGridView
+                        dgv_listCustomer.Rows.Add(rowData); // Thêm vào DataGridView
                     }
                 }
                 connection.Close();
@@ -54,13 +54,14 @@ namespace QuanLyDoDienTu.view.AdminForm
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                int id = Convert.ToInt32(dgv_listStaff.Rows[e.RowIndex].Cells["col_Id"].Value);
-                if (dgv_listStaff.Columns[e.ColumnIndex].Name == "col_Edit")                {
-                    
+                int id = Convert.ToInt32(dgv_listCustomer.Rows[e.RowIndex].Cells["col_Id"].Value);
+                if (dgv_listCustomer.Columns[e.ColumnIndex].Name == "col_Edit")
+                {
+
                     CustomerInformation customerInformation = new CustomerInformation(id);
                     customerInformation.ShowDialog();
                 }
-                else if (dgv_listStaff.Columns[e.ColumnIndex].Name == "col_delete")
+                else if (dgv_listCustomer.Columns[e.ColumnIndex].Name == "col_delete")
                 {
                     SqlConnection connection = myDB.getConnection;
 
@@ -96,9 +97,10 @@ namespace QuanLyDoDienTu.view.AdminForm
                     }
 
                 }
-                else if(dgv_listStaff.Columns[e.ColumnIndex].Name == "col_history"){
+                else if (dgv_listCustomer.Columns[e.ColumnIndex].Name == "col_history")
+                {
                     CustomerHistory customerHistory = new CustomerHistory(id);
-                    customerHistory.ShowDialog();   
+                    customerHistory.ShowDialog();
                 }
             }
         }
@@ -107,6 +109,47 @@ namespace QuanLyDoDienTu.view.AdminForm
         {
             CustomerInformation customerInformation = new CustomerInformation();
             customerInformation.ShowDialog();
+        }
+
+        private void btn_Search_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = myDB.getConnection;
+                conn.Open();
+
+                string query = "SELECT * FROM KHACH_HANG WHERE SDT LIKE '%' + @sdt + '%'";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@sdt", tb_search.Text);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dataTable = new DataTable();
+
+                // Fill the DataTable with the query result
+                adapter.Fill(dataTable);
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    dgv_listCustomer.Rows.Clear(); // Clear DataGridView rows before adding new ones
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        object[] rowData = row.ItemArray;
+                        dgv_listCustomer.Rows.Add(rowData); // Add data to DataGridView
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không có dữ liệu");
+                }
+
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }

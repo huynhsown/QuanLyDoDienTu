@@ -32,39 +32,119 @@ namespace QuanLyDoDienTu.view.AdminForm
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = myDB.getConnection;
-            myDB.openConnection();
-            string query = "INSERT INTO SAN_PHAM (TenSP, Gia, SoLuong, TinhTrang) values (@name, @price, @quantity, @state)";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@name", tb_Name.Text);
-            cmd.Parameters.AddWithValue("@price", int.Parse(tb_Price.Text));
-            cmd.Parameters.AddWithValue("@quantity", int.Parse(tb_Quantity.Text));
-            cmd.Parameters.AddWithValue("@state", tb_State.Text);
+            try
+            {
+                // Input validation
+                if (string.IsNullOrWhiteSpace(tb_Name.Text) || string.IsNullOrWhiteSpace(tb_State.Text))
+                {
+                    MessageBox.Show("Tên sản phẩm và trạng thái không được để trống.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            cmd.ExecuteNonQuery();
-            myDB.closeConnection();
-            MessageBox.Show("Thêm sản phẩm thành công", "Add", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (!int.TryParse(tb_Price.Text, out int price))
+                {
+                    MessageBox.Show("Giá sản phẩm không hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Get the database connection
+                using (SqlConnection conn = myDB.getConnection)
+                {
+                    myDB.openConnection(); // Open connection
+
+                    // Create the SqlCommand for the stored procedure
+                    using (SqlCommand cmd = new SqlCommand("InsertSanPham", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Add parameters
+                        cmd.Parameters.AddWithValue("@TenSP", tb_Name.Text);
+                        cmd.Parameters.AddWithValue("@Gia", price);
+                        cmd.Parameters.AddWithValue("@TinhTrang", tb_State.Text);
+
+                        // Execute the command
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Thêm sản phẩm thành công", "Add", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                // Show error message
+                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi CSDL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 
         private void btn_Edit_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = myDB.getConnection;
-            myDB.openConnection();
-            string query = "UPDATE SAN_PHAM SET TenSP = @name, Gia = @price, SoLuong = @quantity, TinhTrang = @state WHERE MaSP = @proid";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@proid", int.Parse(tb_Id.Text));
-            cmd.Parameters.AddWithValue("@name", tb_Name.Text);
-            cmd.Parameters.AddWithValue("@price", int.Parse(tb_Price.Text));
-            cmd.Parameters.AddWithValue("@quantity", int.Parse(tb_Quantity.Text));
-            cmd.Parameters.AddWithValue("@state", tb_State.Text);
+            try
+            {
+                // Input validation
+                if (string.IsNullOrWhiteSpace(tb_Name.Text) || string.IsNullOrWhiteSpace(tb_State.Text))
+                {
+                    MessageBox.Show("Tên sản phẩm và trạng thái không được để trống.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            cmd.ExecuteNonQuery();
-            myDB.closeConnection();
-            MessageBox.Show("Cập nhật sản phẩm thành công", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (!int.TryParse(tb_Id.Text, out int productId))
+                {
+                    MessageBox.Show("Mã sản phẩm không hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!int.TryParse(tb_Price.Text, out int price))
+                {
+                    MessageBox.Show("Giá sản phẩm không hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!int.TryParse(tb_Quantity.Text, out int quantity))
+                {
+                    MessageBox.Show("Số lượng sản phẩm không hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Get the database connection
+                using (SqlConnection conn = myDB.getConnection)
+                {
+                    myDB.openConnection(); // Open connection
+
+                    // Create the SqlCommand for the stored procedure
+                    using (SqlCommand cmd = new SqlCommand("UpdateSanPham", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        // Add parameters
+                        cmd.Parameters.AddWithValue("@MaSP", productId);
+                        cmd.Parameters.AddWithValue("@TenSP", tb_Name.Text);
+                        cmd.Parameters.AddWithValue("@Gia", price);
+                        cmd.Parameters.AddWithValue("@SoLuong", quantity);
+                        cmd.Parameters.AddWithValue("@TinhTrang", tb_State.Text);
+
+                        // Execute the command
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Cập nhật sản phẩm thành công", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Cập nhật không thành công. Vui lòng kiểm tra thông tin.", "Update", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Show error message
+                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi CSDL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
-        
+
 
         private void ProductInformation_Load(object sender, EventArgs e)
         {

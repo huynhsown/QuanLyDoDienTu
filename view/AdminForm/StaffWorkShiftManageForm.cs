@@ -19,14 +19,14 @@ namespace QuanLyDoDienTu.view.AdminForm
         {
             InitializeComponent();
             this.staffid = staffid;
-      
+
         }
 
 
 
         private void btn_addJob_Click(object sender, EventArgs e)
         {
-            WorkshiftInformation workshiftInformation = new WorkshiftInformation(staffid, false);
+            StatffWorkshiftInformation workshiftInformation = new StatffWorkshiftInformation(staffid, false);
             workshiftInformation.ShowDialog();
         }
 
@@ -72,10 +72,50 @@ namespace QuanLyDoDienTu.view.AdminForm
                 int workshiftid = Convert.ToInt32(dgv_listWorkShift.Rows[e.RowIndex].Cells["col_Id"].Value);
                 if (dgv_listWorkShift.Columns[e.ColumnIndex].Name == "col_Edit")
                 {
-                    WorkshiftInformation workshiftInformation = new WorkshiftInformation(workshiftid);
+                    StatffWorkshiftInformation workshiftInformation = new StatffWorkshiftInformation(workshiftid);
                     workshiftInformation.ShowDialog();
 
                 }
+            }
+        }
+
+        private void btn_Search_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = myDB.getConnection;
+                conn.Open();
+
+                string query = "SELECT * FROM CA_LAM_VIEC WHERE TenCV LIKE '%' + @tencalamviec + '%'";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@tencalamviec", tb_search.Text);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dataTable = new DataTable();
+
+                // Fill the DataTable with the query result
+                adapter.Fill(dataTable);
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    dgv_listWorkShift.Rows.Clear(); // Clear DataGridView rows before adding new ones
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        object[] rowData = row.ItemArray;
+                        dgv_listWorkShift.Rows.Add(rowData); // Add data to DataGridView
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không có dữ liệu");
+                }
+
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

@@ -34,32 +34,109 @@ namespace QuanLyDoDienTu.view.AdminForm
 
         private void btn_Edit_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = myDB.getConnection;
-            myDB.openConnection();
-            string query = "UPDATE CONG_VIEC SET TenCV = @name, Luong = @salary WHERE MaCV = @jobid";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@jobid", int.Parse(tb_Id.Text));
-            cmd.Parameters.AddWithValue("@name", tb_Name.Text);
-            cmd.Parameters.AddWithValue("@salary", int.Parse(tb_Salary.Text));
+            try
+            {
+                // Retrieve and trim input values
+                String name = tb_Name.Text.Trim();
+                String salaryText = tb_Salary.Text.Trim();
+                int salary;
 
-            cmd.ExecuteNonQuery();
-            myDB.closeConnection();
-            MessageBox.Show("Cập nhật công việc thành công", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Try parsing the salary input
+                if (!int.TryParse(salaryText, out salary))
+                {
+                    MessageBox.Show("Lỗi: Mức lương không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // Exit the method if parsing fails
+                }
+
+                // Get the database connection
+                using (SqlConnection conn = myDB.getConnection)
+                {
+                    myDB.openConnection(); // Open connection
+
+                    // Create the SqlCommand for the stored procedure
+                    using (SqlCommand cmd = new SqlCommand("UpdateCongViec", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure; // Specify that we're using a stored procedure
+
+                        // Add parameters for the stored procedure
+                        cmd.Parameters.AddWithValue("@MaCV", int.Parse(tb_Id.Text));
+                        cmd.Parameters.AddWithValue("@TenCV", name);
+                        cmd.Parameters.AddWithValue("@Luong", salary);
+
+                        // Execute the command
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        // Provide feedback based on the result
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Cập nhật công việc thành công", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Cập nhật không thành công. Vui lòng kiểm tra thông tin.", "Update", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Show error message
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi CSDL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = myDB.getConnection;
-            myDB.openConnection();
-            string query = "INSERT INTO CONG_VIEC (TenCV, Luong) values (@name, @salary)";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@name", tb_Name.Text);
-            cmd.Parameters.AddWithValue("@salary", int.Parse(tb_Salary.Text));
+            try
+            {
+                // Retrieve and trim input values
+                String name = tb_Name.Text.Trim();
+                String salaryText = tb_Salary.Text.Trim();
+                int salary;
 
+                // Try parsing the salary input
+                if (!int.TryParse(salaryText, out salary))
+                {
+                    MessageBox.Show("Lỗi: Mức lương không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // Exit the method if parsing fails
+                }
 
-            cmd.ExecuteNonQuery();
-            myDB.closeConnection();
-            MessageBox.Show("Thêm công việc thành công", "Add", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Get the database connection
+                using (SqlConnection conn = myDB.getConnection)
+                {
+                    myDB.openConnection(); // Open connection
+
+                    // Create the SqlCommand for the stored procedure
+                    using (SqlCommand cmd = new SqlCommand("InsertCongViec", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure; // Specify that we're using a stored procedure
+
+                        // Add parameters for the stored procedure
+                        cmd.Parameters.AddWithValue("@TenCV", name);
+                        cmd.Parameters.AddWithValue("@Luong", salary);
+
+                        // Execute the command
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        // Provide feedback based on the result
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Thêm công việc thành công", "Add", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Thêm công việc không thành công. Vui lòng kiểm tra thông tin.", "Add", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Show error message
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi CSDL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void btn_Cancel_Click(object sender, EventArgs e)
