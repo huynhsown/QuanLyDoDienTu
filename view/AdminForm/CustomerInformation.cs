@@ -81,51 +81,49 @@ namespace QuanLyDoDienTu.view.AdminForm
         {
             try
             {
+                // Retrieve and trim input values
                 String name = tb_Name.Text.Trim();
                 String phone = tb_Phone.Text.Trim();
                 String email = tb_Email.Text.Trim();
                 String address = tb_Address.Text.Trim();
 
-                string queryUpdate = @"UPDATE KHACH_HANG
-                           SET 
-                               HoTen = @HoTen,
-                               SDT = @SDT,
-                               Email = @Email,
-                               DiaChi = @DiaChi
-                           WHERE 
-                               MaKH = @MaKH";
-
-                SqlConnection connection = myDB.getConnection;
-
-                connection.Open(); // Mở kết nối
-
-                // Query Staff Infomation
-                using (SqlCommand command = new SqlCommand(queryUpdate, connection))
+                // Get the database connection
+                using (SqlConnection connection = myDB.getConnection)
                 {
-                    command.Parameters.AddWithValue("@MaKH", id); // Giá trị Mã NV
-                    command.Parameters.AddWithValue("@HoTen", tb_Name.Text);
-                    command.Parameters.AddWithValue("@SDT", tb_Phone.Text);
-                    command.Parameters.AddWithValue("@Email", tb_Email.Text);
-                    command.Parameters.AddWithValue("@DiaChi", tb_Address.Text);
+                    connection.Open(); // Open connection
 
-                    int rowsAffected = command.ExecuteNonQuery();
-                    if (rowsAffected > 0)
+                    // Create the SqlCommand for the stored procedure
+                    using (SqlCommand command = new SqlCommand("UpdateKhachHang", connection))
                     {
-                        MessageBox.Show("Cập nhật thông tin thành công.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Cập nhật không thành công. Vui lòng kiểm tra thông tin.");
-                    }
+                        command.CommandType = CommandType.StoredProcedure; // Specify stored procedure
 
+                        // Add parameters for the stored procedure
+                        command.Parameters.AddWithValue("@MaKH", id); // Assuming 'id' is defined and holds the customer ID
+                        command.Parameters.AddWithValue("@HoTen", name);
+                        command.Parameters.AddWithValue("@SDT", phone);
+                        command.Parameters.AddWithValue("@Email", email);
+                        command.Parameters.AddWithValue("@DiaChi", address);
+
+                        // Execute the command
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        // Provide feedback based on the result
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Cập nhật thông tin thành công.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Cập nhật không thành công. Vui lòng kiểm tra thông tin.");
+                        }
+                    }
                 }
-                connection.Close();
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi CSDL", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void btn_Cancel_Click(object sender, EventArgs e)
@@ -135,45 +133,51 @@ namespace QuanLyDoDienTu.view.AdminForm
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
-
             try
             {
+                // Retrieve and trim input values
                 String name = tb_Name.Text.Trim();
                 String phone = tb_Phone.Text.Trim();
                 String email = tb_Email.Text.Trim();
                 String address = tb_Address.Text.Trim();
 
-                // Update the SQL query to match the KHACH_HANG table structure
-                string queryInsert = @"INSERT INTO KHACH_HANG (HoTen, DiaChi, SDT, Email) 
-                           VALUES (@HoTen, @DiaChi, @SDT, @Email);";
-
-                SqlConnection connection = myDB.getConnection;
-
-                connection.Open(); // Mở kết nối
-
-                // Query Customer Information
-                using (SqlCommand command = new SqlCommand(queryInsert, connection))
+                // Get the database connection
+                using (SqlConnection connection = myDB.getConnection)
                 {
-                    command.Parameters.AddWithValue("@HoTen", name); // Giá trị Họ tên
-                    command.Parameters.AddWithValue("@SDT", phone);   // Giá trị SĐT
-                    command.Parameters.AddWithValue("@Email", email); // Giá trị Email
-                    command.Parameters.AddWithValue("@DiaChi", address); // Giá trị Địa chỉ
+                    connection.Open(); // Open connection
 
-                    int rowsAffected = command.ExecuteNonQuery();
-                    if (rowsAffected > 0)
+                    // Create the SqlCommand for the stored procedure
+                    using (SqlCommand command = new SqlCommand("InsertKhachHang", connection))
                     {
-                        MessageBox.Show("Thêm khách hàng thành công.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Thêm khách hàng không thành công. Vui lòng kiểm tra thông tin.");
+                        command.CommandType = CommandType.StoredProcedure; // Specify that we're using a stored procedure
+
+                        // Add parameters for the stored procedure
+                        command.Parameters.AddWithValue("@HoTen", name);
+                        command.Parameters.AddWithValue("@DiaChi", address);
+                        command.Parameters.AddWithValue("@SDT", phone);
+                        command.Parameters.AddWithValue("@Email", email);
+
+                        // Execute the command
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        // Provide feedback based on the result
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Thêm khách hàng thành công.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Thêm khách hàng không thành công. Vui lòng kiểm tra thông tin.");
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
+                // Show error message
                 MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi CSDL", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
 
         }
     }

@@ -85,5 +85,10 @@ namespace QuanLyDoDienTu.view.AdminForm
         {
             loadForm(new StatisticManageForm());
         }
+
+        private void đƠNNHẬPHÀNGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loadForm(new PurchaseOrderManageForm());
+        }
     }
 }

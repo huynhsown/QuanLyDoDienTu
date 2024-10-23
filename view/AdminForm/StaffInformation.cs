@@ -188,37 +188,25 @@ namespace QuanLyDoDienTu.view.AdminForm
                 String phone = tb_Phone.Text.Trim();
                 String email = tb_Email.Text.Trim();
                 String address = tb_Address.Text.Trim();
-                String gender = "Nam";
-                if (rb_female.Checked) gender = "Nu";
+                String gender = rb_female.Checked ? "Nu" : "Nam"; // Ternary operator for gender
                 int jobId = Convert.ToInt32(cb_Job.SelectedValue);
 
-                string queryUpdate = @"UPDATE NHAN_VIEN
-                           SET 
-                               HoTen = @HoTen,
-                               NgaySinh = @NgaySinh,
-                               GioiTinh = @GioiTinh,
-                               SDT = @SDT,
-                               Email = @Email,
-                               DiaChi = @DiaChi,
-                               MaCV = @MaCV
-                           WHERE 
-                               MaNV = @MaNV";
-
                 SqlConnection connection = myDB.getConnection;
-
                 connection.Open(); // Mở kết nối
 
-                // Query Staff Infomation
-                using (SqlCommand command = new SqlCommand(queryUpdate, connection))
+                // Use the stored procedure to update staff information
+                using (SqlCommand command = new SqlCommand("UpdateNhanVien", connection))
                 {
+                    command.CommandType = CommandType.StoredProcedure;
+
                     command.Parameters.AddWithValue("@MaNV", id); // Giá trị Mã NV
-                    command.Parameters.AddWithValue("@HoTen", tb_Name.Text);
+                    command.Parameters.AddWithValue("@HoTen", name);
                     command.Parameters.AddWithValue("@NgaySinh", dtp_Date.Value);
-                    command.Parameters.AddWithValue("@GioiTinh", rb_male.Checked ? "Nam" : "Nu");
-                    command.Parameters.AddWithValue("@SDT", tb_Phone.Text);
-                    command.Parameters.AddWithValue("@Email", tb_Email.Text);
-                    command.Parameters.AddWithValue("@DiaChi", tb_Address.Text);
-                    command.Parameters.AddWithValue("@MaCV", cb_Job.SelectedValue);
+                    command.Parameters.AddWithValue("@GioiTinh", gender);
+                    command.Parameters.AddWithValue("@SDT", phone);
+                    command.Parameters.AddWithValue("@Email", email);
+                    command.Parameters.AddWithValue("@DiaChi", address);
+                    command.Parameters.AddWithValue("@MaCV", jobId);
 
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
@@ -229,14 +217,15 @@ namespace QuanLyDoDienTu.view.AdminForm
                     {
                         MessageBox.Show("Cập nhật không thành công. Vui lòng kiểm tra thông tin.");
                     }
-
                 }
 
+                connection.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi CSDL", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void btn_Add_Click(object sender, EventArgs e)
@@ -248,46 +237,43 @@ namespace QuanLyDoDienTu.view.AdminForm
                 String phone = tb_Phone.Text.Trim();
                 String email = tb_Email.Text.Trim();
                 String address = tb_Address.Text.Trim();
-                String gender = "Nam";
-                if (rb_female.Checked) gender = "Nu";
-                int jobId = Convert.ToInt32(cb_Job.SelectedValue);
-
-                string queryUpdate = @"INSERT INTO NHAN_VIEN (HoTen, NgaySinh, GioiTinh, SDT, Email, DiaChi, MaCV) 
-                                        VALUES (@HoTen, @NgaySinh, @GioiTinh, @SDT, @Email, @DiaChi, @MaCV);";
+                String gender = rb_female.Checked ? "Nu" : "Nam"; // Set gender based on radio button selection
+                int jobId = Convert.ToInt32(cb_Job.SelectedValue); // Get job ID from the selected value
 
                 SqlConnection connection = myDB.getConnection;
+                connection.Open(); // Open the connection
 
-                connection.Open(); // Mở kết nối
-
-                // Query Staff Infomation
-                using (SqlCommand command = new SqlCommand(queryUpdate, connection))
+                // Use the stored procedure to insert new employee information
+                using (SqlCommand command = new SqlCommand("InsertNhanVien", connection))
                 {
-                    command.Parameters.AddWithValue("@MaNV", id); // Giá trị Mã NV
-                    command.Parameters.AddWithValue("@HoTen", tb_Name.Text);
+                    command.CommandType = CommandType.StoredProcedure; // Specify command type
+
+                    command.Parameters.AddWithValue("@HoTen", name);
                     command.Parameters.AddWithValue("@NgaySinh", dtp_Date.Value);
-                    command.Parameters.AddWithValue("@GioiTinh", rb_male.Checked ? "Nam" : "Nu");
-                    command.Parameters.AddWithValue("@SDT", tb_Phone.Text);
-                    command.Parameters.AddWithValue("@Email", tb_Email.Text);
-                    command.Parameters.AddWithValue("@DiaChi", tb_Address.Text);
-                    command.Parameters.AddWithValue("@MaCV", cb_Job.SelectedValue);
+                    command.Parameters.AddWithValue("@GioiTinh", gender);
+                    command.Parameters.AddWithValue("@SDT", phone);
+                    command.Parameters.AddWithValue("@Email", email);
+                    command.Parameters.AddWithValue("@DiaChi", address);
+                    command.Parameters.AddWithValue("@MaCV", jobId);
 
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("Cập nhật thông tin thành công.");
+                        MessageBox.Show("Thêm nhân viên thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show("Cập nhật không thành công. Vui lòng kiểm tra thông tin.");
+                        MessageBox.Show("Thêm nhân viên không thành công. Vui lòng kiểm tra thông tin.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-
                 }
 
+                connection.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi CSDL", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
     }
 }

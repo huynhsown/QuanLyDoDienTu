@@ -32,32 +32,70 @@ namespace QuanLyDoDienTu.view.AdminForm
 
         private void btn_Edit_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = myDB.getConnection;
-            myDB.openConnection();
-            string query = "UPDATE UNG_DUNG SET TenUngDung = @name, ChietKhau = @discount WHERE MaUngDung = @appid";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@appid", int.Parse(tb_Id.Text));
-            cmd.Parameters.AddWithValue("@name", tb_Name.Text);
-            cmd.Parameters.AddWithValue("@discount", int.Parse(tb_Discount.Text));
+            try
+            {
+                // Get the database connection
+                SqlConnection conn = myDB.getConnection;
+                myDB.openConnection();
+
+                // Create the SqlCommand for the stored procedure
+                SqlCommand cmd = new SqlCommand("UpdateUngDung", conn);
+                cmd.CommandType = CommandType.StoredProcedure; // Specify that we're using a stored procedure
+
+                // Add parameters for the stored procedure
+                cmd.Parameters.AddWithValue("@MaUngDung", int.Parse(tb_Id.Text));
+                cmd.Parameters.AddWithValue("@TenUngDung", tb_Name.Text);
+                cmd.Parameters.AddWithValue("@ChietKhau", int.Parse(tb_Discount.Text));
+
+                // Execute the command
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                // Close the connection
+                myDB.closeConnection();
+
+                MessageBox.Show("Cập nhật sản phẩm thành công", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception ex)
+            {
+                // Show error message
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
 
 
-            cmd.ExecuteNonQuery();
-            myDB.closeConnection();
-            MessageBox.Show("Cập nhật sản phẩm thành công", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btn_Add_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = myDB.getConnection;
-            myDB.openConnection();
-            string query = "INSERT INTO UNG_DUNG (TenUngDung, ChietKhau) values (@name, @discount)";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@name", tb_Name.Text);
-            cmd.Parameters.AddWithValue("@discount", int.Parse(tb_Discount.Text));
+            try
+            {
+                // Get the database connection
+                SqlConnection conn = myDB.getConnection;
+                myDB.openConnection();
 
-            cmd.ExecuteNonQuery();
-            myDB.closeConnection();
-            MessageBox.Show("Thêm ứng dụng thành công", "Add", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Create the SqlCommand for the stored procedure
+                SqlCommand cmd = new SqlCommand("InsertUngDung", conn);
+                cmd.CommandType = CommandType.StoredProcedure; // Specify that we're using a stored procedure
+
+                // Add parameters for the stored procedure
+                cmd.Parameters.AddWithValue("@TenUngDung", tb_Name.Text);
+                cmd.Parameters.AddWithValue("@ChietKhau", int.Parse(tb_Discount.Text));
+
+                // Execute the command
+                cmd.ExecuteNonQuery();
+
+                // Close the connection
+                myDB.closeConnection();
+
+                // Show success message
+                MessageBox.Show("Thêm ứng dụng thành công", "Add", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                // Show error message
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+
         }
 
         private void btn_Cancel_Click(object sender, EventArgs e)

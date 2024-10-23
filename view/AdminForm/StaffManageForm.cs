@@ -79,7 +79,7 @@ namespace QuanLyDoDienTu.view.AdminForm
                     StaffInformation staffInformation = new StaffInformation(id);
                     staffInformation.ShowDialog();
                 }
-                else if(dgv_listStaff.Columns[e.ColumnIndex].Name == "col_delete")
+                else if (dgv_listStaff.Columns[e.ColumnIndex].Name == "col_delete")
                 {
                     int id = Convert.ToInt32(dgv_listStaff.Rows[e.RowIndex].Cells["col_Id"].Value);
                 }
@@ -87,10 +87,50 @@ namespace QuanLyDoDienTu.view.AdminForm
                 else if (dgv_listStaff.Columns[e.ColumnIndex].Name == "col_workShift")
                 {
                     int id = Convert.ToInt32(dgv_listStaff.Rows[e.RowIndex].Cells["col_Id"].Value);
-                  
+
                     StaffWorkShiftManageForm staffWorkShiftManageForm = new StaffWorkShiftManageForm(id);
                     staffWorkShiftManageForm.ShowDialog();
                 }
+            }
+        }
+
+        private void btn_Search_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = myDB.getConnection;
+                conn.Open();
+
+                string query = "SELECT * FROM SAN_PHAM WHERE NHAN_VIEN LIKE '%' + @tennv + '%'";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@tennv", tb_search.Text);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dataTable = new DataTable();
+
+                // Fill the DataTable with the query result
+                adapter.Fill(dataTable);
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    dgv_listStaff.Rows.Clear(); // Clear DataGridView rows before adding new ones
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        object[] rowData = row.ItemArray;
+                        dgv_listStaff.Rows.Add(rowData); // Add data to DataGridView
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không có dữ liệu");
+                }
+
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

@@ -13,14 +13,14 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QuanLyDoDienTu.view.AdminForm
 {
-    public partial class WorkshiftInformation : Form
+    public partial class StatffWorkshiftInformation : Form
     {
         private int workshiftid;
         private int staffid;
         bool isEdit = false;
         private MY_DB myDB = new MY_DB();
 
-        public WorkshiftInformation(int workshiftid)
+        public StatffWorkshiftInformation(int workshiftid)
         {
             InitializeComponent();
             this.workshiftid = workshiftid;
@@ -28,7 +28,7 @@ namespace QuanLyDoDienTu.view.AdminForm
             btn_Add.Visible = false;
         }
 
-        public WorkshiftInformation(int staffid, bool isEdit)
+        public StatffWorkshiftInformation(int staffid, bool isEdit)
         {
             InitializeComponent();
             this.isEdit = isEdit;
@@ -123,34 +123,53 @@ namespace QuanLyDoDienTu.view.AdminForm
         {
             try
             {
-                SqlConnection conn = myDB.getConnection;
-                myDB.openConnection();
-                string query = "UPDATE CA_LAM_VIEC SET ThoiGianBatDau = @starttime, ThoiGianKetThuc = @endtime WHERE MaCa = @maCa";
-                SqlCommand cmd = new SqlCommand(query, conn);
+                // Open the database connection
+                using (SqlConnection conn = myDB.getConnection)
+                {
+                    myDB.openConnection(); // Open connection
 
-                // Add parameters
-                cmd.Parameters.AddWithValue("@maCa", workshiftid);
+                    // Define the command for the stored procedure
+                    using (SqlCommand cmd = new SqlCommand("UpdateCaLamViec", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure; // Specify that it's a stored procedure
 
-                // Combine date and time to create a DateTime object
-                DateTime startTime = dtp_Date.Value.Date + TimeSpan.Parse(combo_startTime.SelectedItem.ToString());
-                DateTime endTime = dtp_Date.Value.Date + TimeSpan.Parse(combo_endTime.SelectedItem.ToString());
+                        // Combine date and time to create DateTime objects
+                        DateTime startTime = dtp_Date.Value.Date + TimeSpan.Parse(combo_startTime.SelectedItem.ToString());
+                        DateTime endTime = dtp_Date.Value.Date + TimeSpan.Parse(combo_endTime.SelectedItem.ToString());
 
+                        // Add parameters for the stored procedure
+                        cmd.Parameters.AddWithValue("@maCa", workshiftid);
+                        cmd.Parameters.AddWithValue("@starttime", startTime);
+                        cmd.Parameters.AddWithValue("@endtime", endTime);
 
-                // Add parameters for start and end time
-                cmd.Parameters.AddWithValue("@starttime", startTime);
-                cmd.Parameters.AddWithValue("@endtime", endTime);
+                        // Execute the stored procedure
+                        int rowsAffected = cmd.ExecuteNonQuery();
 
-                cmd.ExecuteNonQuery();
-
-
-                myDB.closeConnection();
-                MessageBox.Show("Cập nhật ca làm việc thành công", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // Check if the update was successful
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Cập nhật ca làm việc thành công", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không tìm thấy ca làm việc để cập nhật.", "Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
             }
-
+            catch (FormatException fe)
+            {
+                MessageBox.Show($"Lỗi định dạng thời gian: {fe.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show($"Lỗi cơ sở dữ liệu: {sqlEx.Message}", "Lỗi CSDL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
 
         }
 
@@ -184,36 +203,53 @@ namespace QuanLyDoDienTu.view.AdminForm
         {
             try
             {
-                
-                SqlConnection conn = myDB.getConnection;
-                myDB.openConnection();
-                string query = "INSERT INTO CA_LAM_VIEC (ThoiGianBatDau , ThoiGianKetThuc, MaNV)   values (@starttime, @endtime, @maNV)";
-                SqlCommand cmd = new SqlCommand(query, conn);
+                // Open the database connection
+                using (SqlConnection conn = myDB.getConnection)
+                {
+                    myDB.openConnection(); // Open connection
 
-                // Add parameters
-                cmd.Parameters.AddWithValue("@maCa", workshiftid);
+                    // Define the command for the stored procedure
+                    using (SqlCommand cmd = new SqlCommand("InsertCaLamViec", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure; // Specify that it's a stored procedure
 
-                // Combine date and time to create a DateTime object
-                DateTime startTime = dtp_Date.Value.Date + TimeSpan.Parse(combo_startTime.SelectedItem.ToString());
-                DateTime endTime = dtp_Date.Value.Date + TimeSpan.Parse(combo_endTime.SelectedItem.ToString());
+                        // Combine date and time to create DateTime objects
+                        DateTime startTime = dtp_Date.Value.Date + TimeSpan.Parse(combo_startTime.SelectedItem.ToString());
+                        DateTime endTime = dtp_Date.Value.Date + TimeSpan.Parse(combo_endTime.SelectedItem.ToString());
 
+                        // Add parameters for start time, end time, and staff ID
+                        cmd.Parameters.AddWithValue("@starttime", startTime);
+                        cmd.Parameters.AddWithValue("@endtime", endTime);
+                        cmd.Parameters.AddWithValue("@maNV", staffid);
 
-                // Add parameters for start and end time
-                cmd.Parameters.AddWithValue("@starttime", startTime);
-                cmd.Parameters.AddWithValue("@endtime", endTime);
-                cmd.Parameters.AddWithValue("@maNV", staffid);
-                
-                cmd.ExecuteNonQuery();
+                        // Execute the stored procedure
+                        int rowsAffected = cmd.ExecuteNonQuery();
 
-
-                myDB.closeConnection();
-                MessageBox.Show("Thêm ca làm việc thành công", "Add", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // Check if the insertion was successful
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Thêm ca làm việc thành công", "Add", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Thêm ca làm việc không thành công", "Add Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
             }
-
+            catch (FormatException fe)
+            {
+                MessageBox.Show($"Lỗi định dạng thời gian: {fe.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show($"Lỗi cơ sở dữ liệu: {sqlEx.Message}", "Lỗi CSDL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
     }
 }

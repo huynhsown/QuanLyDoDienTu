@@ -37,13 +37,14 @@ namespace QuanLyDoDienTu.view.AdminForm
             sẢNPHẨMToolStripMenuItem = new ToolStripMenuItem();
             dOANHTHUToolStripMenuItem = new ToolStripMenuItem();
             panel = new Panel();
+            đƠNNHẬPHÀNGToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { staffManage, kHÁCHHÀNGToolStripMenuItem, cÔNGVIỆCToolStripMenuItem, nHÀSẢNXUẤTToolStripMenuItem, ứNGDỤNGToolStripMenuItem, sẢNPHẨMToolStripMenuItem, dOANHTHUToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { staffManage, kHÁCHHÀNGToolStripMenuItem, cÔNGVIỆCToolStripMenuItem, nHÀSẢNXUẤTToolStripMenuItem, ứNGDỤNGToolStripMenuItem, sẢNPHẨMToolStripMenuItem, dOANHTHUToolStripMenuItem, đƠNNHẬPHÀNGToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1182, 28);
@@ -107,6 +108,13 @@ namespace QuanLyDoDienTu.view.AdminForm
             panel.Size = new Size(1182, 725);
             panel.TabIndex = 1;
             // 
+            // đƠNNHẬPHÀNGToolStripMenuItem
+            // 
+            đƠNNHẬPHÀNGToolStripMenuItem.Name = "đƠNNHẬPHÀNGToolStripMenuItem";
+            đƠNNHẬPHÀNGToolStripMenuItem.Size = new Size(146, 24);
+            đƠNNHẬPHÀNGToolStripMenuItem.Text = "ĐƠN NHẬP HÀNG";
+            đƠNNHẬPHÀNGToolStripMenuItem.Click += đƠNNHẬPHÀNGToolStripMenuItem_Click;
+            // 
             // AdminMainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -136,5 +144,6 @@ namespace QuanLyDoDienTu.view.AdminForm
         private ToolStripMenuItem ứNGDỤNGToolStripMenuItem;
         private ToolStripMenuItem sẢNPHẨMToolStripMenuItem;
         private ToolStripMenuItem dOANHTHUToolStripMenuItem;
+        private ToolStripMenuItem đƠNNHẬPHÀNGToolStripMenuItem;
     }
 }

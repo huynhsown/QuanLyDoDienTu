@@ -43,7 +43,8 @@ namespace QuanLyDoDienTu.view.AdminForm
             loadApplication();
         }
 
-        private void loadApplication() {
+        private void loadApplication()
+        {
             String query = @"SELECT * FROM UNG_DUNG";
             try
             {
@@ -70,6 +71,46 @@ namespace QuanLyDoDienTu.view.AdminForm
                 MessageBox.Show(ex.Message);
             }
 
+
+        }
+
+        private void btn_Search_Click(object sender, EventArgs e)
+        {
+            try
+            { 
+                SqlConnection conn = myDB.getConnection;
+                conn.Open();
+
+                string query = "SELECT * FROM UNG_DUNG WHERE TenUngDung LIKE '%' + @TenUD + '%'";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@TenUD", tb_search.Text);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dataTable = new DataTable();
+
+                // Fill the DataTable with the query result
+                adapter.Fill(dataTable);
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    dgv_listApplication.Rows.Clear(); // Clear DataGridView rows before adding new ones
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        object[] rowData = row.ItemArray;
+                        dgv_listApplication.Rows.Add(rowData); // Add data to DataGridView
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không có dữ liệu");
+                }
+
+
+                conn.Close();
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);            
+            }
 
         }
     }

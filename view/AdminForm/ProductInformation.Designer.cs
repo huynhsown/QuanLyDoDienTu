@@ -159,11 +159,12 @@
             // tb_Quantity
             // 
             tb_Quantity.CustomizableEdges = customizableEdges9;
-            tb_Quantity.DefaultText = "";
+            tb_Quantity.DefaultText = "0";
             tb_Quantity.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             tb_Quantity.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
             tb_Quantity.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
             tb_Quantity.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            tb_Quantity.Enabled = false;
             tb_Quantity.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             tb_Quantity.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             tb_Quantity.ForeColor = Color.Black;
@@ -173,6 +174,7 @@
             tb_Quantity.PasswordChar = '\0';
             tb_Quantity.PlaceholderText = "";
             tb_Quantity.SelectedText = "";
+            tb_Quantity.SelectionStart = 1;
             tb_Quantity.ShadowDecoration.CustomizableEdges = customizableEdges10;
             tb_Quantity.Size = new Size(300, 36);
             tb_Quantity.TabIndex = 52;
