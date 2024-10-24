@@ -26,22 +26,7 @@ namespace QuanLyDoDienTu
             {
                 throw;
             }
-            /*            SqlConnectionStringBuilder con = new SqlConnectionStringBuilder();
-                        con.DataSource = "22110406.database.windows.net";
-                        con.UserID = "sondang";
-                        con.Password = "son22110406@";
-                        con.InitialCatalog = "sonhuynh";
-                        try
-                        {
-                            if(sqlCon == null)
-                            {
-                                sqlCon = new SqlConnection(con.ConnectionString);
-                            }
-                        }
-                        catch(Exception ex)
-                        {
-                            throw;
-                        }*/
+        
         }
 
         public SqlConnection getConnection

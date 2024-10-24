@@ -23,51 +23,40 @@ namespace QuanLyDoDienTu.view.AdminForm
 
         private void CustomerHistory_Load(object sender, EventArgs e)
         {
-            String query = @"
-    SELECT 
-        DH.MaDH, 
-        DH.NgayDatHang, 
-        DH.TrangThaiDonHang, 
-        DH.TriGia, 
-        U.MaUngDung,  
-        U.TenUngDung  
-    FROM 
-        DON_HANG DH
-    JOIN 
-        UNG_DUNG U ON DH.MaUngDung = U.MaUngDung
-    WHERE 
-        DH.MaKH = @MaKH;";  // Query for orders based on customer ID
+            String query = @"SELECT MaDH, NgayDatHang, TrangThaiDonHang, TriGia, TenUngDung 
+                FROM vw_DonHangByKhachHang 
+                WHERE MaKH = @MaKH";  // Sử dụng View với MaKH
 
             SqlConnection connection = null;
 
             try
             {
-                connection = myDB.getConnection; // Get the connection
-                connection.Open(); // Open the connection
+                connection = myDB.getConnection; // Lấy kết nối
+                connection.Open(); // Mở kết nối
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@MaKH", id); // Set the parameter for the query
+                    command.Parameters.AddWithValue("@MaKH", id); // Gán giá trị cho tham số
 
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
                     DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable); // Fill the DataTable with query result
+                    adapter.Fill(dataTable); // Lấy dữ liệu từ view và đưa vào DataTable
 
-                    dgv_listOrder.Rows.Clear(); // Clear existing rows in DataGridView
+                    dgv_listOrder.Rows.Clear(); // Xóa các hàng cũ trong DataGridView
 
                     foreach (DataRow row in dataTable.Rows)
                     {
-                        // Create an array without the application ID
+                        // Tạo mảng dữ liệu để thêm vào DataGridView
                         object[] rowData = new object[]
                         {
-                row["MaDH"],              // Order ID
-                row["NgayDatHang"],       // Order Date
-                row["TrangThaiDonHang"],  // Order Status
-                row["TriGia"],            // Total Value
-                row["TenUngDung"]         // Application Name
+                row["MaDH"],              // Mã đơn hàng
+                row["NgayDatHang"],       // Ngày đặt hàng
+                row["TrangThaiDonHang"],  // Trạng thái đơn hàng
+                row["TriGia"],            // Trị giá
+                row["TenUngDung"]         // Tên ứng dụng
                         };
 
-                        dgv_listOrder.Rows.Add(rowData); // Add to DataGridView
+                        dgv_listOrder.Rows.Add(rowData); // Thêm dữ liệu vào DataGridView
                     }
                 }
             }
@@ -77,7 +66,7 @@ namespace QuanLyDoDienTu.view.AdminForm
             }
             finally
             {
-                // Ensure the connection is closed
+                // Đảm bảo kết nối luôn được đóng
                 if (connection != null)
                 {
                     connection.Close();

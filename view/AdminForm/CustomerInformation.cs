@@ -88,36 +88,36 @@ namespace QuanLyDoDienTu.view.AdminForm
                 String address = tb_Address.Text.Trim();
 
                 // Get the database connection
-                using (SqlConnection connection = myDB.getConnection)
+                SqlConnection connection = myDB.getConnection;
+                
+                connection.Open(); // Open connection
+
+                // Create the SqlCommand for the stored procedure
+                using (SqlCommand command = new SqlCommand("UpdateKhachHang", connection))
                 {
-                    connection.Open(); // Open connection
+                    command.CommandType = CommandType.StoredProcedure; // Specify stored procedure
 
-                    // Create the SqlCommand for the stored procedure
-                    using (SqlCommand command = new SqlCommand("UpdateKhachHang", connection))
+                    // Add parameters for the stored procedure
+                    command.Parameters.AddWithValue("@MaKH", id); // Assuming 'id' is defined and holds the customer ID
+                    command.Parameters.AddWithValue("@HoTen", name);
+                    command.Parameters.AddWithValue("@SDT", phone);
+                    command.Parameters.AddWithValue("@Email", email);
+                    command.Parameters.AddWithValue("@DiaChi", address);
+
+                    // Execute the command
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    // Provide feedback based on the result
+                    if (rowsAffected > 0)
                     {
-                        command.CommandType = CommandType.StoredProcedure; // Specify stored procedure
-
-                        // Add parameters for the stored procedure
-                        command.Parameters.AddWithValue("@MaKH", id); // Assuming 'id' is defined and holds the customer ID
-                        command.Parameters.AddWithValue("@HoTen", name);
-                        command.Parameters.AddWithValue("@SDT", phone);
-                        command.Parameters.AddWithValue("@Email", email);
-                        command.Parameters.AddWithValue("@DiaChi", address);
-
-                        // Execute the command
-                        int rowsAffected = command.ExecuteNonQuery();
-
-                        // Provide feedback based on the result
-                        if (rowsAffected > 0)
-                        {
-                            MessageBox.Show("Cập nhật thông tin thành công.");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Cập nhật không thành công. Vui lòng kiểm tra thông tin.");
-                        }
+                        MessageBox.Show("Cập nhật thông tin thành công.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cập nhật không thành công. Vui lòng kiểm tra thông tin.");
                     }
                 }
+                
             }
             catch (Exception ex)
             {
@@ -142,34 +142,34 @@ namespace QuanLyDoDienTu.view.AdminForm
                 String address = tb_Address.Text.Trim();
 
                 // Get the database connection
-                using (SqlConnection connection = myDB.getConnection)
-                {
+                SqlConnection connection = myDB.getConnection;
+                
                     connection.Open(); // Open connection
 
                     // Create the SqlCommand for the stored procedure
-                    using (SqlCommand command = new SqlCommand("InsertKhachHang", connection))
+                using (SqlCommand command = new SqlCommand("InsertKhachHang", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure; // Specify that we're using a stored procedure
+
+                    // Add parameters for the stored procedure
+                    command.Parameters.AddWithValue("@HoTen", name);
+                    command.Parameters.AddWithValue("@DiaChi", address);
+                    command.Parameters.AddWithValue("@SDT", phone);
+                    command.Parameters.AddWithValue("@Email", email);
+
+                    // Execute the command
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    // Provide feedback based on the result
+                    if (rowsAffected > 0)
                     {
-                        command.CommandType = CommandType.StoredProcedure; // Specify that we're using a stored procedure
-
-                        // Add parameters for the stored procedure
-                        command.Parameters.AddWithValue("@HoTen", name);
-                        command.Parameters.AddWithValue("@DiaChi", address);
-                        command.Parameters.AddWithValue("@SDT", phone);
-                        command.Parameters.AddWithValue("@Email", email);
-
-                        // Execute the command
-                        int rowsAffected = command.ExecuteNonQuery();
-
-                        // Provide feedback based on the result
-                        if (rowsAffected > 0)
-                        {
-                            MessageBox.Show("Thêm khách hàng thành công.");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Thêm khách hàng không thành công. Vui lòng kiểm tra thông tin.");
-                        }
+                        MessageBox.Show("Thêm khách hàng thành công.");
                     }
+                    else
+                    {
+                        MessageBox.Show("Thêm khách hàng không thành công. Vui lòng kiểm tra thông tin.");
+                    }
+                    
                 }
             }
             catch (Exception ex)

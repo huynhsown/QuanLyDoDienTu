@@ -25,33 +25,30 @@ namespace QuanLyDoDienTu.view.AdminForm
         {
             String query = @"
                 SELECT 
-                    SPD.MaSPDonHang,
-                    SP.MaSP, 
-                    SP.TenSP, 
-                    (SP.Gia * SPD.SoLuong) as Gia, 
-                    SPD.SoLuong
+                    MaSPDonHang,
+                    MaSP, 
+                    TenSP, 
+                    Gia, 
+                    SoLuong
                 FROM 
-                    SAN_PHAM_DUOC_CHON SPD
-                JOIN 
-                    SAN_PHAM SP ON SPD.MaSP = SP.MaSP
+                    vw_SanPhamDonHang
                 WHERE 
-                    SPD.MaSPDonHang = @MaSPDH";
-
+                    MaSPDonHang = @MaSPDH";  // Sử dụng View với MaSPDonHang
 
             SqlConnection connection = null;
 
             try
             {
-                connection = myDB.getConnection; // Get the connection
-                connection.Open(); // Open the connection
+                connection = myDB.getConnection; // Lấy kết nối
+                connection.Open(); // Mở kết nối
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@MaSPDH", proid); // Set the parameter for the query
+                    command.Parameters.AddWithValue("@MaSPDH", proid); // Gán giá trị cho tham số MaSPDonHang
 
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
                     DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable); // Lấy dữ liệu vào DataTable
+                    adapter.Fill(dataTable); // Lấy dữ liệu từ view và đưa vào DataTable
 
                     // Kiểm tra số lượng dòng
                     if (dataTable.Rows.Count != 1)
@@ -63,12 +60,9 @@ namespace QuanLyDoDienTu.view.AdminForm
 
                     // Lấy dữ liệu từ DataTable
                     DataRow dr = dataTable.Rows[0];
-                    tb_Id.Text = dr["MaSPDonHang"].ToString(); // Gán giá trị Mã NV vào TextBox
-                    tb_Name.Text = dr["TenSP"].ToString();
-                    nud_Quantity.Value = Convert.ToInt32(dr["SoLuong"]);
-
-
-
+                    tb_Id.Text = dr["MaSPDonHang"].ToString(); // Gán giá trị Mã SP Đơn Hàng vào TextBox
+                    tb_Name.Text = dr["TenSP"].ToString(); // Gán tên sản phẩm vào TextBox
+                    nud_Quantity.Value = Convert.ToInt32(dr["SoLuong"]); // Gán số lượng vào NumericUpDown
 
                 }
             }
@@ -78,17 +72,23 @@ namespace QuanLyDoDienTu.view.AdminForm
             }
             finally
             {
-                // Ensure the connection is closed
+                // Đảm bảo kết nối luôn được đóng
                 if (connection != null)
                 {
                     connection.Close();
                 }
             }
+
         }
 
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btn_Edit_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -26,43 +26,40 @@ namespace QuanLyDoDienTu.view.AdminForm
         private void CustomerProduct_Load(object sender, EventArgs e)
         {
             String query = @"
-                SELECT 
-                    SPD.MaSPDonHang,
-                    SP.MaSP, 
-                    SP.TenSP, 
-                    (SP.Gia * SPD.SoLuong) as Gia, 
-                    SPD.SoLuong
-                FROM 
-                    SAN_PHAM_DUOC_CHON SPD
-                JOIN 
-                    SAN_PHAM SP ON SPD.MaSP = SP.MaSP
-                WHERE 
-                    SPD.MaDH = @MaDH";
-
+    SELECT 
+        MaSPDonHang,
+        MaSP, 
+        TenSP, 
+        Gia, 
+        SoLuong
+    FROM 
+        vw_SanPhamDonHang
+    WHERE 
+        MaDH = @MaDH";  // Sử dụng View với MaDH
 
             SqlConnection connection = null;
 
             try
             {
-                connection = myDB.getConnection; // Get the connection
-                connection.Open(); // Open the connection
+                connection = myDB.getConnection; // Lấy kết nối
+                connection.Open(); // Mở kết nối
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@MaDH", id); // Set the parameter for the query
+                    command.Parameters.AddWithValue("@MaDH", id); // Gán giá trị cho tham số MaDH
 
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
                     DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable); // Fill the DataTable with query result
+                    adapter.Fill(dataTable); // Lấy dữ liệu từ view và đưa vào DataTable
 
-                    dgv_listOrder.Rows.Clear(); // Clear existing rows in DataGridView
+                    dgv_listOrder.Rows.Clear(); // Xóa các hàng cũ trong DataGridView
 
                     foreach (DataRow row in dataTable.Rows)
                     {
-                        // Create an array without the application ID
+                        // Tạo mảng dữ liệu để thêm vào DataGridView
                         object[] rowData = row.ItemArray;
 
-                        dgv_listOrder.Rows.Add(rowData); // Add to DataGridView
+                        dgv_listOrder.Rows.Add(rowData); // Thêm dữ liệu vào DataGridView
                     }
                 }
             }
@@ -72,12 +69,13 @@ namespace QuanLyDoDienTu.view.AdminForm
             }
             finally
             {
-                // Ensure the connection is closed
+                // Đảm bảo kết nối luôn được đóng
                 if (connection != null)
                 {
                     connection.Close();
                 }
             }
+
         }
 
         private void dgv_listOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -107,29 +105,29 @@ namespace QuanLyDoDienTu.view.AdminForm
 
                 if (dr == DialogResult.Yes)
                 {
-                    using (SqlConnection connection = myDB.getConnection) // Lấy kết nối
+                    SqlConnection connection = myDB.getConnection;
+                    
+                    connection.Open(); // Mở kết nối
+
+                    using (SqlCommand command = new SqlCommand("DELETE FROM SAN_PHAM_DUOC_CHON WHERE MaSPDonHang = @MaSPDonHang", connection))
                     {
-                        connection.Open(); // Mở kết nối
+                        // Thêm tham số vào câu lệnh SQL
+                        command.Parameters.AddWithValue("@MaSPDonHang", pro_id);
 
-                        using (SqlCommand command = new SqlCommand("DELETE FROM SAN_PHAM_DUOC_CHON WHERE MaSPDonHang = @MaSPDonHang", connection))
+                        // Thực thi câu lệnh xóa
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        // Kiểm tra số dòng bị ảnh hưởng
+                        if (rowsAffected > 0)
                         {
-                            // Thêm tham số vào câu lệnh SQL
-                            command.Parameters.AddWithValue("@MaSPDonHang", pro_id);
-
-                            // Thực thi câu lệnh xóa
-                            int rowsAffected = command.ExecuteNonQuery();
-
-                            // Kiểm tra số dòng bị ảnh hưởng
-                            if (rowsAffected > 0)
-                            {
-                                MessageBox.Show("Xóa sản phẩm thành công.");
-                            }
-                            else
-                            {
-                                MessageBox.Show("Không tìm thấy sản phẩm để xóa.");
-                            }
+                            MessageBox.Show("Xóa sản phẩm thành công.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không tìm thấy sản phẩm để xóa.");
                         }
                     }
+                    
                 }
                 else
                 {
