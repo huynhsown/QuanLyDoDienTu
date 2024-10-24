@@ -36,28 +36,25 @@ namespace QuanLyDoDienTu.view.AdminForm
 
             try
             {
-                using (SqlConnection connection = myDB.getConnection)
+                SqlConnection connection = myDB.getConnection;
+                
+                connection.Open();
+                SqlCommand command = new SqlCommand(query, connection);
+                    
+                command.Parameters.AddWithValue("@maNV", staffid);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable); // Fill the DataTable with query result
+
+                foreach (DataRow row in dataTable.Rows)
                 {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@maNV", staffid);
-                        SqlDataAdapter adapter = new SqlDataAdapter(command);
-
-                        DataTable dataTable = new DataTable();
-                        adapter.Fill(dataTable); // Fill the DataTable with query result
-
-                        foreach (DataRow row in dataTable.Rows)
-                        {
-                            object[] rowData = row.ItemArray;
-
-
-
-
-                            dgv_listWorkShift.Rows.Add(rowData); // Thêm vào DataGridView
-                        }
-                    }
+                    object[] rowData = row.ItemArray;
+                    dgv_listWorkShift.Rows.Add(rowData); // Thêm vào DataGridView
+                        
                 }
+                
+                connection.Close();
             }
             catch (Exception ex)
             {
@@ -70,13 +67,64 @@ namespace QuanLyDoDienTu.view.AdminForm
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 int workshiftid = Convert.ToInt32(dgv_listWorkShift.Rows[e.RowIndex].Cells["col_Id"].Value);
+
+                // Xử lý khi nhấn vào cột "Edit"
                 if (dgv_listWorkShift.Columns[e.ColumnIndex].Name == "col_Edit")
                 {
                     StatffWorkshiftInformation workshiftInformation = new StatffWorkshiftInformation(workshiftid);
                     workshiftInformation.ShowDialog();
+                }
 
+                // Xử lý khi nhấn vào cột "Delete"
+                if (dgv_listWorkShift.Columns[e.ColumnIndex].Name == "col_delete")
+                {
+                    DialogResult result = MessageBox.Show(
+                        "Bạn có chắc chắn muốn xóa ca làm việc này?",
+                        "Xác nhận xóa",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
+
+                    if (result == DialogResult.Yes)
+                    {
+                        SqlConnection connection = myDB.getConnection;
+                        SqlCommand command = new SqlCommand("XoaCaLamViec", connection)
+                        {
+                            CommandType = CommandType.StoredProcedure
+                        };
+
+                        // Thêm tham số cho stored procedure
+                        command.Parameters.Add(new SqlParameter("@MaCa", workshiftid));
+
+                        try
+                        {
+                            connection.Open();  // Mở kết nối
+                            command.ExecuteNonQuery();  // Thực thi stored procedure
+                            MessageBox.Show("Xóa thành công.");
+
+                            // Xóa hàng khỏi DataGridView
+                            dgv_listWorkShift.Rows.RemoveAt(e.RowIndex);
+                        }
+                        catch (SqlException ex)
+                        {
+                            MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
+                        }
+                        finally
+                        {
+                            // Đảm bảo đóng kết nối và giải phóng tài nguyên
+                            if (connection.State == ConnectionState.Open)
+                            {
+                                connection.Close();
+                            }
+
+                            command.Dispose();  // Giải phóng tài nguyên của SqlCommand
+                        }
+                    }
                 }
             }
+
+
+
         }
 
         private void btn_Search_Click(object sender, EventArgs e)

@@ -21,8 +21,7 @@ namespace QuanLyDoDienTu.view.AdminForm
 
         private void StaffManageForm_Load(object sender, EventArgs e)
         {
-            String query = @"SELECT NV.MaNV, NV.HoTen, FORMAT(NV.NgaySinh, 'dd/MM/yyyy') AS NgaySinh, NV.GioiTinh, NV.SDT, NV.Email, NV.DiaChi, CV.TenCV FROM NHAN_VIEN NV JOIN CONG_VIEC CV ON NV.MaCV = CV.MaCV;
-";
+            string query = @"SELECT NV.MaNV, NV.HoTen, FORMAT(NV.NgaySinh, 'dd/MM/yyyy') AS NgaySinh, NV.GioiTinh, NV.SDT, NV.Email, NV.DiaChi, CV.TenCV FROM NHAN_VIEN NV JOIN CONG_VIEC CV ON NV.MaCV = CV.MaCV;";
             try
             {
                 using (SqlConnection connection = myDB.getConnection)
@@ -50,6 +49,7 @@ namespace QuanLyDoDienTu.view.AdminForm
                             dgv_listStaff.Rows.Add(rowData); // Thêm vào DataGridView
                         }
                     }
+                    connection.Close();
                 }
             }
             catch (Exception ex)
@@ -58,6 +58,7 @@ namespace QuanLyDoDienTu.view.AdminForm
             }
         }
 
+      
         private void dgv_listStaff_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -101,7 +102,7 @@ namespace QuanLyDoDienTu.view.AdminForm
                 SqlConnection conn = myDB.getConnection;
                 conn.Open();
 
-                string query = "SELECT * FROM SAN_PHAM WHERE NHAN_VIEN LIKE '%' + @tennv + '%'";
+                string query = "SELECT * FROM NHAN_VIEN  WHERE TenNV LIKE '%' + @tennv + '%'";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@tennv", tb_search.Text);
 
