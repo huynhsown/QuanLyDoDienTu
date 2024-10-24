@@ -70,7 +70,7 @@
             btn_Add.FillColor = Color.FromArgb(0, 192, 0);
             btn_Add.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btn_Add.ForeColor = Color.White;
-            btn_Add.Location = new Point(691, 307);
+            btn_Add.Location = new Point(483, 253);
             btn_Add.Name = "btn_Add";
             btn_Add.ShadowDecoration.CustomizableEdges = customizableEdges2;
             btn_Add.Size = new Size(159, 48);
@@ -91,7 +91,7 @@
             btn_Cancel.FillColor = Color.White;
             btn_Cancel.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btn_Cancel.ForeColor = Color.Black;
-            btn_Cancel.Location = new Point(145, 307);
+            btn_Cancel.Location = new Point(117, 324);
             btn_Cancel.Name = "btn_Cancel";
             btn_Cancel.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btn_Cancel.Size = new Size(159, 48);
@@ -109,7 +109,7 @@
             btn_Edit.FillColor = Color.FromArgb(0, 192, 0);
             btn_Edit.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btn_Edit.ForeColor = Color.White;
-            btn_Edit.Location = new Point(411, 307);
+            btn_Edit.Location = new Point(400, 324);
             btn_Edit.Name = "btn_Edit";
             btn_Edit.ShadowDecoration.CustomizableEdges = customizableEdges6;
             btn_Edit.Size = new Size(159, 48);
@@ -120,7 +120,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(65, 173);
+            label9.Location = new Point(78, 179);
             label9.Name = "label9";
             label9.Size = new Size(100, 20);
             label9.TabIndex = 38;
@@ -129,7 +129,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(65, 94);
+            label6.Location = new Point(78, 100);
             label6.Name = "label6";
             label6.Size = new Size(69, 20);
             label6.TabIndex = 36;
@@ -147,7 +147,7 @@
             tb_Quantity.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             tb_Quantity.ForeColor = Color.Black;
             tb_Quantity.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            tb_Quantity.Location = new Point(65, 117);
+            tb_Quantity.Location = new Point(78, 123);
             tb_Quantity.Name = "tb_Quantity";
             tb_Quantity.PasswordChar = '\0';
             tb_Quantity.PlaceholderText = "";
@@ -159,7 +159,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(387, 10);
+            label3.Location = new Point(400, 16);
             label3.Name = "label3";
             label3.Size = new Size(81, 20);
             label3.TabIndex = 30;
@@ -173,7 +173,7 @@
             dtp_Date.CustomizableEdges = customizableEdges9;
             dtp_Date.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             dtp_Date.Format = DateTimePickerFormat.Short;
-            dtp_Date.Location = new Point(387, 33);
+            dtp_Date.Location = new Point(400, 39);
             dtp_Date.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dtp_Date.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dtp_Date.Name = "dtp_Date";
@@ -185,7 +185,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(65, 10);
+            label1.Location = new Point(78, 16);
             label1.Name = "label1";
             label1.Size = new Size(60, 20);
             label1.TabIndex = 26;
@@ -204,7 +204,7 @@
             tb_Id.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             tb_Id.ForeColor = Color.Black;
             tb_Id.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            tb_Id.Location = new Point(65, 33);
+            tb_Id.Location = new Point(78, 39);
             tb_Id.Name = "tb_Id";
             tb_Id.PasswordChar = '\0';
             tb_Id.PlaceholderText = "";
@@ -226,7 +226,7 @@
             cb_NameProduct.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             cb_NameProduct.ForeColor = Color.FromArgb(68, 88, 112);
             cb_NameProduct.ItemHeight = 30;
-            cb_NameProduct.Location = new Point(65, 196);
+            cb_NameProduct.Location = new Point(78, 202);
             cb_NameProduct.Name = "cb_NameProduct";
             cb_NameProduct.ShadowDecoration.CustomizableEdges = customizableEdges14;
             cb_NameProduct.Size = new Size(231, 36);
@@ -243,7 +243,7 @@
             cb_NameManufacturer.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             cb_NameManufacturer.ForeColor = Color.FromArgb(68, 88, 112);
             cb_NameManufacturer.ItemHeight = 30;
-            cb_NameManufacturer.Location = new Point(398, 196);
+            cb_NameManufacturer.Location = new Point(411, 202);
             cb_NameManufacturer.Name = "cb_NameManufacturer";
             cb_NameManufacturer.ShadowDecoration.CustomizableEdges = customizableEdges16;
             cb_NameManufacturer.Size = new Size(231, 36);
@@ -252,7 +252,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(398, 173);
+            label2.Location = new Point(411, 179);
             label2.Name = "label2";
             label2.Size = new Size(118, 20);
             label2.TabIndex = 50;
@@ -262,7 +262,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1042, 404);
+            ClientSize = new Size(731, 461);
             Controls.Add(label2);
             Controls.Add(cb_NameManufacturer);
             Controls.Add(cb_NameProduct);

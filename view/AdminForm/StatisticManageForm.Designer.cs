@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            FastReport.DataVisualization.Charting.Series series2 = new FastReport.DataVisualization.Charting.Series();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            FastReport.DataVisualization.Charting.Series series1 = new FastReport.DataVisualization.Charting.Series();
             dtp_Date = new Guna.UI2.WinForms.Guna2DateTimePicker();
             guna2DateTimePicker1 = new Guna.UI2.WinForms.Guna2DateTimePicker();
             label1 = new Label();
@@ -46,14 +46,14 @@
             // dtp_Date
             // 
             dtp_Date.Checked = true;
-            dtp_Date.CustomizableEdges = customizableEdges5;
+            dtp_Date.CustomizableEdges = customizableEdges1;
             dtp_Date.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             dtp_Date.Format = DateTimePickerFormat.Short;
             dtp_Date.Location = new Point(21, 29);
             dtp_Date.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dtp_Date.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dtp_Date.Name = "dtp_Date";
-            dtp_Date.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            dtp_Date.ShadowDecoration.CustomizableEdges = customizableEdges2;
             dtp_Date.Size = new Size(248, 35);
             dtp_Date.TabIndex = 84;
             dtp_Date.Value = new DateTime(2024, 10, 22, 21, 32, 36, 24);
@@ -61,14 +61,14 @@
             // guna2DateTimePicker1
             // 
             guna2DateTimePicker1.Checked = true;
-            guna2DateTimePicker1.CustomizableEdges = customizableEdges7;
+            guna2DateTimePicker1.CustomizableEdges = customizableEdges3;
             guna2DateTimePicker1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             guna2DateTimePicker1.Format = DateTimePickerFormat.Short;
             guna2DateTimePicker1.Location = new Point(291, 29);
             guna2DateTimePicker1.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             guna2DateTimePicker1.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             guna2DateTimePicker1.Name = "guna2DateTimePicker1";
-            guna2DateTimePicker1.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            guna2DateTimePicker1.ShadowDecoration.CustomizableEdges = customizableEdges4;
             guna2DateTimePicker1.Size = new Size(248, 35);
             guna2DateTimePicker1.TabIndex = 85;
             guna2DateTimePicker1.Value = new DateTime(2024, 10, 22, 21, 32, 36, 24);
@@ -96,11 +96,12 @@
             chartRevenue.Dock = DockStyle.Bottom;
             chartRevenue.Location = new Point(0, 156);
             chartRevenue.Name = "chartRevenue";
-            series2.Name = "Series1";
-            chartRevenue.Series.Add(series2);
+            series1.Name = "Series1";
+            chartRevenue.Series.Add(series1);
             chartRevenue.Size = new Size(1164, 522);
             chartRevenue.TabIndex = 88;
             chartRevenue.Text = "chart1";
+            chartRevenue.Click += chartRevenue_Click;
             // 
             // radioRevenue
             // 

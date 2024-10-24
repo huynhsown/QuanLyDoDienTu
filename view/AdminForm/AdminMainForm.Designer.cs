@@ -36,15 +36,15 @@ namespace QuanLyDoDienTu.view.AdminForm
             ứNGDỤNGToolStripMenuItem = new ToolStripMenuItem();
             sẢNPHẨMToolStripMenuItem = new ToolStripMenuItem();
             dOANHTHUToolStripMenuItem = new ToolStripMenuItem();
-            panel = new Panel();
             đƠNNHẬPHÀNGToolStripMenuItem = new ToolStripMenuItem();
+            panel = new Panel();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { staffManage, kHÁCHHÀNGToolStripMenuItem, cÔNGVIỆCToolStripMenuItem, nHÀSẢNXUẤTToolStripMenuItem, ứNGDỤNGToolStripMenuItem, sẢNPHẨMToolStripMenuItem, dOANHTHUToolStripMenuItem, đƠNNHẬPHÀNGToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { staffManage, kHÁCHHÀNGToolStripMenuItem, cÔNGVIỆCToolStripMenuItem, nHÀSẢNXUẤTToolStripMenuItem, ứNGDỤNGToolStripMenuItem, sẢNPHẨMToolStripMenuItem, đƠNNHẬPHÀNGToolStripMenuItem, dOANHTHUToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1182, 28);
@@ -100,6 +100,13 @@ namespace QuanLyDoDienTu.view.AdminForm
             dOANHTHUToolStripMenuItem.Text = "DOANH THU";
             dOANHTHUToolStripMenuItem.Click += dOANHTHUToolStripMenuItem_Click;
             // 
+            // đƠNNHẬPHÀNGToolStripMenuItem
+            // 
+            đƠNNHẬPHÀNGToolStripMenuItem.Name = "đƠNNHẬPHÀNGToolStripMenuItem";
+            đƠNNHẬPHÀNGToolStripMenuItem.Size = new Size(146, 24);
+            đƠNNHẬPHÀNGToolStripMenuItem.Text = "ĐƠN NHẬP HÀNG";
+            đƠNNHẬPHÀNGToolStripMenuItem.Click += đƠNNHẬPHÀNGToolStripMenuItem_Click;
+            // 
             // panel
             // 
             panel.Dock = DockStyle.Fill;
@@ -107,13 +114,6 @@ namespace QuanLyDoDienTu.view.AdminForm
             panel.Name = "panel";
             panel.Size = new Size(1182, 725);
             panel.TabIndex = 1;
-            // 
-            // đƠNNHẬPHÀNGToolStripMenuItem
-            // 
-            đƠNNHẬPHÀNGToolStripMenuItem.Name = "đƠNNHẬPHÀNGToolStripMenuItem";
-            đƠNNHẬPHÀNGToolStripMenuItem.Size = new Size(146, 24);
-            đƠNNHẬPHÀNGToolStripMenuItem.Text = "ĐƠN NHẬP HÀNG";
-            đƠNNHẬPHÀNGToolStripMenuItem.Click += đƠNNHẬPHÀNGToolStripMenuItem_Click;
             // 
             // AdminMainForm
             // 

@@ -67,6 +67,51 @@ namespace QuanLyDoDienTu.view.AdminForm
                     manuInformation.ShowDialog();
 
                 }
+                if (dgv_listManufacturer.Columns[e.ColumnIndex].Name == "col_Delete")
+                {
+                    DialogResult result = MessageBox.Show(
+                        "Bạn có chắc chắn muốn xóa nhà sản xuất này?",
+                        "Xác nhận xóa",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
+
+                    if (result == DialogResult.Yes)
+                    {
+                        SqlConnection connection = myDB.getConnection;
+                        SqlCommand command = new SqlCommand("XoaNhaSanXuat", connection)
+                        {
+                            CommandType = CommandType.StoredProcedure
+                        };
+
+                        // Thêm tham số cho stored procedure
+                        command.Parameters.Add(new SqlParameter("@MaNSX", id));
+
+                        try
+                        {
+                            connection.Open();  // Mở kết nối
+                            command.ExecuteNonQuery();  // Thực thi stored procedure
+                            MessageBox.Show("Xóa thành công.");
+
+                            // Xóa hàng khỏi DataGridView
+                            dgv_listManufacturer.Rows.RemoveAt(e.RowIndex);
+                        }
+                        catch (SqlException ex)
+                        {
+                            MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
+                        }
+                        finally
+                        {
+                            // Đảm bảo đóng kết nối và giải phóng tài nguyên
+                            if (connection.State == ConnectionState.Open)
+                            {
+                                connection.Close();
+                            }
+
+                            command.Dispose();  // Giải phóng tài nguyên của SqlCommand
+                        }
+                    }
+                }
             }
         }
 

@@ -124,5 +124,10 @@ namespace QuanLyDoDienTu.view.AdminForm
                 LoadChartData(false);  // Hiển thị doanh số sản phẩm
             }
         }
+
+        private void chartRevenue_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

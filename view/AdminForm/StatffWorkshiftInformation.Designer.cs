@@ -65,7 +65,7 @@
             btn_Add.FillColor = Color.FromArgb(0, 192, 0);
             btn_Add.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btn_Add.ForeColor = Color.White;
-            btn_Add.Location = new Point(563, 348);
+            btn_Add.Location = new Point(436, 336);
             btn_Add.Name = "btn_Add";
             btn_Add.ShadowDecoration.CustomizableEdges = customizableEdges2;
             btn_Add.Size = new Size(159, 48);
@@ -86,7 +86,7 @@
             btn_Cancel.FillColor = Color.White;
             btn_Cancel.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btn_Cancel.ForeColor = Color.Black;
-            btn_Cancel.Location = new Point(67, 348);
+            btn_Cancel.Location = new Point(111, 405);
             btn_Cancel.Name = "btn_Cancel";
             btn_Cancel.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btn_Cancel.Size = new Size(159, 48);
@@ -104,7 +104,7 @@
             btn_Edit.FillColor = Color.FromArgb(0, 192, 0);
             btn_Edit.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btn_Edit.ForeColor = Color.White;
-            btn_Edit.Location = new Point(309, 348);
+            btn_Edit.Location = new Point(353, 405);
             btn_Edit.Name = "btn_Edit";
             btn_Edit.ShadowDecoration.CustomizableEdges = customizableEdges6;
             btn_Edit.Size = new Size(159, 48);
@@ -115,7 +115,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(235, 250);
+            label5.Location = new Point(157, 255);
             label5.Name = "label5";
             label5.Size = new Size(127, 20);
             label5.TabIndex = 77;
@@ -124,7 +124,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(236, 174);
+            label2.Location = new Point(158, 179);
             label2.Name = "label2";
             label2.Size = new Size(126, 20);
             label2.TabIndex = 75;
@@ -133,7 +133,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(235, 12);
+            label1.Location = new Point(157, 17);
             label1.Name = "label1";
             label1.Size = new Size(49, 20);
             label1.TabIndex = 73;
@@ -152,7 +152,7 @@
             tb_Id.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             tb_Id.ForeColor = Color.Black;
             tb_Id.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            tb_Id.Location = new Point(235, 35);
+            tb_Id.Location = new Point(157, 40);
             tb_Id.Name = "tb_Id";
             tb_Id.PasswordChar = '\0';
             tb_Id.PlaceholderText = "";
@@ -174,7 +174,7 @@
             combo_startTime.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             combo_startTime.ForeColor = Color.FromArgb(68, 88, 112);
             combo_startTime.ItemHeight = 30;
-            combo_startTime.Location = new Point(235, 197);
+            combo_startTime.Location = new Point(157, 202);
             combo_startTime.Name = "combo_startTime";
             combo_startTime.ShadowDecoration.CustomizableEdges = customizableEdges10;
             combo_startTime.Size = new Size(332, 36);
@@ -191,7 +191,7 @@
             combo_endTime.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             combo_endTime.ForeColor = Color.FromArgb(68, 88, 112);
             combo_endTime.ItemHeight = 30;
-            combo_endTime.Location = new Point(235, 273);
+            combo_endTime.Location = new Point(157, 278);
             combo_endTime.Name = "combo_endTime";
             combo_endTime.ShadowDecoration.CustomizableEdges = customizableEdges12;
             combo_endTime.Size = new Size(332, 36);
@@ -203,7 +203,7 @@
             dtp_Date.CustomizableEdges = customizableEdges13;
             dtp_Date.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             dtp_Date.Format = DateTimePickerFormat.Long;
-            dtp_Date.Location = new Point(235, 97);
+            dtp_Date.Location = new Point(157, 102);
             dtp_Date.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dtp_Date.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dtp_Date.Name = "dtp_Date";
@@ -212,11 +212,11 @@
             dtp_Date.TabIndex = 83;
             dtp_Date.Value = new DateTime(2024, 10, 22, 21, 32, 36, 24);
             // 
-            // WorkshiftInformation
+            // StatffWorkshiftInformation
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(817, 428);
+            ClientSize = new Size(644, 482);
             Controls.Add(dtp_Date);
             Controls.Add(combo_endTime);
             Controls.Add(combo_startTime);
@@ -227,7 +227,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(tb_Id);
-            Name = "WorkshiftInformation";
+            Name = "StatffWorkshiftInformation";
             Text = "WorkshiftInformation";
             Load += WorkshiftInformation_Load;
             ResumeLayout(false);

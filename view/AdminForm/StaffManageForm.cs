@@ -45,7 +45,6 @@ public partial class StaffManageForm : Form
                         // Định dạng ngày thành dd/MM/yyyy
                         rowData[birthDateColumnIndex] = birthDate.ToString("dd/MM/yyyy");
                     }
-
                     dgv_listStaff.Rows.Add(rowData); // Thêm vào DataGridView
                 }
             }

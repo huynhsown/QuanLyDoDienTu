@@ -66,7 +66,7 @@
             btn_Add.FillColor = Color.FromArgb(0, 192, 0);
             btn_Add.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btn_Add.ForeColor = Color.White;
-            btn_Add.Location = new Point(552, 263);
+            btn_Add.Location = new Point(576, 231);
             btn_Add.Name = "btn_Add";
             btn_Add.ShadowDecoration.CustomizableEdges = customizableEdges2;
             btn_Add.Size = new Size(159, 48);
@@ -87,7 +87,7 @@
             btn_Cancel.FillColor = Color.White;
             btn_Cancel.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btn_Cancel.ForeColor = Color.Black;
-            btn_Cancel.Location = new Point(65, 263);
+            btn_Cancel.Location = new Point(70, 287);
             btn_Cancel.Name = "btn_Cancel";
             btn_Cancel.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btn_Cancel.Size = new Size(159, 48);
@@ -106,7 +106,7 @@
             btn_Edit.FillColor = Color.FromArgb(0, 192, 0);
             btn_Edit.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btn_Edit.ForeColor = Color.White;
-            btn_Edit.Location = new Point(358, 263);
+            btn_Edit.Location = new Point(435, 287);
             btn_Edit.Name = "btn_Edit";
             btn_Edit.ShadowDecoration.CustomizableEdges = customizableEdges6;
             btn_Edit.Size = new Size(159, 48);

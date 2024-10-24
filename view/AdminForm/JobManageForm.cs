@@ -66,6 +66,51 @@ namespace QuanLyDoDienTu.view.AdminForm
                     jobInformation.ShowDialog();
 
                 }
+                if (dgv_listJob.Columns[e.ColumnIndex].Name == "col_Delete")
+                {
+                    DialogResult result = MessageBox.Show(
+                        "Bạn có chắc chắn muốn xóa công việc này?",
+                        "Xác nhận xóa",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
+
+                    if (result == DialogResult.Yes)
+                    {
+                        SqlConnection connection = myDB.getConnection;
+                        SqlCommand command = new SqlCommand("XoaCongViec", connection)
+                        {
+                            CommandType = CommandType.StoredProcedure
+                        };
+
+                        // Thêm tham số cho stored procedure
+                        command.Parameters.Add(new SqlParameter("@MaCV", id));
+
+                        try
+                        {
+                            connection.Open();  // Mở kết nối
+                            command.ExecuteNonQuery();  // Thực thi stored procedure
+                            MessageBox.Show("Xóa thành công.");
+
+                            // Xóa hàng khỏi DataGridView
+                            dgv_listJob.Rows.RemoveAt(e.RowIndex);
+                        }
+                        catch (SqlException ex)
+                        {
+                            MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
+                        }
+                        finally
+                        {
+                            // Đảm bảo đóng kết nối và giải phóng tài nguyên
+                            if (connection.State == ConnectionState.Open)
+                            {
+                                connection.Close();
+                            }
+
+                            command.Dispose();  // Giải phóng tài nguyên của SqlCommand
+                        }
+                    }
+                }
             }
         }
 
@@ -82,9 +127,9 @@ namespace QuanLyDoDienTu.view.AdminForm
                 SqlConnection conn = myDB.getConnection;
                 conn.Open();
 
-                string query = "SELECT * FROM CONG_VIEC WHERE TenCV LIKE '%' + @tencv + '%'";
+                string query = "SELECT * FROM CONG_VIEC WHERE MaCV LIKE '%' + @macv + '%'";
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@tencv", tb_search.Text);
+                cmd.Parameters.AddWithValue("@macv", tb_search.Text);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dataTable = new DataTable();
