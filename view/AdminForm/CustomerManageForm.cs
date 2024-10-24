@@ -22,32 +22,34 @@ namespace QuanLyDoDienTu.view.AdminForm
 
         private void CustomerManageForm_Load(object sender, EventArgs e)
         {
-            String query = @"SELECT * FROM KHACH_HANG;
-";
+            string query = "GetAllKhachHang"; // Gọi tên Stored Procedure
+
             try
             {
                 SqlConnection connection = myDB.getConnection;
-                connection.Open(); // Open the connection
+                connection.Open(); // Mở kết nối
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
+                    command.CommandType = CommandType.StoredProcedure; // Xác định là Stored Procedure
+
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
                     DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable); // Fill the DataTable with query result
+                    adapter.Fill(dataTable); // Lấy dữ liệu từ Stored Procedure và đưa vào DataTable
 
                     foreach (DataRow row in dataTable.Rows)
                     {
                         object[] rowData = row.ItemArray;
-                        dgv_listCustomer.Rows.Add(rowData); // Thêm vào DataGridView
+                        dgv_listCustomer.Rows.Add(rowData); // Thêm dữ liệu vào DataGridView
                     }
                 }
                 connection.Close();
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+
         }
 
         private void dgv_listStaff_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -118,30 +120,32 @@ namespace QuanLyDoDienTu.view.AdminForm
                 SqlConnection conn = myDB.getConnection;
                 conn.Open();
 
-                string query = "SELECT * FROM KHACH_HANG WHERE SDT LIKE '%' + @sdt + '%'";
+                string query = "SearchKhachHangBySDT"; // Tên Stored Procedure
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@sdt", tb_search.Text);
+                cmd.CommandType = CommandType.StoredProcedure; // Xác định đây là Stored Procedure
+
+                // Thêm tham số cho Stored Procedure
+                cmd.Parameters.AddWithValue("@SDT", tb_search.Text);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dataTable = new DataTable();
 
-                // Fill the DataTable with the query result
+                // Điền dữ liệu từ Stored Procedure vào DataTable
                 adapter.Fill(dataTable);
 
                 if (dataTable.Rows.Count > 0)
                 {
-                    dgv_listCustomer.Rows.Clear(); // Clear DataGridView rows before adding new ones
+                    dgv_listCustomer.Rows.Clear(); // Xóa các hàng cũ trước khi thêm dữ liệu mới
                     foreach (DataRow row in dataTable.Rows)
                     {
                         object[] rowData = row.ItemArray;
-                        dgv_listCustomer.Rows.Add(rowData); // Add data to DataGridView
+                        dgv_listCustomer.Rows.Add(rowData); // Thêm dữ liệu vào DataGridView
                     }
                 }
                 else
                 {
                     MessageBox.Show("Không có dữ liệu");
                 }
-
 
                 conn.Close();
             }

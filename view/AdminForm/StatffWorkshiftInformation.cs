@@ -46,21 +46,20 @@ namespace QuanLyDoDienTu.view.AdminForm
             startTime();
             endTime();
 
-            String queryListWorkShift = @"SELECT * FROM CA_LAM_VIEC WHERE MaCa = @maCa";
+            
 
             if (isEdit)
             {
-
                 try
                 {
-                    int staff_job_id;
-                    SqlConnection connection = myDB.getConnection;
-
+                    String procedureName = "sp_GetWorkShiftByMaCa"; // Tên của Stored Procedure
+                    SqlConnection connection = myDB.getConnection; // Lấy kết nối từ myDB
                     connection.Open(); // Mở kết nối
 
-                    // Query Staff Infomation
-                    using (SqlCommand command = new SqlCommand(queryListWorkShift, connection))
+                    // Sử dụng Stored Procedure
+                    using (SqlCommand command = new SqlCommand(procedureName, connection))
                     {
+                        command.CommandType = CommandType.StoredProcedure; // Đặt loại lệnh là Stored Procedure
                         command.Parameters.AddWithValue("@maCa", workshiftid); // Gán giá trị cho tham số
 
                         SqlDataAdapter adapter = new SqlDataAdapter(command);
@@ -77,19 +76,17 @@ namespace QuanLyDoDienTu.view.AdminForm
 
                         // Lấy dữ liệu từ DataTable
                         DataRow dr = dataTable.Rows[0];
-                        tb_Id.Text = dr["MaCa"].ToString(); // Gán giá trị Mã NV vào TextBox
+                        tb_Id.Text = dr["MaCa"].ToString(); // Gán giá trị Mã Ca vào TextBox
 
                         DateTime startTime = Convert.ToDateTime(dr["ThoiGianBatDau"]);
                         DateTime endTime = Convert.ToDateTime(dr["ThoiGianKetThuc"]);
 
-
-
                         String startTime_H = startTime.ToString("HH:mm");
                         String endTime_H = endTime.ToString("HH:mm");
 
+                        // Chọn thời gian bắt đầu
                         for (int i = 0; i < combo_startTime.Items.Count; i++)
                         {
-
                             if (combo_startTime.Items[i].ToString() == startTime_H)
                             {
                                 combo_startTime.SelectedIndex = i;  // Chọn item
@@ -97,6 +94,7 @@ namespace QuanLyDoDienTu.view.AdminForm
                             }
                         }
 
+                        // Chọn thời gian kết thúc
                         for (int i = 0; i < combo_endTime.Items.Count; i++)
                         {
                             if (combo_endTime.Items[i].ToString() == endTime_H)
@@ -105,18 +103,16 @@ namespace QuanLyDoDienTu.view.AdminForm
                                 break;
                             }
                         }
-
                     }
 
-                    connection.Close();
+                    connection.Close(); // Đóng kết nối
                 }
-
-
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi CSDL", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
         }
 
         private void btn_Edit_Click(object sender, EventArgs e)
@@ -124,37 +120,37 @@ namespace QuanLyDoDienTu.view.AdminForm
             try
             {
                 // Open the database connection
-                using (SqlConnection conn = myDB.getConnection)
+                SqlConnection conn = myDB.getConnection;
+                
+                myDB.openConnection(); // Open connection
+
+                // Define the command for the stored procedure
+                using (SqlCommand cmd = new SqlCommand("UpdateCaLamViec", conn))
                 {
-                    myDB.openConnection(); // Open connection
+                    cmd.CommandType = CommandType.StoredProcedure; // Specify that it's a stored procedure
 
-                    // Define the command for the stored procedure
-                    using (SqlCommand cmd = new SqlCommand("UpdateCaLamViec", conn))
+                    // Combine date and time to create DateTime objects
+                    DateTime startTime = dtp_Date.Value.Date + TimeSpan.Parse(combo_startTime.SelectedItem.ToString());
+                    DateTime endTime = dtp_Date.Value.Date + TimeSpan.Parse(combo_endTime.SelectedItem.ToString());
+
+                    // Add parameters for the stored procedure
+                    cmd.Parameters.AddWithValue("@maCa", workshiftid);
+                    cmd.Parameters.AddWithValue("@starttime", startTime);
+                    cmd.Parameters.AddWithValue("@endtime", endTime);
+
+                    // Execute the stored procedure
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    // Check if the update was successful
+                    if (rowsAffected > 0)
                     {
-                        cmd.CommandType = CommandType.StoredProcedure; // Specify that it's a stored procedure
-
-                        // Combine date and time to create DateTime objects
-                        DateTime startTime = dtp_Date.Value.Date + TimeSpan.Parse(combo_startTime.SelectedItem.ToString());
-                        DateTime endTime = dtp_Date.Value.Date + TimeSpan.Parse(combo_endTime.SelectedItem.ToString());
-
-                        // Add parameters for the stored procedure
-                        cmd.Parameters.AddWithValue("@maCa", workshiftid);
-                        cmd.Parameters.AddWithValue("@starttime", startTime);
-                        cmd.Parameters.AddWithValue("@endtime", endTime);
-
-                        // Execute the stored procedure
-                        int rowsAffected = cmd.ExecuteNonQuery();
-
-                        // Check if the update was successful
-                        if (rowsAffected > 0)
-                        {
-                            MessageBox.Show("Cập nhật ca làm việc thành công", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Không tìm thấy ca làm việc để cập nhật.", "Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
+                        MessageBox.Show("Cập nhật ca làm việc thành công", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+                    else
+                    {
+                        MessageBox.Show("Không tìm thấy ca làm việc để cập nhật.", "Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    
                 }
             }
             catch (FormatException fe)
@@ -204,38 +200,38 @@ namespace QuanLyDoDienTu.view.AdminForm
             try
             {
                 // Open the database connection
-                using (SqlConnection conn = myDB.getConnection)
+                SqlConnection conn = myDB.getConnection;
+                
+                myDB.openConnection(); // Open connection
+
+                // Define the command for the stored procedure
+                using (SqlCommand cmd = new SqlCommand("InsertCaLamViec", conn))
                 {
-                    myDB.openConnection(); // Open connection
+                    cmd.CommandType = CommandType.StoredProcedure; // Specify that it's a stored procedure
 
-                    // Define the command for the stored procedure
-                    using (SqlCommand cmd = new SqlCommand("InsertCaLamViec", conn))
+                    // Combine date and time to create DateTime objects
+                    DateTime startTime = dtp_Date.Value.Date + TimeSpan.Parse(combo_startTime.SelectedItem.ToString());
+                    DateTime endTime = dtp_Date.Value.Date + TimeSpan.Parse(combo_endTime.SelectedItem.ToString());
+
+                    // Add parameters for start time, end time, and staff ID
+                    cmd.Parameters.AddWithValue("@starttime", startTime);
+                    cmd.Parameters.AddWithValue("@endtime", endTime);
+                    cmd.Parameters.AddWithValue("@maNV", staffid);
+
+                    // Execute the stored procedure
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    // Check if the insertion was successful
+                    if (rowsAffected > 0)
                     {
-                        cmd.CommandType = CommandType.StoredProcedure; // Specify that it's a stored procedure
-
-                        // Combine date and time to create DateTime objects
-                        DateTime startTime = dtp_Date.Value.Date + TimeSpan.Parse(combo_startTime.SelectedItem.ToString());
-                        DateTime endTime = dtp_Date.Value.Date + TimeSpan.Parse(combo_endTime.SelectedItem.ToString());
-
-                        // Add parameters for start time, end time, and staff ID
-                        cmd.Parameters.AddWithValue("@starttime", startTime);
-                        cmd.Parameters.AddWithValue("@endtime", endTime);
-                        cmd.Parameters.AddWithValue("@maNV", staffid);
-
-                        // Execute the stored procedure
-                        int rowsAffected = cmd.ExecuteNonQuery();
-
-                        // Check if the insertion was successful
-                        if (rowsAffected > 0)
-                        {
-                            MessageBox.Show("Thêm ca làm việc thành công", "Add", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            MessageBox.Show("Thêm ca làm việc không thành công", "Add Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
+                        MessageBox.Show("Thêm ca làm việc thành công", "Add", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Thêm ca làm việc không thành công", "Add Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
+            
             }
             catch (FormatException fe)
             {
