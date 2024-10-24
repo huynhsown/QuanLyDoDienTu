@@ -32,34 +32,48 @@ namespace QuanLyDoDienTu.view.AdminForm
 
         private void StaffWorkShiftManageForm_Load(object sender, EventArgs e)
         {
-            String query = "SELECT CLV.MaCa, CLV.ThoiGianBatDau, CLV.ThoiGianKetThuc, CV.TenCV AS TenCongViec FROM CA_LAM_VIEC CLV JOIN NHAN_VIEN NV ON CLV.MaNV = NV.MaNV JOIN CONG_VIEC CV ON NV.MaCV = CV.MaCV WHERE NV.MaNV = @maNV";
+            String query = "SELECT MaCa, ThoiGianBatDau, ThoiGianKetThuc, TenCongViec FROM vw_WorkShiftDetails WHERE MaNV = @maNV";
+
+            SqlConnection connection = myDB.getConnection; // Lấy kết nối từ myDB
 
             try
             {
-                SqlConnection connection = myDB.getConnection;
-                
-                connection.Open();
-                SqlCommand command = new SqlCommand(query, connection);
-                    
-                command.Parameters.AddWithValue("@maNV", staffid);
-                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                connection.Open(); // Mở kết nối
 
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable); // Fill the DataTable with query result
+                SqlCommand command = new SqlCommand(query, connection); // Tạo SqlCommand với truy vấn
+                command.Parameters.AddWithValue("@maNV", staffid); // Thêm tham số cho truy vấn
 
-                foreach (DataRow row in dataTable.Rows)
+                SqlDataAdapter adapter = new SqlDataAdapter(command); // Tạo SqlDataAdapter
+                DataTable dataTable = new DataTable(); // Tạo DataTable để lưu kết quả
+                adapter.Fill(dataTable); // Điền DataTable với dữ liệu từ VIEW
+
+                if (dataTable.Rows.Count > 0)
                 {
-                    object[] rowData = row.ItemArray;
-                    dgv_listWorkShift.Rows.Add(rowData); // Thêm vào DataGridView
-                        
+                    dgv_listWorkShift.Rows.Clear(); // Xóa các hàng hiện có trước khi thêm dữ liệu mới
+
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        object[] rowData = row.ItemArray; // Lấy dữ liệu từ hàng
+                        dgv_listWorkShift.Rows.Add(rowData); // Thêm dữ liệu vào DataGridView
+                    }
                 }
-                
-                connection.Close();
+                else
+                {
+                    MessageBox.Show("Không có dữ liệu");
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message); // Hiển thị thông báo lỗi
             }
+            finally
+            {
+                if (connection != null && connection.State == ConnectionState.Open)
+                {
+                    connection.Close(); // Đảm bảo kết nối được đóng
+                }
+            }
+
         }
 
         private void dgv_listWorkShift_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -121,6 +135,11 @@ namespace QuanLyDoDienTu.view.AdminForm
                         }
                     }
                 }
+                if (dgv_listWorkShift.Columns[e.ColumnIndex].Name == "col_delete")
+                {
+                    
+
+                }
             }
 
 
@@ -131,40 +150,43 @@ namespace QuanLyDoDienTu.view.AdminForm
         {
             try
             {
-                SqlConnection conn = myDB.getConnection;
-                conn.Open();
+                SqlConnection conn = myDB.getConnection; // Lấy kết nối từ myDB
+                conn.Open(); // Mở kết nối
 
-                string query = "SELECT * FROM CA_LAM_VIEC WHERE TenCV LIKE '%' + @tencalamviec + '%'";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@tencalamviec", tb_search.Text);
+                string procedureName = "sp_SearchWorkShiftByMaCa"; // Tên của Stored Procedure
+                SqlCommand cmd = new SqlCommand(procedureName, conn); // Tạo SqlCommand với tên Stored Procedure
+                cmd.CommandType = CommandType.StoredProcedure; // Đặt loại lệnh là Stored Procedure
 
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                DataTable dataTable = new DataTable();
+                // Thêm tham số cho Stored Procedure
+                cmd.Parameters.AddWithValue("@MaCa", int.Parse(tb_search.Text)); // Giả sử tb_search chứa mã ca
 
-                // Fill the DataTable with the query result
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd); // Tạo SqlDataAdapter
+                DataTable dataTable = new DataTable(); // Tạo DataTable để lưu kết quả
+
+                // Điền DataTable với kết quả từ Stored Procedure
                 adapter.Fill(dataTable);
 
                 if (dataTable.Rows.Count > 0)
                 {
-                    dgv_listWorkShift.Rows.Clear(); // Clear DataGridView rows before adding new ones
+                    dgv_listWorkShift.Rows.Clear(); // Xóa các hàng hiện có trước khi thêm dữ liệu mới
                     foreach (DataRow row in dataTable.Rows)
                     {
-                        object[] rowData = row.ItemArray;
-                        dgv_listWorkShift.Rows.Add(rowData); // Add data to DataGridView
+                        object[] rowData = row.ItemArray; // Lấy dữ liệu từ hàng
+                        dgv_listWorkShift.Rows.Add(rowData); // Thêm dữ liệu vào DataGridView
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Không có dữ liệu");
+                    MessageBox.Show("Không có dữ liệu"); // Thông báo nếu không có dữ liệu
                 }
 
-
-                conn.Close();
+                conn.Close(); // Đóng kết nối
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message); // Hiển thị thông báo lỗi
             }
+
         }
     }
 }

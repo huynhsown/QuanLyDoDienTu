@@ -87,6 +87,7 @@
             btn_Edit.Size = new Size(159, 48);
             btn_Edit.TabIndex = 69;
             btn_Edit.Text = "Sửa";
+            btn_Edit.Click += btn_Edit_Click;
             // 
             // label6
             // 
