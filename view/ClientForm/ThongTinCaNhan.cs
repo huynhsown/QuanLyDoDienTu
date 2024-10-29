@@ -13,6 +13,7 @@ namespace QuanLyDoDienTu.view.ClientForm
 {
     public partial class ThongTinCaNhan : Form
     {
+        MY_DB db = new MY_DB();
         private int maKH;
         public ThongTinCaNhan(int maKH)
         {
@@ -27,14 +28,18 @@ namespace QuanLyDoDienTu.view.ClientForm
 
         private void LoadThongTin()
         {
-            MY_DB db = new MY_DB();
-
-            string query = "SELECT HoTen, SDT, DiaChi, Email FROM KHACH_HANG WHERE MaKH = @maKH";
+            
+            string query = "sp_GetThongTinKhachHang";
             SqlCommand cmd = new SqlCommand(query, db.getConnection);
+
+            // Sử dụng stored procedure
+            cmd.CommandType = CommandType.StoredProcedure;
 
             db.openConnection();
 
-            cmd.Parameters.AddWithValue("@maKH", maKH);
+            // Thêm tham số cho procedure
+            cmd.Parameters.AddWithValue("@MaKH", maKH);
+
             SqlDataReader reader = cmd.ExecuteReader();
 
             if (reader.Read())
@@ -55,64 +60,18 @@ namespace QuanLyDoDienTu.view.ClientForm
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            MY_DB db = new MY_DB();
-
-            // Bắt đầu câu lệnh SQL cho việc cập nhật
-            string query = "UPDATE KHACH_HANG SET ";
-
-            List<string> updates = new List<string>();
-            if (!string.IsNullOrEmpty(txtName.Text.Trim()))
-            {
-                updates.Add("HoTen = @name");
-            }
-            if (!string.IsNullOrEmpty(txtSDT.Text.Trim()))
-            {
-                updates.Add("SDT = @phone");
-            }
-            if (!string.IsNullOrEmpty(txtDiaChi.Text.Trim()))
-            {
-                updates.Add("DiaChi = @address");
-            }
-            if (!string.IsNullOrEmpty(txtEmail.Text.Trim()))
-            {
-                updates.Add("Email = @email");
-            }
-
-            // Nếu không có thuộc tính nào cần cập nhật, thoát khỏi hàm
-            if (updates.Count == 0)
-            {
-                MessageBox.Show("Không có thông tin nào để cập nhật.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            // Ghép các phần cập nhật lại thành câu lệnh
-            query += string.Join(", ", updates) + " WHERE MaKH = @maKH";
-
-            SqlCommand cmd = new SqlCommand(query, db.getConnection);
-
-            // Thêm giá trị cho các tham số
-            if (updates.Contains("HoTen = @name"))
-            {
-                cmd.Parameters.AddWithValue("@name", txtName.Text.Trim());
-            }
-            if (updates.Contains("SDT = @phone"))
-            {
-                cmd.Parameters.AddWithValue("@phone", txtSDT.Text.Trim());
-            }
-            if (updates.Contains("DiaChi = @address"))
-            {
-                cmd.Parameters.AddWithValue("@address", txtDiaChi.Text.Trim());
-            }
-            if (updates.Contains("Email = @email"))
-            {
-                cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
-            }
-
-            // Thêm giá trị cho MaKH
-            cmd.Parameters.AddWithValue("@maKH", maKH);
-
             try
             {
+                SqlCommand cmd = new SqlCommand("sp_CapNhatThongTinNguoiDung", db.getConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                // Set the parameters
+                cmd.Parameters.AddWithValue("@MaKH", maKH);
+                cmd.Parameters.AddWithValue("@HoTen", string.IsNullOrEmpty(txtName.Text.Trim()) ? (object)DBNull.Value : txtName.Text.Trim());
+                cmd.Parameters.AddWithValue("@SDT", string.IsNullOrEmpty(txtSDT.Text.Trim()) ? (object)DBNull.Value : txtSDT.Text.Trim());
+                cmd.Parameters.AddWithValue("@DiaChi", string.IsNullOrEmpty(txtDiaChi.Text.Trim()) ? (object)DBNull.Value : txtDiaChi.Text.Trim());
+                cmd.Parameters.AddWithValue("@Email", string.IsNullOrEmpty(txtEmail.Text.Trim()) ? (object)DBNull.Value : txtEmail.Text.Trim());
+
                 db.openConnection();
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Cập nhật thông tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -127,6 +86,7 @@ namespace QuanLyDoDienTu.view.ClientForm
                 db.closeConnection();
             }
         }
+
         private void btnChangePassword_Click(object sender, EventArgs e)
         {
             DoiMatKhau doiMatKhauForm = new DoiMatKhau(maKH);

@@ -35,8 +35,8 @@ namespace QuanLyDoDienTu.view.AdminForm
             nHÀSẢNXUẤTToolStripMenuItem = new ToolStripMenuItem();
             ứNGDỤNGToolStripMenuItem = new ToolStripMenuItem();
             sẢNPHẨMToolStripMenuItem = new ToolStripMenuItem();
-            dOANHTHUToolStripMenuItem = new ToolStripMenuItem();
             đƠNNHẬPHÀNGToolStripMenuItem = new ToolStripMenuItem();
+            dOANHTHUToolStripMenuItem = new ToolStripMenuItem();
             panel = new Panel();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -93,19 +93,19 @@ namespace QuanLyDoDienTu.view.AdminForm
             sẢNPHẨMToolStripMenuItem.Text = "SẢN PHẨM";
             sẢNPHẨMToolStripMenuItem.Click += sẢNPHẨMToolStripMenuItem_Click;
             // 
-            // dOANHTHUToolStripMenuItem
-            // 
-            dOANHTHUToolStripMenuItem.Name = "dOANHTHUToolStripMenuItem";
-            dOANHTHUToolStripMenuItem.Size = new Size(110, 24);
-            dOANHTHUToolStripMenuItem.Text = "DOANH THU";
-            dOANHTHUToolStripMenuItem.Click += dOANHTHUToolStripMenuItem_Click;
-            // 
             // đƠNNHẬPHÀNGToolStripMenuItem
             // 
             đƠNNHẬPHÀNGToolStripMenuItem.Name = "đƠNNHẬPHÀNGToolStripMenuItem";
             đƠNNHẬPHÀNGToolStripMenuItem.Size = new Size(146, 24);
             đƠNNHẬPHÀNGToolStripMenuItem.Text = "ĐƠN NHẬP HÀNG";
             đƠNNHẬPHÀNGToolStripMenuItem.Click += đƠNNHẬPHÀNGToolStripMenuItem_Click;
+            // 
+            // dOANHTHUToolStripMenuItem
+            // 
+            dOANHTHUToolStripMenuItem.Name = "dOANHTHUToolStripMenuItem";
+            dOANHTHUToolStripMenuItem.Size = new Size(110, 24);
+            dOANHTHUToolStripMenuItem.Text = "DOANH THU";
+            dOANHTHUToolStripMenuItem.Click += dOANHTHUToolStripMenuItem_Click;
             // 
             // panel
             // 

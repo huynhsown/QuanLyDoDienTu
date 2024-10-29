@@ -28,188 +28,219 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblName = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.txtName = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtPhone = new Guna.UI2.WinForms.Guna2TextBox();
-            this.lblPhone = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.txtEmail = new Guna.UI2.WinForms.Guna2TextBox();
-            this.lblEmail = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.txtNewPassword = new Guna.UI2.WinForms.Guna2TextBox();
-            this.lblNewPassword = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.btnResetPassword = new Guna.UI2.WinForms.Guna2Button();
-            this.btnShowNewPassword = new Guna.UI2.WinForms.Guna2Button();
-            this.SuspendLayout();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            lblName = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            txtName = new Guna.UI2.WinForms.Guna2TextBox();
+            txtPhone = new Guna.UI2.WinForms.Guna2TextBox();
+            lblPhone = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            txtEmail = new Guna.UI2.WinForms.Guna2TextBox();
+            lblEmail = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            txtNewPassword = new Guna.UI2.WinForms.Guna2TextBox();
+            lblNewPassword = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            btnResetPassword = new Guna.UI2.WinForms.Guna2Button();
+            btnShowNewPassword = new Guna.UI2.WinForms.Guna2Button();
+            SuspendLayout();
             // 
             // lblName
             // 
-            this.lblName.AutoSize = false;
-            this.lblName.BackColor = System.Drawing.Color.Transparent;
-            this.lblName.Location = new System.Drawing.Point(30, 30);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(100, 25);
-            this.lblName.TabIndex = 0;
-            this.lblName.Text = "Tên người dùng :";
+            lblName.AutoSize = false;
+            lblName.BackColor = Color.Transparent;
+            lblName.Location = new Point(30, 38);
+            lblName.Margin = new Padding(3, 4, 3, 4);
+            lblName.Name = "lblName";
+            lblName.Size = new Size(100, 31);
+            lblName.TabIndex = 0;
+            lblName.Text = "Tên người dùng :";
             // 
             // txtName
             // 
-            this.txtName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtName.DefaultText = "";
-            this.txtName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtName.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtName.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtName.Location = new System.Drawing.Point(184, 30);
-            this.txtName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtName.Name = "txtName";
-            this.txtName.PasswordChar = '\0';
-            this.txtName.PlaceholderText = "Nhập tên người dùng";
-            this.txtName.SelectedText = "";
-            this.txtName.Size = new System.Drawing.Size(200, 36);
-            this.txtName.TabIndex = 1;
+            txtName.Cursor = Cursors.IBeam;
+            txtName.CustomizableEdges = customizableEdges1;
+            txtName.DefaultText = "";
+            txtName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtName.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtName.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtName.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtName.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtName.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtName.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtName.Location = new Point(184, 38);
+            txtName.Margin = new Padding(3, 5, 3, 5);
+            txtName.Name = "txtName";
+            txtName.PasswordChar = '\0';
+            txtName.PlaceholderText = "Nhập tên người dùng";
+            txtName.SelectedText = "";
+            txtName.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            txtName.Size = new Size(200, 45);
+            txtName.TabIndex = 1;
             // 
             // txtPhone
             // 
-            this.txtPhone.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPhone.DefaultText = "";
-            this.txtPhone.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtPhone.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtPhone.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtPhone.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtPhone.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtPhone.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtPhone.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtPhone.Location = new System.Drawing.Point(184, 80);
-            this.txtPhone.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.PasswordChar = '\0';
-            this.txtPhone.PlaceholderText = "Nhập số điện thoại";
-            this.txtPhone.SelectedText = "";
-            this.txtPhone.Size = new System.Drawing.Size(200, 36);
-            this.txtPhone.TabIndex = 3;
+            txtPhone.Cursor = Cursors.IBeam;
+            txtPhone.CustomizableEdges = customizableEdges3;
+            txtPhone.DefaultText = "";
+            txtPhone.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtPhone.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtPhone.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtPhone.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtPhone.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtPhone.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtPhone.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtPhone.Location = new Point(184, 100);
+            txtPhone.Margin = new Padding(3, 5, 3, 5);
+            txtPhone.Name = "txtPhone";
+            txtPhone.PasswordChar = '\0';
+            txtPhone.PlaceholderText = "Nhập số điện thoại";
+            txtPhone.SelectedText = "";
+            txtPhone.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            txtPhone.Size = new Size(200, 45);
+            txtPhone.TabIndex = 3;
             // 
             // lblPhone
             // 
-            this.lblPhone.AutoSize = false;
-            this.lblPhone.BackColor = System.Drawing.Color.Transparent;
-            this.lblPhone.Location = new System.Drawing.Point(30, 80);
-            this.lblPhone.Name = "lblPhone";
-            this.lblPhone.Size = new System.Drawing.Size(100, 25);
-            this.lblPhone.TabIndex = 2;
-            this.lblPhone.Text = "Số điện thoại :";
+            lblPhone.AutoSize = false;
+            lblPhone.BackColor = Color.Transparent;
+            lblPhone.Location = new Point(30, 100);
+            lblPhone.Margin = new Padding(3, 4, 3, 4);
+            lblPhone.Name = "lblPhone";
+            lblPhone.Size = new Size(100, 31);
+            lblPhone.TabIndex = 2;
+            lblPhone.Text = "Số điện thoại :";
             // 
             // txtEmail
             // 
-            this.txtEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtEmail.DefaultText = "";
-            this.txtEmail.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtEmail.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtEmail.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtEmail.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtEmail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtEmail.Location = new System.Drawing.Point(184, 130);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.PasswordChar = '\0';
-            this.txtEmail.PlaceholderText = "Nhập email";
-            this.txtEmail.SelectedText = "";
-            this.txtEmail.Size = new System.Drawing.Size(200, 36);
-            this.txtEmail.TabIndex = 5;
+            txtEmail.Cursor = Cursors.IBeam;
+            txtEmail.CustomizableEdges = customizableEdges5;
+            txtEmail.DefaultText = "";
+            txtEmail.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtEmail.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtEmail.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtEmail.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtEmail.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtEmail.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtEmail.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtEmail.Location = new Point(184, 162);
+            txtEmail.Margin = new Padding(3, 5, 3, 5);
+            txtEmail.Name = "txtEmail";
+            txtEmail.PasswordChar = '\0';
+            txtEmail.PlaceholderText = "Nhập email";
+            txtEmail.SelectedText = "";
+            txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            txtEmail.Size = new Size(200, 45);
+            txtEmail.TabIndex = 5;
             // 
             // lblEmail
             // 
-            this.lblEmail.AutoSize = false;
-            this.lblEmail.BackColor = System.Drawing.Color.Transparent;
-            this.lblEmail.Location = new System.Drawing.Point(30, 130);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(100, 25);
-            this.lblEmail.TabIndex = 4;
-            this.lblEmail.Text = "Email :";
+            lblEmail.AutoSize = false;
+            lblEmail.BackColor = Color.Transparent;
+            lblEmail.Location = new Point(30, 162);
+            lblEmail.Margin = new Padding(3, 4, 3, 4);
+            lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(100, 31);
+            lblEmail.TabIndex = 4;
+            lblEmail.Text = "Email :";
             // 
             // txtNewPassword
             // 
-            this.txtNewPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtNewPassword.DefaultText = "";
-            this.txtNewPassword.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtNewPassword.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtNewPassword.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtNewPassword.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtNewPassword.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtNewPassword.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtNewPassword.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtNewPassword.Location = new System.Drawing.Point(184, 180);
-            this.txtNewPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtNewPassword.Name = "txtNewPassword";
-            this.txtNewPassword.PasswordChar = '●';
-            this.txtNewPassword.PlaceholderText = "Nhập mật khẩu mới";
-            this.txtNewPassword.SelectedText = "";
-            this.txtNewPassword.Size = new System.Drawing.Size(200, 36);
-            this.txtNewPassword.TabIndex = 7;
-            this.txtNewPassword.UseSystemPasswordChar = true;
+            txtNewPassword.Cursor = Cursors.IBeam;
+            txtNewPassword.CustomizableEdges = customizableEdges7;
+            txtNewPassword.DefaultText = "";
+            txtNewPassword.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtNewPassword.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtNewPassword.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtNewPassword.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtNewPassword.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtNewPassword.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtNewPassword.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtNewPassword.Location = new Point(184, 225);
+            txtNewPassword.Margin = new Padding(3, 5, 3, 5);
+            txtNewPassword.Name = "txtNewPassword";
+            txtNewPassword.PasswordChar = '●';
+            txtNewPassword.PlaceholderText = "Nhập mật khẩu mới";
+            txtNewPassword.SelectedText = "";
+            txtNewPassword.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            txtNewPassword.Size = new Size(200, 45);
+            txtNewPassword.TabIndex = 7;
+            txtNewPassword.UseSystemPasswordChar = true;
             // 
             // lblNewPassword
             // 
-            this.lblNewPassword.AutoSize = false;
-            this.lblNewPassword.BackColor = System.Drawing.Color.Transparent;
-            this.lblNewPassword.Location = new System.Drawing.Point(30, 180);
-            this.lblNewPassword.Name = "lblNewPassword";
-            this.lblNewPassword.Size = new System.Drawing.Size(100, 25);
-            this.lblNewPassword.TabIndex = 6;
-            this.lblNewPassword.Text = "Mật khẩu mới :";
+            lblNewPassword.AutoSize = false;
+            lblNewPassword.BackColor = Color.Transparent;
+            lblNewPassword.Location = new Point(30, 225);
+            lblNewPassword.Margin = new Padding(3, 4, 3, 4);
+            lblNewPassword.Name = "lblNewPassword";
+            lblNewPassword.Size = new Size(100, 31);
+            lblNewPassword.TabIndex = 6;
+            lblNewPassword.Text = "Mật khẩu mới :";
             // 
             // btnResetPassword
             // 
-            this.btnResetPassword.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnResetPassword.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnResetPassword.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnResetPassword.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnResetPassword.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnResetPassword.ForeColor = System.Drawing.Color.White;
-            this.btnResetPassword.Location = new System.Drawing.Point(184, 230);
-            this.btnResetPassword.Name = "btnResetPassword";
-            this.btnResetPassword.Size = new System.Drawing.Size(200, 45);
-            this.btnResetPassword.TabIndex = 8;
-            this.btnResetPassword.Text = "Đặt lại mật khẩu";
-            this.btnResetPassword.Click += new System.EventHandler(this.btnResetPassword_Click);
+            btnResetPassword.CustomizableEdges = customizableEdges9;
+            btnResetPassword.DisabledState.BorderColor = Color.DarkGray;
+            btnResetPassword.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnResetPassword.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnResetPassword.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnResetPassword.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnResetPassword.ForeColor = Color.White;
+            btnResetPassword.Location = new Point(184, 288);
+            btnResetPassword.Margin = new Padding(3, 4, 3, 4);
+            btnResetPassword.Name = "btnResetPassword";
+            btnResetPassword.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            btnResetPassword.Size = new Size(200, 56);
+            btnResetPassword.TabIndex = 8;
+            btnResetPassword.Text = "Đặt lại mật khẩu";
+            btnResetPassword.Click += btnResetPassword_Click;
             // 
             // btnShowNewPassword
             // 
-            this.btnShowNewPassword.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnShowNewPassword.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnShowNewPassword.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnShowNewPassword.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnShowNewPassword.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnShowNewPassword.ForeColor = System.Drawing.Color.White;
-            this.btnShowNewPassword.Location = new System.Drawing.Point(417, 180);
-            this.btnShowNewPassword.Name = "btnShowNewPassword";
-            this.btnShowNewPassword.Size = new System.Drawing.Size(40, 36);
-            this.btnShowNewPassword.TabIndex = 9;
-            this.btnShowNewPassword.Text = "👁";
-            this.btnShowNewPassword.Click += new System.EventHandler(this.btnShowNewPassword_Click);
+            btnShowNewPassword.CustomizableEdges = customizableEdges11;
+            btnShowNewPassword.DisabledState.BorderColor = Color.DarkGray;
+            btnShowNewPassword.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnShowNewPassword.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnShowNewPassword.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnShowNewPassword.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnShowNewPassword.ForeColor = Color.White;
+            btnShowNewPassword.Location = new Point(417, 225);
+            btnShowNewPassword.Margin = new Padding(3, 4, 3, 4);
+            btnShowNewPassword.Name = "btnShowNewPassword";
+            btnShowNewPassword.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            btnShowNewPassword.Size = new Size(40, 45);
+            btnShowNewPassword.TabIndex = 9;
+            btnShowNewPassword.Text = "👁";
+            btnShowNewPassword.Click += btnShowNewPassword_Click;
             // 
             // QuenMatKhau
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(510, 320);
-            this.Controls.Add(this.btnShowNewPassword);
-            this.Controls.Add(this.btnResetPassword);
-            this.Controls.Add(this.txtNewPassword);
-            this.Controls.Add(this.lblNewPassword);
-            this.Controls.Add(this.txtEmail);
-            this.Controls.Add(this.lblEmail);
-            this.Controls.Add(this.txtPhone);
-            this.Controls.Add(this.lblPhone);
-            this.Controls.Add(this.txtName);
-            this.Controls.Add(this.lblName);
-            this.Name = "QuenMatKhau";
-            this.Text = "Quên mật khẩu ";
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(510, 400);
+            Controls.Add(btnShowNewPassword);
+            Controls.Add(btnResetPassword);
+            Controls.Add(txtNewPassword);
+            Controls.Add(lblNewPassword);
+            Controls.Add(txtEmail);
+            Controls.Add(lblEmail);
+            Controls.Add(txtPhone);
+            Controls.Add(lblPhone);
+            Controls.Add(txtName);
+            Controls.Add(lblName);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "QuenMatKhau";
+            Text = "Quên mật khẩu ";
+            Load += QuenMatKhau_Load;
+            ResumeLayout(false);
         }
 
         #endregion

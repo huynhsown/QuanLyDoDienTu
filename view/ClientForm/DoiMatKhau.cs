@@ -14,6 +14,7 @@ namespace QuanLyDoDienTu.view.ClientForm
     public partial class DoiMatKhau : Form
     {
         private int maKH;
+        MY_DB db = new MY_DB();
 
         public DoiMatKhau(int maKH)
         {
@@ -59,44 +60,37 @@ namespace QuanLyDoDienTu.view.ClientForm
 
             try
             {
-                MY_DB db = new MY_DB();
+                
+                SqlCommand cmd = new SqlCommand("sp_DoiMatKhau", db.getConnection);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@SDT", phoneNumber);
+                cmd.Parameters.AddWithValue("@MatKhauHienTai", currentPassword);
+                cmd.Parameters.AddWithValue("@MatKhauMoi", newPassword);
+
                 db.openConnection();
+                cmd.ExecuteNonQuery();
 
-                string queryCheckPassword = "SELECT COUNT(*) FROM TAI_KHOAN WHERE SDT = @phone AND Password = @currentPassword";
-                using (SqlCommand cmdCheckPassword = new SqlCommand(queryCheckPassword, db.getConnection))
-                {
-                    cmdCheckPassword.Parameters.AddWithValue("@phone", phoneNumber);
-                    cmdCheckPassword.Parameters.AddWithValue("@currentPassword", currentPassword);
-
-                    int count = (int)cmdCheckPassword.ExecuteScalar();
-                    if (count == 1)
-                    {
-                        string queryUpdatePassword = "UPDATE TAI_KHOAN SET Password = @newPassword WHERE SDT = @phone";
-                        using (SqlCommand cmdUpdatePassword = new SqlCommand(queryUpdatePassword, db.getConnection))
-                        {
-                            cmdUpdatePassword.Parameters.AddWithValue("@newPassword", newPassword);
-                            cmdUpdatePassword.Parameters.AddWithValue("@phone", phoneNumber);
-
-                            cmdUpdatePassword.ExecuteNonQuery();
-
-                            MessageBox.Show("Đổi mật khẩu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            this.Hide();
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Mật khẩu hiện tại không chính xác!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                db.closeConnection();
+                MessageBox.Show("Đổi mật khẩu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Hide();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (ex.Number == 50000) // Error number for RAISERROR
+                {
+                    MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             finally
             {
+                
+                db.closeConnection();
             }
         }
+
     }
 }
