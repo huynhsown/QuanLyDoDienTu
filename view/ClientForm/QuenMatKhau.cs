@@ -82,5 +82,10 @@ namespace QuanLyDoDienTu.view.ClientForm
                 db.closeConnection();
             }
         }
+
+        private void QuenMatKhau_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

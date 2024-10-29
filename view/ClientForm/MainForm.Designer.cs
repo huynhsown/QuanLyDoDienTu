@@ -1,4 +1,5 @@
-﻿namespace QuanLyDoDienTu.view.ClientForm
+﻿
+namespace QuanLyDoDienTu.view.ClientForm
 {
     partial class MainForm
     {
@@ -28,160 +29,107 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
-            this.guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
-            this.guna2Button6 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2GradientPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).BeginInit();
-            this.SuspendLayout();
+            menuStrip1 = new MenuStrip();
+            userInformation = new ToolStripMenuItem();
+            findProduct = new ToolStripMenuItem();
+            cartNPurchase = new ToolStripMenuItem();
+            purchaseHistory = new ToolStripMenuItem();
+            payMent = new ToolStripMenuItem();
+            salesAnnouncement = new ToolStripMenuItem();
+            panel = new Panel();
+            menuStrip1.SuspendLayout();
+            SuspendLayout();
             // 
-            // guna2Button1
+            // menuStrip1
             // 
-            this.guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button1.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.Location = new System.Drawing.Point(50, 100);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.Size = new System.Drawing.Size(200, 50);
-            this.guna2Button1.TabIndex = 0;
-            this.guna2Button1.Text = "Thông tin cá nhân ";
-            this.guna2Button1.Click += new System.EventHandler(this.BtnThongTinCaNhan_Click);
+            menuStrip1.ImageScalingSize = new Size(20, 20);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { userInformation, findProduct, cartNPurchase, purchaseHistory, payMent, salesAnnouncement });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(1182, 28);
+            menuStrip1.TabIndex = 0;
+            menuStrip1.Text = "menuStrip1";
             // 
-            // guna2Button2
+            // userInformation
             // 
-            this.guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button2.ForeColor = System.Drawing.Color.White;
-            this.guna2Button2.Location = new System.Drawing.Point(50, 200);
-            this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.Size = new System.Drawing.Size(200, 50);
-            this.guna2Button2.TabIndex = 1;
-            this.guna2Button2.Text = "Giỏ hàng và đặt hàng";
-            this.guna2Button2.Click += new System.EventHandler(this.BtnGioHangVaDatHang_Click);
+            userInformation.Name = "userInformation";
+            userInformation.Size = new Size(145, 24);
+            userInformation.Text = "Thông tin cá nhân ";
+            userInformation.Click += userInformation_Click;
             // 
-            // guna2Button3
+            // findProduct
             // 
-            this.guna2Button3.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button3.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button3.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button3.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button3.ForeColor = System.Drawing.Color.White;
-            this.guna2Button3.Location = new System.Drawing.Point(50, 300);
-            this.guna2Button3.Name = "guna2Button3";
-            this.guna2Button3.Size = new System.Drawing.Size(200, 50);
-            this.guna2Button3.TabIndex = 2;
-            this.guna2Button3.Text = "Lịch sử mua hàng";
-            this.guna2Button3.Click += new System.EventHandler(this.BtnLichSuMuaHang_Click);
+            findProduct.Name = "findProduct";
+            findProduct.Size = new Size(152, 24);
+            findProduct.Text = "Tìm kiếm sản phẩm";
+            findProduct.Click += findProduct_Click;
             // 
-            // guna2Button4
+            // cartNPurchase
             // 
-            this.guna2Button4.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button4.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button4.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button4.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button4.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button4.ForeColor = System.Drawing.Color.White;
-            this.guna2Button4.Location = new System.Drawing.Point(50, 400);
-            this.guna2Button4.Name = "guna2Button4";
-            this.guna2Button4.Size = new System.Drawing.Size(200, 50);
-            this.guna2Button4.TabIndex = 3;
-            this.guna2Button4.Text = "Đánh giá sản phẩm";
-            this.guna2Button4.Click += new System.EventHandler(this.BtnDanhGiaSanPham_Click);
+            cartNPurchase.Name = "cartNPurchase";
+            cartNPurchase.Size = new Size(165, 24);
+            cartNPurchase.Text = "Giỏ hàng và đặt hàng";
+            cartNPurchase.Click += cartNPurchase_Click;
             // 
-            // guna2GradientPanel1
+            // purchaseHistory
             // 
-            this.guna2GradientPanel1.Controls.Add(this.guna2Button6);
-            this.guna2GradientPanel1.Controls.Add(this.guna2Button5);
-            this.guna2GradientPanel1.Controls.Add(this.guna2PictureBox1);
-            this.guna2GradientPanel1.FillColor = System.Drawing.Color.LightSteelBlue;
-            this.guna2GradientPanel1.FillColor2 = System.Drawing.Color.LightCyan;
-            this.guna2GradientPanel1.Location = new System.Drawing.Point(0, 0);
-            this.guna2GradientPanel1.Name = "guna2GradientPanel1";
-            this.guna2GradientPanel1.Size = new System.Drawing.Size(800, 600);
-            this.guna2GradientPanel1.TabIndex = 4;
+            purchaseHistory.Name = "purchaseHistory";
+            purchaseHistory.Size = new Size(138, 24);
+            purchaseHistory.Text = "Lịch sử mua hàng";
+            purchaseHistory.Click += purchaseHistory_Click;
             // 
-            // guna2Button5
+            // payMent
             // 
-            this.guna2Button5.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button5.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button5.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button5.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button5.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button5.ForeColor = System.Drawing.Color.White;
-            this.guna2Button5.Location = new System.Drawing.Point(472, 100);
-            this.guna2Button5.Name = "guna2Button5";
-            this.guna2Button5.Size = new System.Drawing.Size(200, 50);
-            this.guna2Button5.TabIndex = 4;
-            this.guna2Button5.Text = "Xem và tìm kiếm sản phẩm";
-            this.guna2Button5.Click += new System.EventHandler(this.btnXemvaTimkiem_Click);
+            payMent.Name = "payMent";
+            payMent.Size = new Size(97, 24);
+            payMent.Text = "Thanh toán";
+            payMent.Click += payMent_Click;
             // 
-            // guna2PictureBox1
+            // salesAnnouncement
             // 
-            this.guna2PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox1.Image")));
-            this.guna2PictureBox1.ImageFlip = Guna.UI2.WinForms.Enums.FlipOrientation.Horizontal;
-            this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(-7, 12);
-            this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(788, 517);
-            this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.guna2PictureBox1.TabIndex = 0;
-            this.guna2PictureBox1.TabStop = false;
+            salesAnnouncement.Name = "salesAnnouncement";
+            salesAnnouncement.Size = new Size(174, 24);
+            salesAnnouncement.Text = "Thông báo khuyến mãi";
+            salesAnnouncement.Click += salesAnnouncement_Click;
             // 
-            // guna2Button6
+            // panel
             // 
-            this.guna2Button6.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button6.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.guna2Button6.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.guna2Button6.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.guna2Button6.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button6.ForeColor = System.Drawing.Color.White;
-            this.guna2Button6.Location = new System.Drawing.Point(472, 200);
-            this.guna2Button6.Name = "guna2Button6";
-            this.guna2Button6.Size = new System.Drawing.Size(200, 50);
-            this.guna2Button6.TabIndex = 5;
-            this.guna2Button6.Text = "Thông báo khuyến mãi";
-            this.guna2Button6.Click += new System.EventHandler(this.btnThongBao_Click);
+            panel.Dock = DockStyle.Fill;
+            panel.Location = new Point(0, 28);
+            panel.Margin = new Padding(3, 2, 3, 2);
+            panel.Name = "panel";
+            panel.Size = new Size(1182, 724);
+            panel.TabIndex = 1;
+            panel.Paint += panel_Paint;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(782, 553);
-            this.Controls.Add(this.guna2Button4);
-            this.Controls.Add(this.guna2Button3);
-            this.Controls.Add(this.guna2Button2);
-            this.Controls.Add(this.guna2Button1);
-            this.Controls.Add(this.guna2GradientPanel1);
-            this.Name = "MainForm";
-            this.Text = "Trang Chính - Quản Lý Tài Khoản Khách Hàng";
-            this.guna2GradientPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.guna2PictureBox1)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1182, 752);
+            Controls.Add(panel);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
+            Margin = new Padding(3, 2, 3, 2);
+            Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Quản lý";
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
-        private Guna.UI2.WinForms.Guna2Button guna2Button3;
-        private Guna.UI2.WinForms.Guna2Button guna2Button4;
-        private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel1;
-        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
-        private Guna.UI2.WinForms.Guna2Button guna2Button5;
-        private Guna.UI2.WinForms.Guna2Button guna2Button6;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem userInformation;
+        private Panel panel;
+        private ToolStripMenuItem findProduct;
+        private ToolStripMenuItem cartNPurchase;
+        private ToolStripMenuItem purchaseHistory;
+        private ToolStripMenuItem salesAnnouncement;
+        private ToolStripMenuItem payMent;
     }
 }
+
