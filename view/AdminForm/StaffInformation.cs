@@ -44,7 +44,7 @@ namespace QuanLyDoDienTu.view.AdminForm
         {
             String query_StaffInfo = @"SELECT NV.MaNV, NV.HoTen, NV.NgaySinh, NV.GioiTinh, NV.SDT, NV.Email, NV.DiaChi, CV.MaCV, CV.TenCV 
                      FROM NHAN_VIEN NV 
-                     JOIN CONG_VIEC CV ON NV.MaCV = CV.MaCV 
+                     LEFT JOIN CONG_VIEC CV ON NV.MaCV = CV.MaCV 
                      WHERE NV.MaNV = @MaNV";
 
             String queryListJob = @"SELECT * FROM CONG_VIEC";
@@ -84,7 +84,8 @@ namespace QuanLyDoDienTu.view.AdminForm
                         tb_Phone.Text = dr["SDT"].ToString();
                         tb_Email.Text = dr["Email"].ToString();
                         tb_Address.Text = dr["DiaChi"].ToString();
-                        staff_job_id = Convert.ToInt32(dr["MaCV"]);
+                        staff_job_id = dr["MaCV"] != DBNull.Value ? Convert.ToInt32(dr["MaCV"]) : -1; // hoặc null tùy vào kiểu dữ liệu của staff_job_id
+
 
                         if (dr["GioiTinh"].ToString().Equals("Nam"))
                         {
@@ -106,6 +107,7 @@ namespace QuanLyDoDienTu.view.AdminForm
                         sqlDataAdapter.Fill(dataTable);
 
                         List<Job> jobs = new List<Job>();
+                        jobs.Add(new Job(-1, "Chưa có việc", 0));
 
                         for (int i = 0; i < dataTable.Rows.Count; i++)
                         {
@@ -190,12 +192,17 @@ namespace QuanLyDoDienTu.view.AdminForm
                 String address = tb_Address.Text.Trim();
                 String gender = rb_female.Checked ? "Nu" : "Nam"; // Ternary operator for gender
                 int jobId = Convert.ToInt32(cb_Job.SelectedValue);
+                String procedure = "UpdateNhanVien";
+                if(jobId == -1)
+                {
+                    procedure = "UpdateNhanVienWithoutJob";
+                }
 
                 SqlConnection connection = myDB.getConnection;
                 connection.Open(); // Mở kết nối
 
                 // Use the stored procedure to update staff information
-                using (SqlCommand command = new SqlCommand("UpdateNhanVien", connection))
+                using (SqlCommand command = new SqlCommand(procedure, connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
 
@@ -206,7 +213,7 @@ namespace QuanLyDoDienTu.view.AdminForm
                     command.Parameters.AddWithValue("@SDT", phone);
                     command.Parameters.AddWithValue("@Email", email);
                     command.Parameters.AddWithValue("@DiaChi", address);
-                    command.Parameters.AddWithValue("@MaCV", jobId);
+                    if(jobId != -1)  command.Parameters.AddWithValue("@MaCV", jobId);
 
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
