@@ -119,7 +119,6 @@ namespace QuanLyDoDienTu.view.AdminForm
             panel.Name = "panel";
             panel.Size = new Size(1034, 538);
             panel.TabIndex = 1;
-            panel.Paint += panel_Paint;
             // 
             // tÀIKHOẢNToolStripMenuItem
             // 
