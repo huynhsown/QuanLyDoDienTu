@@ -114,6 +114,14 @@ namespace QuanLyDoDienTu.view.AdminForm
             panel.Name = "panel";
             panel.Size = new Size(1182, 725);
             panel.TabIndex = 1;
+            panel.Paint += panel_Paint;
+            // 
+            // tÀIKHOẢNToolStripMenuItem
+            // 
+            tÀIKHOẢNToolStripMenuItem.Name = "tÀIKHOẢNToolStripMenuItem";
+            tÀIKHOẢNToolStripMenuItem.Size = new Size(100, 24);
+            tÀIKHOẢNToolStripMenuItem.Text = "TÀI KHOẢN";
+            tÀIKHOẢNToolStripMenuItem.Click += tÀIKHOẢNToolStripMenuItem_Click;
             // 
             // AdminMainForm
             // 
