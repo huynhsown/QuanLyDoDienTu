@@ -14,11 +14,19 @@ namespace QuanLyDoDienTu.view.AdminForm
     {
 
         private Form form;
+        private int adminID;
 
         public AdminMainForm()
         {
             InitializeComponent();
         }
+
+        public AdminMainForm(int adminID)
+        {
+            InitializeComponent();
+            this.adminID = adminID;
+        }
+
 
         void loadForm(object form)
         {
@@ -91,9 +99,9 @@ namespace QuanLyDoDienTu.view.AdminForm
             loadForm(new PurchaseOrderManageForm());
         }
 
-        private void panel_Paint(object sender, PaintEventArgs e)
+        private void tÀIKHOẢNToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            loadForm(new AccoutManageForm());
         }
     }
 }

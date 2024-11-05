@@ -22,25 +22,27 @@ namespace QuanLyDoDienTu.view.AdminForm
 
         private void loadJob()
         {
-            String query = @"SELECT * FROM CONG_VIEC";
+            String query = "sp_GetAllJobs"; // Tên stored procedure
             try
             {
                 SqlConnection connection = myDB.getConnection;
-                connection.Open(); // Open the connection
+                connection.Open(); // Mở kết nối
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
+                    command.CommandType = CommandType.StoredProcedure; // Thiết lập kiểu là stored procedure
+
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
                     DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable); // Fill the DataTable with query result
+                    adapter.Fill(dataTable); // Lấy dữ liệu từ stored procedure vào DataTable
 
                     foreach (DataRow row in dataTable.Rows)
                     {
                         object[] rowData = row.ItemArray;
-                        dgv_listJob.Rows.Add(rowData); // Thêm vào DataGridView
+                        dgv_listJob.Rows.Add(rowData); // Thêm dữ liệu vào DataGridView
                     }
                 }
-                connection.Close();
+                connection.Close(); // Đóng kết nối
 
             }
             catch (Exception ex)
@@ -127,36 +129,37 @@ namespace QuanLyDoDienTu.view.AdminForm
                 SqlConnection conn = myDB.getConnection;
                 conn.Open();
 
-                string query = "SELECT * FROM CONG_VIEC WHERE MaCV LIKE '%' + @macv + '%'";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@macv", tb_search.Text);
-
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                DataTable dataTable = new DataTable();
-
-                // Fill the DataTable with the query result
-                adapter.Fill(dataTable);
-
-                if (dataTable.Rows.Count > 0)
+                // Use the stored procedure instead of inline SQL
+                using (SqlCommand cmd = new SqlCommand("spGetJobsByTenCV", conn))
                 {
-                    dgv_listJob.Rows.Clear(); // Clear DataGridView rows before adding new ones
-                    foreach (DataRow row in dataTable.Rows)
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // Add parameter for the stored procedure
+                    cmd.Parameters.AddWithValue("@TenCV", tb_search.Text.Trim());
+
+                    // Execute the query and fill the DataTable
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+
+                    // Populate the DataGridView with the results
+                    if (dataTable.Rows.Count > 0)
                     {
-                        object[] rowData = row.ItemArray;
-                        dgv_listJob.Rows.Add(rowData); // Add data to DataGridView
+                        dgv_listJob.Rows.Clear(); // Clear existing rows
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            dgv_listJob.Rows.Add(row.ItemArray); // Add new rows
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không có dữ liệu"); // No data found
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Không có dữ liệu");
-                }
-
-
-                conn.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Lỗi: " + ex.Message); // Display any exceptions
             }
         }
     }
