@@ -90,5 +90,10 @@ namespace QuanLyDoDienTu.view.AdminForm
         {
             loadForm(new PurchaseOrderManageForm());
         }
+
+        private void panel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
