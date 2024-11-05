@@ -48,73 +48,78 @@ namespace QuanLyDoDienTu.view.AdminForm
             menuStrip1.Items.AddRange(new ToolStripItem[] { staffManage, kHÁCHHÀNGToolStripMenuItem, cÔNGVIỆCToolStripMenuItem, nHÀSẢNXUẤTToolStripMenuItem, ứNGDỤNGToolStripMenuItem, sẢNPHẨMToolStripMenuItem, đƠNNHẬPHÀNGToolStripMenuItem, dOANHTHUToolStripMenuItem, tÀIKHOẢNToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1182, 28);
+            menuStrip1.Padding = new Padding(5, 2, 0, 2);
+            menuStrip1.Size = new Size(1034, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
             // staffManage
             // 
             staffManage.Name = "staffManage";
-            staffManage.Size = new Size(102, 24);
+            staffManage.Size = new Size(82, 20);
             staffManage.Text = "NHÂN VIÊN";
             staffManage.Click += staffManage_Click;
             // 
             // kHÁCHHÀNGToolStripMenuItem
             // 
             kHÁCHHÀNGToolStripMenuItem.Name = "kHÁCHHÀNGToolStripMenuItem";
-            kHÁCHHÀNGToolStripMenuItem.Size = new Size(119, 24);
+            kHÁCHHÀNGToolStripMenuItem.Size = new Size(97, 20);
             kHÁCHHÀNGToolStripMenuItem.Text = "KHÁCH HÀNG";
             kHÁCHHÀNGToolStripMenuItem.Click += kHÁCHHÀNGToolStripMenuItem_Click;
             // 
             // cÔNGVIỆCToolStripMenuItem
             // 
             cÔNGVIỆCToolStripMenuItem.Name = "cÔNGVIỆCToolStripMenuItem";
-            cÔNGVIỆCToolStripMenuItem.Size = new Size(98, 24);
+            cÔNGVIỆCToolStripMenuItem.Size = new Size(80, 20);
             cÔNGVIỆCToolStripMenuItem.Text = "CÔNG VIỆC";
             cÔNGVIỆCToolStripMenuItem.Click += cÔNGVIỆCToolStripMenuItem_Click;
             // 
             // nHÀSẢNXUẤTToolStripMenuItem
             // 
             nHÀSẢNXUẤTToolStripMenuItem.Name = "nHÀSẢNXUẤTToolStripMenuItem";
-            nHÀSẢNXUẤTToolStripMenuItem.Size = new Size(129, 24);
+            nHÀSẢNXUẤTToolStripMenuItem.Size = new Size(103, 20);
             nHÀSẢNXUẤTToolStripMenuItem.Text = "NHÀ SẢN XUẤT";
             nHÀSẢNXUẤTToolStripMenuItem.Click += nHÀSẢNXUẤTToolStripMenuItem_Click;
             // 
             // ứNGDỤNGToolStripMenuItem
             // 
             ứNGDỤNGToolStripMenuItem.Name = "ứNGDỤNGToolStripMenuItem";
-            ứNGDỤNGToolStripMenuItem.Size = new Size(101, 24);
+            ứNGDỤNGToolStripMenuItem.Size = new Size(80, 20);
             ứNGDỤNGToolStripMenuItem.Text = "ỨNG DỤNG";
             ứNGDỤNGToolStripMenuItem.Click += ứNGDỤNGToolStripMenuItem_Click;
             // 
             // sẢNPHẨMToolStripMenuItem
             // 
             sẢNPHẨMToolStripMenuItem.Name = "sẢNPHẨMToolStripMenuItem";
-            sẢNPHẨMToolStripMenuItem.Size = new Size(98, 24);
+            sẢNPHẨMToolStripMenuItem.Size = new Size(80, 20);
             sẢNPHẨMToolStripMenuItem.Text = "SẢN PHẨM";
             sẢNPHẨMToolStripMenuItem.Click += sẢNPHẨMToolStripMenuItem_Click;
             // 
             // đƠNNHẬPHÀNGToolStripMenuItem
             // 
             đƠNNHẬPHÀNGToolStripMenuItem.Name = "đƠNNHẬPHÀNGToolStripMenuItem";
-            đƠNNHẬPHÀNGToolStripMenuItem.Size = new Size(146, 24);
+            đƠNNHẬPHÀNGToolStripMenuItem.Size = new Size(118, 20);
             đƠNNHẬPHÀNGToolStripMenuItem.Text = "ĐƠN NHẬP HÀNG";
             đƠNNHẬPHÀNGToolStripMenuItem.Click += đƠNNHẬPHÀNGToolStripMenuItem_Click;
             // 
             // dOANHTHUToolStripMenuItem
             // 
             dOANHTHUToolStripMenuItem.Name = "dOANHTHUToolStripMenuItem";
+
             dOANHTHUToolStripMenuItem.Size = new Size(110, 24);
+
             dOANHTHUToolStripMenuItem.Text = "DOANH THU";
             dOANHTHUToolStripMenuItem.Click += dOANHTHUToolStripMenuItem_Click;
             // 
             // panel
             // 
             panel.Dock = DockStyle.Fill;
-            panel.Location = new Point(0, 28);
+            panel.Location = new Point(0, 24);
+            panel.Margin = new Padding(3, 2, 3, 2);
             panel.Name = "panel";
-            panel.Size = new Size(1182, 725);
+            panel.Size = new Size(1034, 538);
             panel.TabIndex = 1;
+            panel.Paint += panel_Paint;
             // 
             // tÀIKHOẢNToolStripMenuItem
             // 
@@ -125,12 +130,13 @@ namespace QuanLyDoDienTu.view.AdminForm
             // 
             // AdminMainForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1182, 753);
+            ClientSize = new Size(1034, 562);
             Controls.Add(panel);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "AdminMainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Quản lý";

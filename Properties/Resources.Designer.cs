@@ -59,6 +59,7 @@ namespace QuanLyDoDienTu.Properties {
                 resourceCulture = value;
             }
         }
+
         
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
