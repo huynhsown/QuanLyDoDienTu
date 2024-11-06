@@ -28,15 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             btn_add = new Guna.UI2.WinForms.Guna2Button();
             dgv_listApplication = new Guna.UI2.WinForms.Guna2DataGridView();
             col_Id = new DataGridViewTextBoxColumn();
@@ -46,13 +48,14 @@
             col_Delete = new DataGridViewButtonColumn();
             btn_Search = new Guna.UI2.WinForms.Guna2Button();
             tb_search = new Guna.UI2.WinForms.Guna2TextBox();
+            cbb_search = new Guna.UI2.WinForms.Guna2ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgv_listApplication).BeginInit();
             SuspendLayout();
             // 
             // btn_add
             // 
             btn_add.BorderRadius = 15;
-            btn_add.CustomizableEdges = customizableEdges1;
+            btn_add.CustomizableEdges = customizableEdges9;
             btn_add.DisabledState.BorderColor = Color.DarkGray;
             btn_add.DisabledState.CustomBorderColor = Color.DarkGray;
             btn_add.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -62,7 +65,7 @@
             btn_add.ForeColor = Color.White;
             btn_add.Location = new Point(843, 515);
             btn_add.Name = "btn_add";
-            btn_add.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btn_add.ShadowDecoration.CustomizableEdges = customizableEdges10;
             btn_add.Size = new Size(159, 47);
             btn_add.TabIndex = 29;
             btn_add.Text = "Thêm ứng dụng";
@@ -72,27 +75,27 @@
             // 
             dgv_listApplication.AllowUserToAddRows = false;
             dgv_listApplication.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = Color.White;
-            dgv_listApplication.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgv_listApplication.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dgv_listApplication.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgv_listApplication.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dgv_listApplication.ColumnHeadersHeight = 22;
             dgv_listApplication.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dgv_listApplication.Columns.AddRange(new DataGridViewColumn[] { col_Id, col_Name, col_Discount, col_Edit, col_Delete });
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.White;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgv_listApplication.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.White;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            dgv_listApplication.DefaultCellStyle = dataGridViewCellStyle6;
             dgv_listApplication.Dock = DockStyle.Top;
             dgv_listApplication.GridColor = Color.FromArgb(231, 229, 255);
             dgv_listApplication.Location = new Point(0, 0);
@@ -175,7 +178,7 @@
             // btn_Search
             // 
             btn_Search.BorderRadius = 15;
-            btn_Search.CustomizableEdges = customizableEdges3;
+            btn_Search.CustomizableEdges = customizableEdges11;
             btn_Search.DisabledState.BorderColor = Color.DarkGray;
             btn_Search.DisabledState.CustomBorderColor = Color.DarkGray;
             btn_Search.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -185,7 +188,7 @@
             btn_Search.ForeColor = Color.White;
             btn_Search.Location = new Point(76, 517);
             btn_Search.Name = "btn_Search";
-            btn_Search.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btn_Search.ShadowDecoration.CustomizableEdges = customizableEdges12;
             btn_Search.Size = new Size(159, 47);
             btn_Search.TabIndex = 30;
             btn_Search.Text = "Tìm kiếm";
@@ -193,7 +196,7 @@
             // 
             // tb_search
             // 
-            tb_search.CustomizableEdges = customizableEdges5;
+            tb_search.CustomizableEdges = customizableEdges13;
             tb_search.DefaultText = "";
             tb_search.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             tb_search.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -202,14 +205,32 @@
             tb_search.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             tb_search.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             tb_search.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            tb_search.Location = new Point(275, 517);
+            tb_search.Location = new Point(469, 519);
             tb_search.Name = "tb_search";
             tb_search.PasswordChar = '\0';
             tb_search.PlaceholderText = "";
             tb_search.SelectedText = "";
-            tb_search.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            tb_search.ShadowDecoration.CustomizableEdges = customizableEdges14;
             tb_search.Size = new Size(250, 45);
             tb_search.TabIndex = 31;
+            // 
+            // cbb_search
+            // 
+            cbb_search.BackColor = Color.Transparent;
+            cbb_search.CustomizableEdges = customizableEdges15;
+            cbb_search.DrawMode = DrawMode.OwnerDrawFixed;
+            cbb_search.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbb_search.FocusedColor = Color.FromArgb(94, 148, 255);
+            cbb_search.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            cbb_search.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            cbb_search.ForeColor = Color.FromArgb(68, 88, 112);
+            cbb_search.ItemHeight = 30;
+            cbb_search.Location = new Point(260, 526);
+            cbb_search.Name = "cbb_search";
+            cbb_search.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            cbb_search.Size = new Size(175, 36);
+            cbb_search.TabIndex = 32;
+            cbb_search.SelectedIndexChanged += cmb_SelectedIndexChanged;
             // 
             // ApplicationManageForm
             // 
@@ -217,6 +238,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1111, 640);
+            Controls.Add(cbb_search);
             Controls.Add(tb_search);
             Controls.Add(btn_Search);
             Controls.Add(btn_add);
@@ -240,5 +262,6 @@
         private DataGridViewButtonColumn col_Delete;
         private Guna.UI2.WinForms.Guna2Button btn_Search;
         private Guna.UI2.WinForms.Guna2TextBox tb_search;
+        private Guna.UI2.WinForms.Guna2ComboBox cbb_search;
     }
 }

@@ -16,7 +16,7 @@ namespace QuanLyDoDienTu
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             //Application.Run(new AdminMainForm());
-            Application.Run(new MainForm(1));
+            Application.Run(new AdminMainForm());
         }
     }
 }
