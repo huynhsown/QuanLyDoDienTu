@@ -9,7 +9,7 @@ namespace QuanLyDoDienTu
 {
     public class MY_DB
     {
-        private String sqlStr = @"Data Source=LAPTOP-DLNV3RL7\VANTHUONG;Initial Catalog=HQTCSDL;Integrated Security=True";
+        private String sqlStr = @"Data Source=MSI;Initial Catalog=HQTCSDL;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
         private SqlConnection sqlCon = null;
 
         public MY_DB() 
