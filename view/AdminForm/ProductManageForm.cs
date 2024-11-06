@@ -23,6 +23,9 @@ namespace QuanLyDoDienTu.view.AdminForm
         private void ProductManageForm_Load(object sender, EventArgs e)
         {
             loadProduct();
+            cbb_search.Items.Clear();
+            cbb_search.Items.Add("Mã sản phẩm");
+            cbb_search.Items.Add("Tên sản phẩm");
         }
 
         private void loadProduct()
@@ -122,35 +125,62 @@ namespace QuanLyDoDienTu.view.AdminForm
 
         private void btn_Search_Click(object sender, EventArgs e)
         {
+            if (cbb_search.SelectedItem == null || string.IsNullOrWhiteSpace(tb_search.Text))
+            {
+                MessageBox.Show("Vui lòng chọn tiêu chí tìm kiếm và nhập từ khóa.");
+                return;
+            }
+
+            string query = string.Empty; // Tên Stored Procedure hoặc câu truy vấn
+            string searchColumn = cbb_search.SelectedItem.ToString(); // Lấy giá trị từ ComboBox
+
             try
             {
                 SqlConnection conn = myDB.getConnection;
                 conn.Open();
 
-                string query = "SELECT * FROM SAN_PHAM WHERE TenSP LIKE '%' + @tensp + '%'";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@tensp", tb_search.Text);
+                SqlCommand cmd;
 
+                if (searchColumn == "Mã sản phẩm")
+                {
+                    query = "SearchProductByMaSP"; // Tên Stored Procedure tìm kiếm theo mã khách hàng
+                    cmd = new SqlCommand(query, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@MaSP", tb_search.Text);
+                }
+                else if (searchColumn == "Tên sản phẩm")
+                {
+                    query = "SearchProductByTenSP"; // Tên Stored Procedure tìm kiếm theo tên khách hàng
+                    cmd = new SqlCommand(query, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@TenSP", tb_search.Text);
+                }
+               
+                else
+                {
+                    MessageBox.Show("Không có tiêu chí tìm kiếm phù hợp.");
+                    return;
+                }
+
+
+                // Thực hiện truy vấn và hiển thị kết quả
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dataTable = new DataTable();
-
-                // Fill the DataTable with the query result
                 adapter.Fill(dataTable);
 
                 if (dataTable.Rows.Count > 0)
                 {
-                    dgv_listProduct.Rows.Clear(); // Clear DataGridView rows before adding new ones
+                    dgv_listProduct.Rows.Clear(); // Xóa các hàng cũ trước khi thêm dữ liệu mới
                     foreach (DataRow row in dataTable.Rows)
                     {
                         object[] rowData = row.ItemArray;
-                        dgv_listProduct.Rows.Add(rowData); // Add data to DataGridView
+                        dgv_listProduct.Rows.Add(rowData); // Thêm dữ liệu vào DataGridView
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Không có dữ liệu");
+                    MessageBox.Show("Không có dữ liệu phù hợp.");
                 }
-
 
                 conn.Close();
             }
@@ -161,3 +191,6 @@ namespace QuanLyDoDienTu.view.AdminForm
         }
     }
 }
+
+
+

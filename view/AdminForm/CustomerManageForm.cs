@@ -50,6 +50,13 @@ namespace QuanLyDoDienTu.view.AdminForm
                 MessageBox.Show(ex.Message);
             }
 
+
+            cbb_search.Items.Clear();
+            cbb_search.Items.Add("Mã khách hàng");
+            cbb_search.Items.Add("Tên khách hàng");
+            cbb_search.Items.Add("Số điện thoại");
+
+
         }
 
         private void dgv_listStaff_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -115,22 +122,54 @@ namespace QuanLyDoDienTu.view.AdminForm
 
         private void btn_Search_Click(object sender, EventArgs e)
         {
+            // Kiểm tra xem người dùng đã chọn tiêu chí tìm kiếm và nhập từ khóa
+            if (cbb_search.SelectedItem == null || string.IsNullOrWhiteSpace(tb_search.Text))
+            {
+                MessageBox.Show("Vui lòng chọn tiêu chí tìm kiếm và nhập từ khóa.");
+                return;
+            }
+
+            string query = string.Empty; // Tên Stored Procedure hoặc câu truy vấn
+            string searchColumn = cbb_search.SelectedItem.ToString(); // Lấy giá trị từ ComboBox
+
             try
             {
                 SqlConnection conn = myDB.getConnection;
                 conn.Open();
 
-                string query = "SearchKhachHangBySDT"; // Tên Stored Procedure
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.CommandType = CommandType.StoredProcedure; // Xác định đây là Stored Procedure
+                SqlCommand cmd;
 
-                // Thêm tham số cho Stored Procedure
-                cmd.Parameters.AddWithValue("@SDT", tb_search.Text);
+                // Kiểm tra giá trị của ComboBox để tìm kiếm theo tiêu chí
+                if (searchColumn == "Mã khách hàng")
+                {
+                    query = "SearchKhachHangByMaKH"; // Tên Stored Procedure tìm kiếm theo mã khách hàng
+                    cmd = new SqlCommand(query, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@MaKH", tb_search.Text);
+                }
+                else if (searchColumn == "Tên khách hàng")
+                {
+                    query = "SearchKhachHangByTenKH"; // Tên Stored Procedure tìm kiếm theo tên khách hàng
+                    cmd = new SqlCommand(query, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@HoTen", tb_search.Text);
+                }
+                else if (searchColumn == "Số điện thoại")
+                {
+                    query = "SearchKhachHangBySDT"; // Tên Stored Procedure tìm kiếm theo số điện thoại
+                    cmd = new SqlCommand(query, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@SDT", tb_search.Text);
+                }
+                else
+                {
+                    MessageBox.Show("Không có tiêu chí tìm kiếm phù hợp.");
+                    return;
+                }
 
+                // Thực hiện truy vấn và hiển thị kết quả
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dataTable = new DataTable();
-
-                // Điền dữ liệu từ Stored Procedure vào DataTable
                 adapter.Fill(dataTable);
 
                 if (dataTable.Rows.Count > 0)
@@ -144,7 +183,7 @@ namespace QuanLyDoDienTu.view.AdminForm
                 }
                 else
                 {
-                    MessageBox.Show("Không có dữ liệu");
+                    MessageBox.Show("Không có dữ liệu phù hợp.");
                 }
 
                 conn.Close();
@@ -153,7 +192,8 @@ namespace QuanLyDoDienTu.view.AdminForm
             {
                 MessageBox.Show(ex.Message);
             }
-
         }
+
+        
     }
 }

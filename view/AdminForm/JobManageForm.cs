@@ -55,6 +55,9 @@ namespace QuanLyDoDienTu.view.AdminForm
         private void JobManageForm_Load(object sender, EventArgs e)
         {
             loadJob();
+            cbb_search.Items.Clear();
+            cbb_search.Items.Add("Mã công việc");
+            cbb_search.Items.Add("Tên công việc");
         }
 
         private void dgv_listJob_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -124,43 +127,71 @@ namespace QuanLyDoDienTu.view.AdminForm
 
         private void btn_Search_Click(object sender, EventArgs e)
         {
+            if (cbb_search.SelectedItem == null || string.IsNullOrWhiteSpace(tb_search.Text))
+            {
+                MessageBox.Show("Vui lòng chọn tiêu chí tìm kiếm và nhập từ khóa.");
+                return;
+            }
+
+            string query = string.Empty; // Tên Stored Procedure hoặc câu truy vấn
+            string searchColumn = cbb_search.SelectedItem.ToString(); // Lấy giá trị từ ComboBox
+
             try
             {
                 SqlConnection conn = myDB.getConnection;
                 conn.Open();
 
-                // Use the stored procedure instead of inline SQL
-                using (SqlCommand cmd = new SqlCommand("spGetJobsByTenCV", conn))
+                SqlCommand cmd;
+
+                // Kiểm tra giá trị của ComboBox để tìm kiếm theo tiêu chí
+                if (searchColumn == "Mã công việc")
                 {
+                    query = "spGetJobsByMaCV"; // Tên Stored Procedure tìm kiếm theo mã khách hàng
+                    cmd = new SqlCommand(query, conn);
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@MaCv", tb_search.Text);
+                }
+                else if (searchColumn == "Tên công việc")
+                {
+                    query = "spGetJobsByTenCV"; // Tên Stored Procedure tìm kiếm theo tên khách hàng
+                    cmd = new SqlCommand(query, conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@TenCV", tb_search.Text);
+                }
+               
+                else
+                {
+                    MessageBox.Show("Không có tiêu chí tìm kiếm phù hợp.");
+                    return;
+                }
 
-                    // Add parameter for the stored procedure
-                    cmd.Parameters.AddWithValue("@TenCV", tb_search.Text.Trim());
+                // Thực hiện truy vấn và hiển thị kết quả
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
 
-                    // Execute the query and fill the DataTable
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-
-                    // Populate the DataGridView with the results
-                    if (dataTable.Rows.Count > 0)
+                if (dataTable.Rows.Count > 0)
+                {
+                    dgv_listJob.Rows.Clear(); // Xóa các hàng cũ trước khi thêm dữ liệu mới
+                    foreach (DataRow row in dataTable.Rows)
                     {
-                        dgv_listJob.Rows.Clear(); // Clear existing rows
-                        foreach (DataRow row in dataTable.Rows)
-                        {
-                            dgv_listJob.Rows.Add(row.ItemArray); // Add new rows
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Không có dữ liệu"); // No data found
+                        object[] rowData = row.ItemArray;
+                        dgv_listJob.Rows.Add(rowData); // Thêm dữ liệu vào DataGridView
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Không có dữ liệu phù hợp.");
+                }
+
+                conn.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " + ex.Message); // Display any exceptions
+                MessageBox.Show(ex.Message);
             }
+
+
         }
     }
 }

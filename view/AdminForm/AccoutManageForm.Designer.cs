@@ -49,12 +49,6 @@
             col_Edit = new DataGridViewButtonColumn();
             col_delete = new DataGridViewButtonColumn();
             dgv_listAccountCustomer = new Guna.UI2.WinForms.Guna2DataGridView();
-            panel1 = new Panel();
-            btn_search = new Guna.UI2.WinForms.Guna2Button();
-            rb_customer = new Guna.UI2.WinForms.Guna2RadioButton();
-            rb_staff = new Guna.UI2.WinForms.Guna2RadioButton();
-            cbb_search = new Guna.UI2.WinForms.Guna2ComboBox();
-            tb_search = new Guna.UI2.WinForms.Guna2TextBox();
             col_CId = new DataGridViewTextBoxColumn();
             col_CPhone = new DataGridViewTextBoxColumn();
             col_CPassword = new DataGridViewTextBoxColumn();
@@ -62,6 +56,12 @@
             col_CRole = new DataGridViewTextBoxColumn();
             col_CEdit = new DataGridViewButtonColumn();
             col_CDelete = new DataGridViewButtonColumn();
+            panel1 = new Panel();
+            btn_search = new Guna.UI2.WinForms.Guna2Button();
+            rb_customer = new Guna.UI2.WinForms.Guna2RadioButton();
+            rb_staff = new Guna.UI2.WinForms.Guna2RadioButton();
+            cbb_search = new Guna.UI2.WinForms.Guna2ComboBox();
+            tb_search = new Guna.UI2.WinForms.Guna2TextBox();
             ((System.ComponentModel.ISupportInitialize)dgv_listAccout).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgv_listAccountCustomer).BeginInit();
             panel1.SuspendLayout();
@@ -238,6 +238,61 @@
             dgv_listAccountCustomer.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             dgv_listAccountCustomer.CellContentClick += dgv_listAccountCustomer_CellContentClick;
             // 
+            // col_CId
+            // 
+            col_CId.HeaderText = "Mã khách hàng";
+            col_CId.MinimumWidth = 6;
+            col_CId.Name = "col_CId";
+            col_CId.ReadOnly = true;
+            // 
+            // col_CPhone
+            // 
+            col_CPhone.HeaderText = "Số điện thoại";
+            col_CPhone.MinimumWidth = 6;
+            col_CPhone.Name = "col_CPhone";
+            col_CPhone.ReadOnly = true;
+            // 
+            // col_CPassword
+            // 
+            col_CPassword.HeaderText = "Mật khẩu";
+            col_CPassword.MinimumWidth = 6;
+            col_CPassword.Name = "col_CPassword";
+            col_CPassword.ReadOnly = true;
+            // 
+            // col_CName
+            // 
+            col_CName.HeaderText = "Họ tên";
+            col_CName.MinimumWidth = 6;
+            col_CName.Name = "col_CName";
+            col_CName.ReadOnly = true;
+            // 
+            // col_CRole
+            // 
+            col_CRole.HeaderText = "Vai trò";
+            col_CRole.MinimumWidth = 6;
+            col_CRole.Name = "col_CRole";
+            col_CRole.ReadOnly = true;
+            // 
+            // col_CEdit
+            // 
+            col_CEdit.FillWeight = 30F;
+            col_CEdit.HeaderText = "Sửa";
+            col_CEdit.MinimumWidth = 3;
+            col_CEdit.Name = "col_CEdit";
+            col_CEdit.ReadOnly = true;
+            col_CEdit.Text = "Sửa";
+            col_CEdit.UseColumnTextForButtonValue = true;
+            // 
+            // col_CDelete
+            // 
+            col_CDelete.FillWeight = 30F;
+            col_CDelete.HeaderText = "Xóa";
+            col_CDelete.MinimumWidth = 3;
+            col_CDelete.Name = "col_CDelete";
+            col_CDelete.ReadOnly = true;
+            col_CDelete.Text = "Xóa";
+            col_CDelete.UseColumnTextForButtonValue = true;
+            // 
             // panel1
             // 
             panel1.Controls.Add(btn_search);
@@ -323,6 +378,7 @@
             cbb_search.ShadowDecoration.CustomizableEdges = customizableEdges4;
             cbb_search.Size = new Size(175, 36);
             cbb_search.TabIndex = 35;
+            cbb_search.SelectedIndexChanged += cbb_search_SelectedIndexChanged;
             // 
             // tb_search
             // 
@@ -343,61 +399,6 @@
             tb_search.ShadowDecoration.CustomizableEdges = customizableEdges6;
             tb_search.Size = new Size(250, 36);
             tb_search.TabIndex = 34;
-            // 
-            // col_CId
-            // 
-            col_CId.HeaderText = "Mã khách hàng";
-            col_CId.MinimumWidth = 6;
-            col_CId.Name = "col_CId";
-            col_CId.ReadOnly = true;
-            // 
-            // col_CPhone
-            // 
-            col_CPhone.HeaderText = "Số điện thoại";
-            col_CPhone.MinimumWidth = 6;
-            col_CPhone.Name = "col_CPhone";
-            col_CPhone.ReadOnly = true;
-            // 
-            // col_CPassword
-            // 
-            col_CPassword.HeaderText = "Mật khẩu";
-            col_CPassword.MinimumWidth = 6;
-            col_CPassword.Name = "col_CPassword";
-            col_CPassword.ReadOnly = true;
-            // 
-            // col_CName
-            // 
-            col_CName.HeaderText = "Họ tên";
-            col_CName.MinimumWidth = 6;
-            col_CName.Name = "col_CName";
-            col_CName.ReadOnly = true;
-            // 
-            // col_CRole
-            // 
-            col_CRole.HeaderText = "Vai trò";
-            col_CRole.MinimumWidth = 6;
-            col_CRole.Name = "col_CRole";
-            col_CRole.ReadOnly = true;
-            // 
-            // col_CEdit
-            // 
-            col_CEdit.FillWeight = 30F;
-            col_CEdit.HeaderText = "Sửa";
-            col_CEdit.MinimumWidth = 3;
-            col_CEdit.Name = "col_CEdit";
-            col_CEdit.ReadOnly = true;
-            col_CEdit.Text = "Sửa";
-            col_CEdit.UseColumnTextForButtonValue = true;
-            // 
-            // col_CDelete
-            // 
-            col_CDelete.FillWeight = 30F;
-            col_CDelete.HeaderText = "Xóa";
-            col_CDelete.MinimumWidth = 3;
-            col_CDelete.Name = "col_CDelete";
-            col_CDelete.ReadOnly = true;
-            col_CDelete.Text = "Xóa";
-            col_CDelete.UseColumnTextForButtonValue = true;
             // 
             // AccoutManageForm
             // 

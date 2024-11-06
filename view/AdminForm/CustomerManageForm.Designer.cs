@@ -37,10 +37,9 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             dgv_listCustomer = new Guna.UI2.WinForms.Guna2DataGridView();
-            btn_add = new Guna.UI2.WinForms.Guna2Button();
-            tb_search = new Guna.UI2.WinForms.Guna2TextBox();
-            btn_Search = new Guna.UI2.WinForms.Guna2Button();
             col_Id = new DataGridViewTextBoxColumn();
             col_Name = new DataGridViewTextBoxColumn();
             col_Address = new DataGridViewTextBoxColumn();
@@ -49,6 +48,10 @@
             col_Edit = new DataGridViewButtonColumn();
             col_delete = new DataGridViewButtonColumn();
             col_history = new DataGridViewButtonColumn();
+            btn_add = new Guna.UI2.WinForms.Guna2Button();
+            tb_search = new Guna.UI2.WinForms.Guna2TextBox();
+            btn_Search = new Guna.UI2.WinForms.Guna2Button();
+            cbb_search = new Guna.UI2.WinForms.Guna2ComboBox();
             ((System.ComponentModel.ISupportInitialize)dgv_listCustomer).BeginInit();
             SuspendLayout();
             // 
@@ -109,64 +112,6 @@
             dgv_listCustomer.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgv_listCustomer.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             dgv_listCustomer.CellContentClick += dgv_listStaff_CellContentClick;
-            // 
-            // btn_add
-            // 
-            btn_add.BorderRadius = 15;
-            btn_add.CustomizableEdges = customizableEdges1;
-            btn_add.DisabledState.BorderColor = Color.DarkGray;
-            btn_add.DisabledState.CustomBorderColor = Color.DarkGray;
-            btn_add.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btn_add.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btn_add.FillColor = Color.FromArgb(128, 128, 255);
-            btn_add.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_add.ForeColor = Color.White;
-            btn_add.Location = new Point(795, 557);
-            btn_add.Name = "btn_add";
-            btn_add.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btn_add.Size = new Size(170, 45);
-            btn_add.TabIndex = 26;
-            btn_add.Text = "Thêm khách hàng";
-            btn_add.Click += btn_add_Click;
-            // 
-            // tb_search
-            // 
-            tb_search.CustomizableEdges = customizableEdges3;
-            tb_search.DefaultText = "";
-            tb_search.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            tb_search.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            tb_search.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            tb_search.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            tb_search.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            tb_search.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            tb_search.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            tb_search.Location = new Point(355, 557);
-            tb_search.Name = "tb_search";
-            tb_search.PasswordChar = '\0';
-            tb_search.PlaceholderText = "";
-            tb_search.SelectedText = "";
-            tb_search.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            tb_search.Size = new Size(250, 45);
-            tb_search.TabIndex = 33;
-            // 
-            // btn_Search
-            // 
-            btn_Search.BorderRadius = 15;
-            btn_Search.CustomizableEdges = customizableEdges5;
-            btn_Search.DisabledState.BorderColor = Color.DarkGray;
-            btn_Search.DisabledState.CustomBorderColor = Color.DarkGray;
-            btn_Search.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btn_Search.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btn_Search.FillColor = Color.FromArgb(128, 128, 255);
-            btn_Search.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btn_Search.ForeColor = Color.White;
-            btn_Search.Location = new Point(156, 557);
-            btn_Search.Name = "btn_Search";
-            btn_Search.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            btn_Search.Size = new Size(159, 47);
-            btn_Search.TabIndex = 32;
-            btn_Search.Text = "Tìm kiếm";
-            btn_Search.Click += btn_Search_Click;
             // 
             // col_Id
             // 
@@ -240,12 +185,88 @@
             col_history.Text = "Xem";
             col_history.UseColumnTextForButtonValue = true;
             // 
+            // btn_add
+            // 
+            btn_add.BorderRadius = 15;
+            btn_add.CustomizableEdges = customizableEdges1;
+            btn_add.DisabledState.BorderColor = Color.DarkGray;
+            btn_add.DisabledState.CustomBorderColor = Color.DarkGray;
+            btn_add.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btn_add.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btn_add.FillColor = Color.FromArgb(128, 128, 255);
+            btn_add.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_add.ForeColor = Color.White;
+            btn_add.Location = new Point(860, 557);
+            btn_add.Name = "btn_add";
+            btn_add.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btn_add.Size = new Size(170, 45);
+            btn_add.TabIndex = 26;
+            btn_add.Text = "Thêm khách hàng";
+            btn_add.Click += btn_add_Click;
+            // 
+            // tb_search
+            // 
+            tb_search.CustomizableEdges = customizableEdges3;
+            tb_search.DefaultText = "";
+            tb_search.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            tb_search.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            tb_search.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            tb_search.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            tb_search.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            tb_search.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            tb_search.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            tb_search.Location = new Point(474, 557);
+            tb_search.Name = "tb_search";
+            tb_search.PasswordChar = '\0';
+            tb_search.PlaceholderText = "";
+            tb_search.SelectedText = "";
+            tb_search.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            tb_search.Size = new Size(250, 45);
+            tb_search.TabIndex = 33;
+            // 
+            // btn_Search
+            // 
+            btn_Search.BorderRadius = 15;
+            btn_Search.CustomizableEdges = customizableEdges5;
+            btn_Search.DisabledState.BorderColor = Color.DarkGray;
+            btn_Search.DisabledState.CustomBorderColor = Color.DarkGray;
+            btn_Search.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btn_Search.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btn_Search.FillColor = Color.FromArgb(128, 128, 255);
+            btn_Search.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btn_Search.ForeColor = Color.White;
+            btn_Search.Location = new Point(106, 557);
+            btn_Search.Name = "btn_Search";
+            btn_Search.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btn_Search.Size = new Size(159, 47);
+            btn_Search.TabIndex = 32;
+            btn_Search.Text = "Tìm kiếm";
+            btn_Search.Click += btn_Search_Click;
+            // 
+            // cbb_search
+            // 
+            cbb_search.BackColor = Color.Transparent;
+            cbb_search.CustomizableEdges = customizableEdges7;
+            cbb_search.DrawMode = DrawMode.OwnerDrawFixed;
+            cbb_search.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbb_search.FocusedColor = Color.FromArgb(94, 148, 255);
+            cbb_search.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            cbb_search.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            cbb_search.ForeColor = Color.FromArgb(68, 88, 112);
+            cbb_search.ItemHeight = 30;
+            cbb_search.Location = new Point(287, 557);
+            cbb_search.Name = "cbb_search";
+            cbb_search.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            cbb_search.Size = new Size(169, 36);
+            cbb_search.TabIndex = 34;
+            // 
             // CustomerManageForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1146, 631);
+            Controls.Add(cbb_search);
             Controls.Add(tb_search);
             Controls.Add(btn_Search);
             Controls.Add(btn_add);
@@ -272,5 +293,6 @@
         private DataGridViewButtonColumn col_Edit;
         private DataGridViewButtonColumn col_delete;
         private DataGridViewButtonColumn col_history;
+        private Guna.UI2.WinForms.Guna2ComboBox cbb_search;
     }
 }
