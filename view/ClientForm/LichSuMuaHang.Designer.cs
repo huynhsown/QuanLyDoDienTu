@@ -60,11 +60,13 @@
             // 
             // LichSuMuaHang
             // 
+            BackColor = Color.White;
             ClientSize = new Size(800, 500);
             ControlBox = false;
             Controls.Add(dgvOrderHistory);
             Controls.Add(btnXemChiTiet);
             Controls.Add(dgvOrderDetails);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "LichSuMuaHang";
             Text = "Lịch Sử Mua Hàng";
             ((System.ComponentModel.ISupportInitialize)dgvOrderHistory).EndInit();

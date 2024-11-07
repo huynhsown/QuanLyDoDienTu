@@ -59,7 +59,7 @@
             lblName.Location = new Point(30, 38);
             lblName.Margin = new Padding(3, 4, 3, 4);
             lblName.Name = "lblName";
-            lblName.Size = new Size(100, 31);
+            lblName.Size = new Size(100, 45);
             lblName.TabIndex = 0;
             lblName.Text = "Tên người dùng :";
             // 
