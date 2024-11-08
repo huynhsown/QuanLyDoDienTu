@@ -14,7 +14,7 @@ namespace QuanLyDoDienTu.view.ClientForm
         private MY_DB db = new MY_DB();
         private int maKH;
 
-        public GioHangForm(int maKH,List<SanPhamTrongGio> sanPhams)
+        public GioHangForm(int maKH, List<SanPhamTrongGio> sanPhams)
         {
             InitializeComponent();
             gioHang = sanPhams;
@@ -234,5 +234,9 @@ namespace QuanLyDoDienTu.view.ClientForm
             dgvGioHang.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
 
+        private void GioHangForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

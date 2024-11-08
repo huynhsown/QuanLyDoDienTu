@@ -28,119 +28,115 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.lbSanPham = new System.Windows.Forms.ListBox();
-            this.txtDanhGia = new System.Windows.Forms.TextBox();
-            this.numRating = new System.Windows.Forms.NumericUpDown();
-            this.btnSubmit = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numRating)).BeginInit();
-            this.SuspendLayout();
+            guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lbSanPham = new ListBox();
+            txtDanhGia = new TextBox();
+            numRating = new NumericUpDown();
+            btnSubmit = new Button();
+            ((System.ComponentModel.ISupportInitialize)numRating).BeginInit();
+            SuspendLayout();
             // 
             // guna2HtmlLabel1
             // 
-            this.guna2HtmlLabel1.AutoSize = false;
-            this.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel1.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel1.Location = new System.Drawing.Point(20, 24);
-            this.guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            this.guna2HtmlLabel1.Size = new System.Drawing.Size(300, 20);
-            this.guna2HtmlLabel1.TabIndex = 0;
-            this.guna2HtmlLabel1.Text = "Danh sách sản phẩm đã mua";
+            guna2HtmlLabel1.AutoSize = false;
+            guna2HtmlLabel1.BackColor = Color.Transparent;
+            guna2HtmlLabel1.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2HtmlLabel1.Location = new Point(20, 30);
+            guna2HtmlLabel1.Margin = new Padding(3, 4, 3, 4);
+            guna2HtmlLabel1.Name = "guna2HtmlLabel1";
+            guna2HtmlLabel1.Size = new Size(300, 25);
+            guna2HtmlLabel1.TabIndex = 0;
+            guna2HtmlLabel1.Text = "Danh sách sản phẩm đã mua";
             // 
             // guna2HtmlLabel2
             // 
-            this.guna2HtmlLabel2.AutoSize = false;
-            this.guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel2.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel2.Location = new System.Drawing.Point(20, 175);
-            this.guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            this.guna2HtmlLabel2.Size = new System.Drawing.Size(300, 20);
-            this.guna2HtmlLabel2.TabIndex = 1;
-            this.guna2HtmlLabel2.Text = "Nhập đánh giá của bạn";
+            guna2HtmlLabel2.AutoSize = false;
+            guna2HtmlLabel2.BackColor = Color.Transparent;
+            guna2HtmlLabel2.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2HtmlLabel2.Location = new Point(20, 219);
+            guna2HtmlLabel2.Margin = new Padding(3, 4, 3, 4);
+            guna2HtmlLabel2.Name = "guna2HtmlLabel2";
+            guna2HtmlLabel2.Size = new Size(300, 25);
+            guna2HtmlLabel2.TabIndex = 1;
+            guna2HtmlLabel2.Text = "Nhập đánh giá của bạn";
             // 
             // guna2HtmlLabel3
             // 
-            this.guna2HtmlLabel3.AutoSize = false;
-            this.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel3.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2HtmlLabel3.Location = new System.Drawing.Point(20, 321);
-            this.guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            this.guna2HtmlLabel3.Size = new System.Drawing.Size(300, 20);
-            this.guna2HtmlLabel3.TabIndex = 2;
-            this.guna2HtmlLabel3.Text = "Chọn điểm đánh giá (1-5)";
+            guna2HtmlLabel3.AutoSize = false;
+            guna2HtmlLabel3.BackColor = Color.Transparent;
+            guna2HtmlLabel3.Font = new Font("Arial", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            guna2HtmlLabel3.Location = new Point(20, 401);
+            guna2HtmlLabel3.Margin = new Padding(3, 4, 3, 4);
+            guna2HtmlLabel3.Name = "guna2HtmlLabel3";
+            guna2HtmlLabel3.Size = new Size(300, 25);
+            guna2HtmlLabel3.TabIndex = 2;
+            guna2HtmlLabel3.Text = "Chọn điểm đánh giá (1-5)";
             // 
             // lbSanPham
             // 
-            this.lbSanPham.FormattingEnabled = true;
-            this.lbSanPham.ItemHeight = 16;
-            this.lbSanPham.Location = new System.Drawing.Point(20, 50);
-            this.lbSanPham.Name = "lbSanPham";
-            this.lbSanPham.Size = new System.Drawing.Size(300, 100);
-            this.lbSanPham.TabIndex = 3;
+            lbSanPham.FormattingEnabled = true;
+            lbSanPham.ItemHeight = 20;
+            lbSanPham.Location = new Point(20, 62);
+            lbSanPham.Margin = new Padding(3, 4, 3, 4);
+            lbSanPham.Name = "lbSanPham";
+            lbSanPham.Size = new Size(300, 124);
+            lbSanPham.TabIndex = 3;
             // 
             // txtDanhGia
             // 
-            this.txtDanhGia.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.txtDanhGia.Location = new System.Drawing.Point(20, 201);
-            this.txtDanhGia.Multiline = true;
-            this.txtDanhGia.Name = "txtDanhGia";
-            this.txtDanhGia.Size = new System.Drawing.Size(400, 100);
-            this.txtDanhGia.TabIndex = 4;
-            this.txtDanhGia.Text = "Nhập đánh giá của bạn...";
+            txtDanhGia.ForeColor = SystemColors.GrayText;
+            txtDanhGia.Location = new Point(20, 251);
+            txtDanhGia.Margin = new Padding(3, 4, 3, 4);
+            txtDanhGia.Multiline = true;
+            txtDanhGia.Name = "txtDanhGia";
+            txtDanhGia.Size = new Size(400, 124);
+            txtDanhGia.TabIndex = 4;
+            txtDanhGia.Text = "Nhập đánh giá của bạn...";
             // 
             // numRating
             // 
-            this.numRating.Location = new System.Drawing.Point(20, 350);
-            this.numRating.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numRating.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numRating.Name = "numRating";
-            this.numRating.Size = new System.Drawing.Size(50, 22);
-            this.numRating.TabIndex = 5;
-            this.numRating.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            numRating.Location = new Point(20, 438);
+            numRating.Margin = new Padding(3, 4, 3, 4);
+            numRating.Maximum = new decimal(new int[] { 5, 0, 0, 0 });
+            numRating.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numRating.Name = "numRating";
+            numRating.Size = new Size(50, 27);
+            numRating.TabIndex = 5;
+            numRating.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // btnSubmit
             // 
-            this.btnSubmit.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.btnSubmit.Location = new System.Drawing.Point(20, 395);
-            this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(107, 28);
-            this.btnSubmit.TabIndex = 6;
-            this.btnSubmit.Text = "Gửi đánh giá";
-            this.btnSubmit.UseVisualStyleBackColor = false;
+            btnSubmit.BackColor = Color.LightSkyBlue;
+            btnSubmit.Location = new Point(20, 494);
+            btnSubmit.Margin = new Padding(3, 4, 3, 4);
+            btnSubmit.Name = "btnSubmit";
+            btnSubmit.Size = new Size(107, 35);
+            btnSubmit.TabIndex = 6;
+            btnSubmit.Text = "Gửi đánh giá";
+            btnSubmit.UseVisualStyleBackColor = false;
             // 
             // DanhGiaSanPham
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.ClientSize = new System.Drawing.Size(682, 453);
-            this.Controls.Add(this.btnSubmit);
-            this.Controls.Add(this.numRating);
-            this.Controls.Add(this.txtDanhGia);
-            this.Controls.Add(this.lbSanPham);
-            this.Controls.Add(this.guna2HtmlLabel3);
-            this.Controls.Add(this.guna2HtmlLabel2);
-            this.Controls.Add(this.guna2HtmlLabel1);
-            this.Name = "DanhGiaSanPham";
-            this.Text = "Đánh giá sản phẩm";
-            ((System.ComponentModel.ISupportInitialize)(this.numRating)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
+            ClientSize = new Size(682, 566);
+            Controls.Add(btnSubmit);
+            Controls.Add(numRating);
+            Controls.Add(txtDanhGia);
+            Controls.Add(lbSanPham);
+            Controls.Add(guna2HtmlLabel3);
+            Controls.Add(guna2HtmlLabel2);
+            Controls.Add(guna2HtmlLabel1);
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "DanhGiaSanPham";
+            Text = "Đánh giá sản phẩm";
+            ((System.ComponentModel.ISupportInitialize)numRating).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

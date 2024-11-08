@@ -103,6 +103,7 @@
             // 
             // GioHangForm
             // 
+            BackColor = Color.White;
             ClientSize = new Size(600, 550);
             ControlBox = false;
             Controls.Add(btnXoa);
@@ -112,8 +113,10 @@
             Controls.Add(cbUngDung);
             Controls.Add(btnThayDoi);
             Controls.Add(btnTaoDonHang);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "GioHangForm";
             Text = "Giỏ Hàng";
+            Load += GioHangForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvGioHang).EndInit();
             ResumeLayout(false);
             PerformLayout();

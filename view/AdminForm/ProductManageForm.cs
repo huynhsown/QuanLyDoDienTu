@@ -150,7 +150,7 @@ namespace QuanLyDoDienTu.view.AdminForm
                 }
                 else if (searchColumn == "Tên sản phẩm")
                 {
-                    query = "SearchProductByTenSP"; // Tên Stored Procedure tìm kiếm theo tên khách hàng
+                    query = "sp_SearchProductByTenSP"; // Tên Stored Procedure tìm kiếm theo tên khách hàng
                     cmd = new SqlCommand(query, conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@TenSP", tb_search.Text);

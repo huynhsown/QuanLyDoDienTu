@@ -41,27 +41,25 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             dgv_listAccout = new Guna.UI2.WinForms.Guna2DataGridView();
-            col_Id = new DataGridViewTextBoxColumn();
-            col_Phone = new DataGridViewTextBoxColumn();
-            col_Password = new DataGridViewTextBoxColumn();
-            col_Name = new DataGridViewTextBoxColumn();
-            col_Role = new DataGridViewTextBoxColumn();
-            col_Edit = new DataGridViewButtonColumn();
-            col_delete = new DataGridViewButtonColumn();
             dgv_listAccountCustomer = new Guna.UI2.WinForms.Guna2DataGridView();
-            col_CId = new DataGridViewTextBoxColumn();
-            col_CPhone = new DataGridViewTextBoxColumn();
-            col_CPassword = new DataGridViewTextBoxColumn();
-            col_CName = new DataGridViewTextBoxColumn();
-            col_CRole = new DataGridViewTextBoxColumn();
-            col_CEdit = new DataGridViewButtonColumn();
-            col_CDelete = new DataGridViewButtonColumn();
             panel1 = new Panel();
             btn_search = new Guna.UI2.WinForms.Guna2Button();
             rb_customer = new Guna.UI2.WinForms.Guna2RadioButton();
             rb_staff = new Guna.UI2.WinForms.Guna2RadioButton();
             cbb_search = new Guna.UI2.WinForms.Guna2ComboBox();
             tb_search = new Guna.UI2.WinForms.Guna2TextBox();
+            col_Id = new DataGridViewTextBoxColumn();
+            col_Phone = new DataGridViewTextBoxColumn();
+            col_Password = new DataGridViewTextBoxColumn();
+            col_Name = new DataGridViewTextBoxColumn();
+            col_Role = new DataGridViewTextBoxColumn();
+            col_Edit = new DataGridViewButtonColumn();
+            col_CId = new DataGridViewTextBoxColumn();
+            col_CPhone = new DataGridViewTextBoxColumn();
+            col_CPassword = new DataGridViewTextBoxColumn();
+            col_CName = new DataGridViewTextBoxColumn();
+            col_CRole = new DataGridViewTextBoxColumn();
+            col_CEdit = new DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)dgv_listAccout).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgv_listAccountCustomer).BeginInit();
             panel1.SuspendLayout();
@@ -83,7 +81,7 @@
             dgv_listAccout.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgv_listAccout.ColumnHeadersHeight = 22;
             dgv_listAccout.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgv_listAccout.Columns.AddRange(new DataGridViewColumn[] { col_Id, col_Phone, col_Password, col_Name, col_Role, col_Edit, col_delete });
+            dgv_listAccout.Columns.AddRange(new DataGridViewColumn[] { col_Id, col_Phone, col_Password, col_Name, col_Role, col_Edit });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -125,61 +123,6 @@
             dgv_listAccout.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             dgv_listAccout.CellContentClick += dgv_listAccout_CellContentClick;
             // 
-            // col_Id
-            // 
-            col_Id.HeaderText = "Mã nhân viên";
-            col_Id.MinimumWidth = 6;
-            col_Id.Name = "col_Id";
-            col_Id.ReadOnly = true;
-            // 
-            // col_Phone
-            // 
-            col_Phone.HeaderText = "Số điện thoại";
-            col_Phone.MinimumWidth = 6;
-            col_Phone.Name = "col_Phone";
-            col_Phone.ReadOnly = true;
-            // 
-            // col_Password
-            // 
-            col_Password.HeaderText = "Mật khẩu";
-            col_Password.MinimumWidth = 6;
-            col_Password.Name = "col_Password";
-            col_Password.ReadOnly = true;
-            // 
-            // col_Name
-            // 
-            col_Name.HeaderText = "Họ tên";
-            col_Name.MinimumWidth = 6;
-            col_Name.Name = "col_Name";
-            col_Name.ReadOnly = true;
-            // 
-            // col_Role
-            // 
-            col_Role.HeaderText = "Vai trò";
-            col_Role.MinimumWidth = 6;
-            col_Role.Name = "col_Role";
-            col_Role.ReadOnly = true;
-            // 
-            // col_Edit
-            // 
-            col_Edit.FillWeight = 30F;
-            col_Edit.HeaderText = "Sửa";
-            col_Edit.MinimumWidth = 3;
-            col_Edit.Name = "col_Edit";
-            col_Edit.ReadOnly = true;
-            col_Edit.Text = "Sửa";
-            col_Edit.UseColumnTextForButtonValue = true;
-            // 
-            // col_delete
-            // 
-            col_delete.FillWeight = 30F;
-            col_delete.HeaderText = "Xóa";
-            col_delete.MinimumWidth = 3;
-            col_delete.Name = "col_delete";
-            col_delete.ReadOnly = true;
-            col_delete.Text = "Xóa";
-            col_delete.UseColumnTextForButtonValue = true;
-            // 
             // dgv_listAccountCustomer
             // 
             dgv_listAccountCustomer.AllowUserToAddRows = false;
@@ -196,7 +139,7 @@
             dgv_listAccountCustomer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dgv_listAccountCustomer.ColumnHeadersHeight = 22;
             dgv_listAccountCustomer.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgv_listAccountCustomer.Columns.AddRange(new DataGridViewColumn[] { col_CId, col_CPhone, col_CPassword, col_CName, col_CRole, col_CEdit, col_CDelete });
+            dgv_listAccountCustomer.Columns.AddRange(new DataGridViewColumn[] { col_CId, col_CPhone, col_CPassword, col_CName, col_CRole, col_CEdit });
             dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = Color.White;
             dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -237,61 +180,6 @@
             dgv_listAccountCustomer.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgv_listAccountCustomer.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             dgv_listAccountCustomer.CellContentClick += dgv_listAccountCustomer_CellContentClick;
-            // 
-            // col_CId
-            // 
-            col_CId.HeaderText = "Mã khách hàng";
-            col_CId.MinimumWidth = 6;
-            col_CId.Name = "col_CId";
-            col_CId.ReadOnly = true;
-            // 
-            // col_CPhone
-            // 
-            col_CPhone.HeaderText = "Số điện thoại";
-            col_CPhone.MinimumWidth = 6;
-            col_CPhone.Name = "col_CPhone";
-            col_CPhone.ReadOnly = true;
-            // 
-            // col_CPassword
-            // 
-            col_CPassword.HeaderText = "Mật khẩu";
-            col_CPassword.MinimumWidth = 6;
-            col_CPassword.Name = "col_CPassword";
-            col_CPassword.ReadOnly = true;
-            // 
-            // col_CName
-            // 
-            col_CName.HeaderText = "Họ tên";
-            col_CName.MinimumWidth = 6;
-            col_CName.Name = "col_CName";
-            col_CName.ReadOnly = true;
-            // 
-            // col_CRole
-            // 
-            col_CRole.HeaderText = "Vai trò";
-            col_CRole.MinimumWidth = 6;
-            col_CRole.Name = "col_CRole";
-            col_CRole.ReadOnly = true;
-            // 
-            // col_CEdit
-            // 
-            col_CEdit.FillWeight = 30F;
-            col_CEdit.HeaderText = "Sửa";
-            col_CEdit.MinimumWidth = 3;
-            col_CEdit.Name = "col_CEdit";
-            col_CEdit.ReadOnly = true;
-            col_CEdit.Text = "Sửa";
-            col_CEdit.UseColumnTextForButtonValue = true;
-            // 
-            // col_CDelete
-            // 
-            col_CDelete.FillWeight = 30F;
-            col_CDelete.HeaderText = "Xóa";
-            col_CDelete.MinimumWidth = 3;
-            col_CDelete.Name = "col_CDelete";
-            col_CDelete.ReadOnly = true;
-            col_CDelete.Text = "Xóa";
-            col_CDelete.UseColumnTextForButtonValue = true;
             // 
             // panel1
             // 
@@ -400,6 +288,96 @@
             tb_search.Size = new Size(250, 36);
             tb_search.TabIndex = 34;
             // 
+            // col_Id
+            // 
+            col_Id.HeaderText = "Mã nhân viên";
+            col_Id.MinimumWidth = 6;
+            col_Id.Name = "col_Id";
+            col_Id.ReadOnly = true;
+            // 
+            // col_Phone
+            // 
+            col_Phone.HeaderText = "Số điện thoại";
+            col_Phone.MinimumWidth = 6;
+            col_Phone.Name = "col_Phone";
+            col_Phone.ReadOnly = true;
+            // 
+            // col_Password
+            // 
+            col_Password.HeaderText = "Mật khẩu";
+            col_Password.MinimumWidth = 6;
+            col_Password.Name = "col_Password";
+            col_Password.ReadOnly = true;
+            // 
+            // col_Name
+            // 
+            col_Name.HeaderText = "Họ tên";
+            col_Name.MinimumWidth = 6;
+            col_Name.Name = "col_Name";
+            col_Name.ReadOnly = true;
+            // 
+            // col_Role
+            // 
+            col_Role.HeaderText = "Vai trò";
+            col_Role.MinimumWidth = 6;
+            col_Role.Name = "col_Role";
+            col_Role.ReadOnly = true;
+            // 
+            // col_Edit
+            // 
+            col_Edit.FillWeight = 30F;
+            col_Edit.HeaderText = "Sửa";
+            col_Edit.MinimumWidth = 3;
+            col_Edit.Name = "col_Edit";
+            col_Edit.ReadOnly = true;
+            col_Edit.Text = "Sửa";
+            col_Edit.UseColumnTextForButtonValue = true;
+            // 
+            // col_CId
+            // 
+            col_CId.HeaderText = "Mã khách hàng";
+            col_CId.MinimumWidth = 6;
+            col_CId.Name = "col_CId";
+            col_CId.ReadOnly = true;
+            // 
+            // col_CPhone
+            // 
+            col_CPhone.HeaderText = "Số điện thoại";
+            col_CPhone.MinimumWidth = 6;
+            col_CPhone.Name = "col_CPhone";
+            col_CPhone.ReadOnly = true;
+            // 
+            // col_CPassword
+            // 
+            col_CPassword.HeaderText = "Mật khẩu";
+            col_CPassword.MinimumWidth = 6;
+            col_CPassword.Name = "col_CPassword";
+            col_CPassword.ReadOnly = true;
+            // 
+            // col_CName
+            // 
+            col_CName.HeaderText = "Họ tên";
+            col_CName.MinimumWidth = 6;
+            col_CName.Name = "col_CName";
+            col_CName.ReadOnly = true;
+            // 
+            // col_CRole
+            // 
+            col_CRole.HeaderText = "Vai trò";
+            col_CRole.MinimumWidth = 6;
+            col_CRole.Name = "col_CRole";
+            col_CRole.ReadOnly = true;
+            // 
+            // col_CEdit
+            // 
+            col_CEdit.FillWeight = 30F;
+            col_CEdit.HeaderText = "Sửa";
+            col_CEdit.MinimumWidth = 3;
+            col_CEdit.Name = "col_CEdit";
+            col_CEdit.ReadOnly = true;
+            col_CEdit.Text = "Sửa";
+            col_CEdit.UseColumnTextForButtonValue = true;
+            // 
             // AccoutManageForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -423,13 +401,6 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2DataGridView dgv_listAccout;
-        private DataGridViewTextBoxColumn col_Id;
-        private DataGridViewTextBoxColumn col_Phone;
-        private DataGridViewTextBoxColumn col_Password;
-        private DataGridViewTextBoxColumn col_Name;
-        private DataGridViewTextBoxColumn col_Role;
-        private DataGridViewButtonColumn col_Edit;
-        private DataGridViewButtonColumn col_delete;
         private Guna.UI2.WinForms.Guna2DataGridView dgv_listAccountCustomer;
         private Panel panel1;
         private Guna.UI2.WinForms.Guna2TextBox tb_search;
@@ -437,12 +408,17 @@
         private Guna.UI2.WinForms.Guna2RadioButton rb_staff;
         private Guna.UI2.WinForms.Guna2ComboBox cbb_search;
         private Guna.UI2.WinForms.Guna2Button btn_search;
+        private DataGridViewTextBoxColumn col_Id;
+        private DataGridViewTextBoxColumn col_Phone;
+        private DataGridViewTextBoxColumn col_Password;
+        private DataGridViewTextBoxColumn col_Name;
+        private DataGridViewTextBoxColumn col_Role;
+        private DataGridViewButtonColumn col_Edit;
         private DataGridViewTextBoxColumn col_CId;
         private DataGridViewTextBoxColumn col_CPhone;
         private DataGridViewTextBoxColumn col_CPassword;
         private DataGridViewTextBoxColumn col_CName;
         private DataGridViewTextBoxColumn col_CRole;
         private DataGridViewButtonColumn col_CEdit;
-        private DataGridViewButtonColumn col_CDelete;
     }
 }
