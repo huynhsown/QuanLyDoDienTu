@@ -24,25 +24,25 @@ namespace QuanLyDoDienTu.view.ClientForm
 
         private void btnShowCurrentPassword_Click(object sender, EventArgs e)
         {
-            if (txtCurrentPassword.PasswordChar == '*')
+            if (txtCurrentPassword.PasswordChar == '●')
             {
                 txtCurrentPassword.PasswordChar = '\0';
             }
             else
             {
-                txtCurrentPassword.PasswordChar = '*';
+                txtCurrentPassword.PasswordChar = '●';
             }
         }
 
         private void btnShowNewPassword_Click(object sender, EventArgs e)
         {
-            if (txtNewPassword.PasswordChar == '*')
+            if (txtNewPassword.PasswordChar == '●')
             {
                 txtNewPassword.PasswordChar = '\0';
             }
             else
             {
-                txtNewPassword.PasswordChar = '*';
+                txtNewPassword.PasswordChar = '●';
             }
         }
 
