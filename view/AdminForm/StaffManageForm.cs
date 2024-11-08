@@ -89,6 +89,38 @@ namespace QuanLyDoDienTu.view.AdminForm
                 else if (dgv_listStaff.Columns[e.ColumnIndex].Name == "col_delete")
                 {
                     int id = Convert.ToInt32(dgv_listStaff.Rows[e.RowIndex].Cells["col_Id"].Value);
+                    SqlConnection connection = myDB.getConnection;
+
+                    using (SqlCommand command = new SqlCommand("XoaNhanVien", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        // Thêm tham số cho stored procedure
+                        command.Parameters.Add(new SqlParameter("@MaNV", id));
+
+                        try
+                        {
+                            // Mở kết nối
+                            connection.Open();
+
+                            // Thực thi stored procedure
+                            command.ExecuteNonQuery();
+
+                            MessageBox.Show("Xoa thanh cong");
+                        }
+                        catch (SqlException ex)
+                        {
+                            MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
+                        }
+                        finally
+                        {
+                            // Đảm bảo kết nối được đóng
+                            if (connection.State == ConnectionState.Open)
+                            {
+                                connection.Close();
+                            }
+                        }
+                    }
                 }
 
                 else if (dgv_listStaff.Columns[e.ColumnIndex].Name == "col_workShift")

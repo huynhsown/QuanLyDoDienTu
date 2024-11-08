@@ -92,9 +92,9 @@
             // 
             // btnThemVaoGioHang
             // 
-            btnThemVaoGioHang.Location = new Point(730, 464);
+            btnThemVaoGioHang.Location = new Point(694, 464);
             btnThemVaoGioHang.Name = "btnThemVaoGioHang";
-            btnThemVaoGioHang.Size = new Size(120, 45);
+            btnThemVaoGioHang.Size = new Size(156, 45);
             btnThemVaoGioHang.TabIndex = 6;
             btnThemVaoGioHang.Text = "Thêm vào giỏ hàng";
             btnThemVaoGioHang.UseVisualStyleBackColor = true;
@@ -104,6 +104,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(882, 542);
             ControlBox = false;
             Controls.Add(dgvSanPham);
@@ -113,6 +114,7 @@
             Controls.Add(cbTinhTrang);
             Controls.Add(txtTimKiem);
             Controls.Add(btnThemVaoGioHang);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "XemSanPham";
             Text = "Xem và tìm kiếm sản phẩm";
             ((System.ComponentModel.ISupportInitialize)dgvSanPham).EndInit();

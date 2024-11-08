@@ -172,6 +172,7 @@
             // 
             // ThanhToanForm
             // 
+            BackColor = Color.White;
             ClientSize = new Size(650, 500);
             ControlBox = false;
             Controls.Add(dgvThanhToan);
@@ -179,6 +180,7 @@
             Controls.Add(cbPhuongThucThanhToan);
             Controls.Add(gbChuyenKhoan);
             Controls.Add(btnThanhToan);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "ThanhToanForm";
             Text = "Thanh Toán";
             ((System.ComponentModel.ISupportInitialize)dgvThanhToan).EndInit();

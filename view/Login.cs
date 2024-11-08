@@ -1,5 +1,6 @@
 ﻿using QuanLyDoDienTu.view.AdminForm;
 using QuanLyDoDienTu.view.ClientForm;
+using QuanLyDoDienTu.view.StaffForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,6 +45,8 @@ namespace QuanLyDoDienTu.view
                 case 2:
                     MessageBox.Show("Đăng nhập thành công với quyền nhân viên.");
                     // Chuyển đến form nhân viên
+                    Trang_Chu_NV trang_Chu_NV = new Trang_Chu_NV();
+                    trang_Chu_NV.ShowDialog();
                     break;
                 case 3:
                     MessageBox.Show("Đăng nhập thành công với tư cách khách hàng.");
