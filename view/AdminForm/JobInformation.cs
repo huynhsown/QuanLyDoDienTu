@@ -156,11 +156,10 @@ namespace QuanLyDoDienTu.view.AdminForm
                     connection.Open(); // Open the connection
 
                     // Use the stored procedure
-                    string query = "spGetJobByMaCV"; // Stored procedure name
+                    string query = "SELECT * FROM dbo.fnGetJobByMaCV(@MaCV)"; // Stored procedure name
 
                     using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        command.CommandType = CommandType.StoredProcedure; // Set command type to stored procedure
+                    {// Set command type to stored procedure
 
                         // Assign value to the parameter
                         command.Parameters.AddWithValue("@MaCV", jobid);

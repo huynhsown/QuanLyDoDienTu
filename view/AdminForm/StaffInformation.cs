@@ -42,12 +42,9 @@ namespace QuanLyDoDienTu.view.AdminForm
 
         private void StaffInformation_Load(object sender, EventArgs e)
         {
-            String query_StaffInfo = @"SELECT NV.MaNV, NV.HoTen, NV.NgaySinh, NV.GioiTinh, NV.SDT, NV.Email, NV.DiaChi, CV.MaCV, CV.TenCV 
-                     FROM NHAN_VIEN NV 
-                     LEFT JOIN CONG_VIEC CV ON NV.MaCV = CV.MaCV 
-                     WHERE NV.MaNV = @MaNV";
+            String query_StaffInfo = "select * from fn_GetStaffInfo(@MaNV)";
 
-            String queryListJob = @"SELECT * FROM CONG_VIEC";
+            String queryListJob = @"SELECT * FROM fnGetAllJobs()";
 
             if (isEdit)
             {

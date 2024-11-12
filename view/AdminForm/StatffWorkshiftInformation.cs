@@ -52,14 +52,13 @@ namespace QuanLyDoDienTu.view.AdminForm
             {
                 try
                 {
-                    String procedureName = "sp_GetWorkShiftByMaCa"; // Tên của Stored Procedure
+                    String procedureName = "select * from fnGetWorkShiftByMaCa(@maCa)"; // Tên của Stored Procedure
                     SqlConnection connection = myDB.getConnection; // Lấy kết nối từ myDB
                     connection.Open(); // Mở kết nối
 
                     // Sử dụng Stored Procedure
                     using (SqlCommand command = new SqlCommand(procedureName, connection))
                     {
-                        command.CommandType = CommandType.StoredProcedure; // Đặt loại lệnh là Stored Procedure
                         command.Parameters.AddWithValue("@maCa", workshiftid); // Gán giá trị cho tham số
 
                         SqlDataAdapter adapter = new SqlDataAdapter(command);
