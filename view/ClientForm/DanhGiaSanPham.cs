@@ -56,10 +56,7 @@ namespace QuanLyDoDienTu.view.ClientForm
                 SqlConnection conn = db.getConnection;
                 db.openConnection();
 
-                string query = @"SELECT SP.MaSP, SP.TenSP FROM SAN_PHAM SP
-                                JOIN SAN_PHAM_DUOC_CHON SPDC ON SP.MaSP = SPDC.MaSP
-                                JOIN DON_HANG DH ON SPDC.MaDH = DH.MaDH
-                                WHERE DH.MaKH = @maKH AND DH.TrangThaiDonHang = 'Đã giao'";
+                string query = @"select * from dbo.GetSanPhamDaGiao(@maKH)";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@maKH", maKH);
 
@@ -119,6 +116,11 @@ namespace QuanLyDoDienTu.view.ClientForm
             {
                 db.closeConnection();
             }
+        }
+
+        private void DanhGiaSanPham_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
