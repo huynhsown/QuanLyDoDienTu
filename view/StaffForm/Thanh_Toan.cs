@@ -51,9 +51,8 @@ namespace QuanLyDoDienTu.view.StaffForm
 
             try
             {
-                using (SqlCommand cmd = new SqlCommand("sp_LayDonHangTheoTrangThaiThanhToan", myDb.getConnection))
+                using (SqlCommand cmd = new SqlCommand("select * from fnLayDonHangTheoTrangThaiThanhToan(@DaThanhToan)", myDb.getConnection))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@DaThanhToan", isPaid);
 
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
