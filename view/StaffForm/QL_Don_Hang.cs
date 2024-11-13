@@ -87,7 +87,7 @@ namespace QuanLyDoDienTu.view.StaffForm
             {
                 using (SqlCommand cmd = new SqlCommand("GetKhachHangInfo", myDb.getConnection))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
+              
                     cmd.Parameters.AddWithValue("@MaKH", maKH);
 
                     myDb.openConnection();
@@ -151,7 +151,7 @@ namespace QuanLyDoDienTu.view.StaffForm
                 {
                     using (SqlCommand cmd = new SqlCommand("GetChiTietSanPhamDonHang", myDb.getConnection))
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
+               
                         cmd.Parameters.AddWithValue("@MaDH", selectedMaDH);
 
                         myDb.openConnection();
