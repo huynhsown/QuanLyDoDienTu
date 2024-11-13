@@ -32,8 +32,7 @@ namespace QuanLyDoDienTu.view.ClientForm
             {
                 db.openConnection();
                 // Gọi procedure sp_GetUngDung
-                SqlCommand cmd = new SqlCommand("sp_GetAllApplications", db.getConnection);
-                cmd.CommandType = CommandType.StoredProcedure; // Thiết lập loại là Stored Procedure
+                SqlCommand cmd = new SqlCommand("select * from fnGetAllApplications()", db.getConnection);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();

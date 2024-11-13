@@ -134,6 +134,7 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "DanhGiaSanPham";
             Text = "Đánh giá sản phẩm";
+            Load += DanhGiaSanPham_Load;
             ((System.ComponentModel.ISupportInitialize)numRating).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -144,9 +145,9 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
-        private System.Windows.Forms.ListBox lbSanPham;
-        private System.Windows.Forms.TextBox txtDanhGia;
-        private System.Windows.Forms.NumericUpDown numRating;
-        private System.Windows.Forms.Button btnSubmit;
+        private ListBox lbSanPham;
+        private TextBox txtDanhGia;
+        private NumericUpDown numRating;
+        private Button btnSubmit;
     }
 }

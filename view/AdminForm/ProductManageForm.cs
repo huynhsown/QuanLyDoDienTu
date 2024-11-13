@@ -143,16 +143,14 @@ namespace QuanLyDoDienTu.view.AdminForm
 
                 if (searchColumn == "Mã sản phẩm")
                 {
-                    query = "SearchProductByMaSP"; // Tên Stored Procedure tìm kiếm theo mã khách hàng
+                    query = "select * from fnSearchProductByMaSP(@MaSP)";
                     cmd = new SqlCommand(query, conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@MaSP", tb_search.Text);
                 }
                 else if (searchColumn == "Tên sản phẩm")
                 {
-                    query = "sp_SearchProductByTenSP"; // Tên Stored Procedure tìm kiếm theo tên khách hàng
+                    query = "select * from fnSearchProductByName(@TenSP)"; 
                     cmd = new SqlCommand(query, conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@TenSP", tb_search.Text);
                 }
                

@@ -69,6 +69,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "LichSuMuaHang";
             Text = "Lịch Sử Mua Hàng";
+            Load += LichSuMuaHang_Load;
             ((System.ComponentModel.ISupportInitialize)dgvOrderHistory).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvOrderDetails).EndInit();
             ResumeLayout(false);

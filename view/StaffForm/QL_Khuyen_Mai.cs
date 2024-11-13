@@ -24,7 +24,7 @@ namespace QuanLyDoDienTu.view.StaffForm
         {
             try
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM UNG_DUNG", myDb.getConnection))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM fnGetAllApplications()", myDb.getConnection))
                 {
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
                     DataTable dataTable = new DataTable();

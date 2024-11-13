@@ -22,7 +22,7 @@ namespace QuanLyDoDienTu.view.AdminForm
 
         private void loadJob()
         {
-            String query = "sp_GetAllJobs"; // Tên stored procedure
+            String query = "select * from fnGetAllJobs()"; // Tên stored procedure
             try
             {
                 SqlConnection connection = myDB.getConnection;
@@ -30,7 +30,6 @@ namespace QuanLyDoDienTu.view.AdminForm
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.CommandType = CommandType.StoredProcedure; // Thiết lập kiểu là stored procedure
 
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
                     DataTable dataTable = new DataTable();
@@ -146,16 +145,14 @@ namespace QuanLyDoDienTu.view.AdminForm
                 // Kiểm tra giá trị của ComboBox để tìm kiếm theo tiêu chí
                 if (searchColumn == "Mã công việc")
                 {
-                    query = "spGetJobsByMaCV"; // Tên Stored Procedure tìm kiếm theo mã khách hàng
+                    query = "select * from dbo.fnGetJobByMaCV(@MaCV)"; 
                     cmd = new SqlCommand(query, conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@MaCv", tb_search.Text);
                 }
                 else if (searchColumn == "Tên công việc")
                 {
-                    query = "spGetJobsByTenCV"; // Tên Stored Procedure tìm kiếm theo tên khách hàng
+                    query = "select * from dbo.fnGetJobsByTenCV(@TenCV)"; // Tên Stored Procedure tìm kiếm theo tên khách hàng
                     cmd = new SqlCommand(query, conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@TenCV", tb_search.Text);
                 }
                

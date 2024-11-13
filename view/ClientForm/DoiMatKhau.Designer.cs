@@ -219,6 +219,7 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "DoiMatKhau";
             Text = "ChangePassword";
+            Load += DoiMatKhau_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -153,9 +153,8 @@ namespace QuanLyDoDienTu.view.AdminForm
                 SqlConnection conn = myDB.getConnection; // Lấy kết nối từ myDB
                 conn.Open(); // Mở kết nối
 
-                string procedureName = "sp_SearchWorkShiftByMaCa"; // Tên của Stored Procedure
-                SqlCommand cmd = new SqlCommand(procedureName, conn); // Tạo SqlCommand với tên Stored Procedure
-                cmd.CommandType = CommandType.StoredProcedure; // Đặt loại lệnh là Stored Procedure
+                string procedureName = "select * from fnGetWorkShiftByMaCa(@MaCa)"; // Tên của Stored Procedure
+                SqlCommand cmd = new SqlCommand(procedureName, conn);
 
                 // Thêm tham số cho Stored Procedure
                 cmd.Parameters.AddWithValue("@MaCa", int.Parse(tb_search.Text)); // Giả sử tb_search chứa mã ca

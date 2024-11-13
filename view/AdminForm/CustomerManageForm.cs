@@ -22,7 +22,7 @@ namespace QuanLyDoDienTu.view.AdminForm
 
         private void CustomerManageForm_Load(object sender, EventArgs e)
         {
-            string query = "GetAllKhachHang"; // Gọi tên Stored Procedure
+            string query = "SELECT * FROM dbo.fnGetAllKhachHang()"; 
 
             try
             {
@@ -31,11 +31,10 @@ namespace QuanLyDoDienTu.view.AdminForm
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.CommandType = CommandType.StoredProcedure; // Xác định là Stored Procedure
 
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
                     DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable); // Lấy dữ liệu từ Stored Procedure và đưa vào DataTable
+                    adapter.Fill(dataTable); 
 
                     foreach (DataRow row in dataTable.Rows)
                     {
@@ -142,23 +141,20 @@ namespace QuanLyDoDienTu.view.AdminForm
                 // Kiểm tra giá trị của ComboBox để tìm kiếm theo tiêu chí
                 if (searchColumn == "Mã khách hàng")
                 {
-                    query = "SearchKhachHangByMaKH"; // Tên Stored Procedure tìm kiếm theo mã khách hàng
+                    query = "SELECT * FROM dbo.fnSearchKhachHangByMaKH(@MaKH)"; // Gọi hàm và truyền tham số
                     cmd = new SqlCommand(query, conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@MaKH", tb_search.Text);
+                    cmd.Parameters.AddWithValue("@MaKH", tb_search.Text); // Thêm tham số vào câu lệnh
                 }
                 else if (searchColumn == "Tên khách hàng")
                 {
-                    query = "SearchKhachHangByTenKH"; // Tên Stored Procedure tìm kiếm theo tên khách hàng
+                    query = "SELECT * FROM dbo.fnSearchKhachHangByName(@HoTen)"; // Tên Stored Procedure tìm kiếm theo tên khách hàng
                     cmd = new SqlCommand(query, conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@HoTen", tb_search.Text);
                 }
                 else if (searchColumn == "Số điện thoại")
                 {
-                    query = "SearchKhachHangBySDT"; // Tên Stored Procedure tìm kiếm theo số điện thoại
+                    query = "SELECT * FROM dbo.fnSearchKhachHangBySDT(@SDT)"; // Tên Stored Procedure tìm kiếm theo số điện thoại
                     cmd = new SqlCommand(query, conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@SDT", tb_search.Text);
                 }
                 else

@@ -154,23 +154,20 @@ namespace QuanLyDoDienTu.view.AdminForm
                 // Kiểm tra giá trị của ComboBox để tìm kiếm theo tiêu chí
                 if (searchColumn == "Mã nhân viên")
                 {
-                    query = "SearchEmployeeByMaNV"; // Tên Stored Procedure tìm kiếm theo mã khách hàng
+                    query = "select * from fnSearchEmployeeByMaNV(@MaNV)"; // Tên Stored Procedure tìm kiếm theo mã khách hàng
                     cmd = new SqlCommand(query, conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@MaNV", tb_search.Text);
                 }
                 else if (searchColumn == "Tên nhân viên")
                 {
-                    query = "SearchEmployeeByTenNV"; // Tên Stored Procedure tìm kiếm theo tên khách hàng
+                    query = "SELECT * FROM fnSearchEmployeeByTenNV(@TenNV)"; // Tên Stored Procedure tìm kiếm theo tên khách hàng
                     cmd = new SqlCommand(query, conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@TenNV", tb_search.Text);
                 }
                 else if (searchColumn == "Số điện thoại")
                 {
-                    query = "SearchEmployeeBySDT"; // Tên Stored Procedure tìm kiếm theo số điện thoại
+                    query = "select * from fnSearchEmployeeBySDT(@SDT)"; // Tên Stored Procedure tìm kiếm theo số điện thoại
                     cmd = new SqlCommand(query, conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@SDT", tb_search.Text);
                 }
                 else

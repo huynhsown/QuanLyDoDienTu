@@ -27,9 +27,8 @@ namespace QuanLyDoDienTu.view.ClientForm
                 db.openConnection();
 
                 // Gọi stored procedure sp_GetSanPham
-                string query = "sp_GetSanPham";
+                string query = "select * from fnGetSanPham()";
                 SqlCommand cmd = new SqlCommand(query, db.getConnection);
-                cmd.CommandType = CommandType.StoredProcedure;
 
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -52,8 +51,7 @@ namespace QuanLyDoDienTu.view.ClientForm
             try
             {
                 db.openConnection();
-                SqlCommand cmd = new SqlCommand("sp_TimKiemSanPham", db.getConnection);
-                cmd.CommandType = CommandType.StoredProcedure;
+                SqlCommand cmd = new SqlCommand("select * from fnTimKiemSanPham(@TenSP, @TinhTrang, @GiaTu, @GiaDen)", db.getConnection);
 
                 // Truyền tham số cho stored procedure
                 cmd.Parameters.AddWithValue("@TenSP", string.IsNullOrEmpty(txtTimKiem.Text) ? (object)DBNull.Value : txtTimKiem.Text);
@@ -165,5 +163,9 @@ namespace QuanLyDoDienTu.view.ClientForm
             dgvSanPham.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
 
+        private void XemSanPham_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

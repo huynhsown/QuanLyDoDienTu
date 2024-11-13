@@ -89,20 +89,7 @@ namespace QuanLyDoDienTu.view.AdminForm
 
         private void PurchaseOrder_Load(object sender, EventArgs e)
         {
-            string query = @"SELECT 
-                     dnh.MaDon ,
-                     dnh.NgayNhap,
-                     dnh.GiaTri,
-                     dnh.SoLuong ,
-                     dnh.DonGia,
-                     sp.TenSP,
-                     nsx.TenNSX
-                 FROM 
-                     DON_NHAP_HANG dnh
-                 JOIN 
-                     SAN_PHAM sp ON dnh.MaSP = sp.MaSP
-                 JOIN 
-                     NHA_SAN_XUAT nsx ON dnh.MaNSX = nsx.MaNSX";
+            string query = "select * from fnGetAllPurchaseOrder()";
             try
             {
                 SqlConnection connection = myDB.getConnection;

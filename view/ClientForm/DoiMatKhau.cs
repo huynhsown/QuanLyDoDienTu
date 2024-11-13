@@ -60,7 +60,7 @@ namespace QuanLyDoDienTu.view.ClientForm
 
             try
             {
-                
+
                 SqlCommand cmd = new SqlCommand("sp_DoiMatKhau", db.getConnection);
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -87,10 +87,14 @@ namespace QuanLyDoDienTu.view.ClientForm
             }
             finally
             {
-                
+
                 db.closeConnection();
             }
         }
 
+        private void DoiMatKhau_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
