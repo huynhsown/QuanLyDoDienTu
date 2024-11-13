@@ -37,6 +37,7 @@
             ClientSize = new Size(530, 330);
             ControlBox = false;
             Controls.Add(dgvKhuyenMai);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "ThongBaoKhuyenMaiForm";
             Text = "Thông Báo Khuyến Mãi";
             Load += ThongBaoKhuyenMaiForm_Load;

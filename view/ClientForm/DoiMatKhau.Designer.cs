@@ -124,7 +124,6 @@
             txtCurrentPassword.ShadowDecoration.CustomizableEdges = customizableEdges4;
             txtCurrentPassword.Size = new Size(200, 45);
             txtCurrentPassword.TabIndex = 4;
-            txtCurrentPassword.UseSystemPasswordChar = true;
             // 
             // txtNewPassword
             // 
@@ -147,7 +146,6 @@
             txtNewPassword.ShadowDecoration.CustomizableEdges = customizableEdges6;
             txtNewPassword.Size = new Size(200, 45);
             txtNewPassword.TabIndex = 5;
-            txtNewPassword.UseSystemPasswordChar = true;
             // 
             // btnChangePassword
             // 

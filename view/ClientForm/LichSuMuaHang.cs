@@ -70,7 +70,6 @@ namespace QuanLyDoDienTu.view.ClientForm
                 db.openConnection();
 
                 SqlCommand cmd = new SqlCommand("select * from fnLayChiTietDonHang(@MaDH)", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@MaDH", maDH);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
