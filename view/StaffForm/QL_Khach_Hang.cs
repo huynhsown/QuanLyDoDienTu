@@ -23,7 +23,7 @@ namespace QuanLyDoDienTu.view.StaffForm
         {
             try
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM KHACH_HANG", myDb.getConnection))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM fnGetAllKhachHang()", myDb.getConnection))
                 {
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
                     DataTable dataTable = new DataTable();
@@ -43,9 +43,8 @@ namespace QuanLyDoDienTu.view.StaffForm
             {
                 try
                 {
-                    using (SqlCommand cmd = new SqlCommand("GetKhachHangInfo", myDb.getConnection))
+                    using (SqlCommand cmd = new SqlCommand("select * from fnGetKhachHangInfo(@SDT)", myDb.getConnection))
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@SDT", txtSDT.Text);
                         SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
                         DataTable dataTable = new DataTable();

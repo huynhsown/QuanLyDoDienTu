@@ -183,6 +183,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "ThanhToanForm";
             Text = "Thanh Toán";
+            Load += ThanhToanForm_Load;
             ((System.ComponentModel.ISupportInitialize)dgvThanhToan).EndInit();
             gbChuyenKhoan.ResumeLayout(false);
             gbChuyenKhoan.PerformLayout();

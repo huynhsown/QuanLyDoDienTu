@@ -28,8 +28,7 @@ namespace QuanLyDoDienTu.view.ClientForm
                 db.openConnection();
 
                 // Gọi Stored Procedure thay vì dùng truy vấn trực tiếp
-                SqlCommand cmd = new SqlCommand("sp_GetLichSuMuaHang", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
+                SqlCommand cmd = new SqlCommand("SELECT * FROM fnGetLichSuMuaHang(@maKH)", conn);
                 cmd.Parameters.AddWithValue("@maKH", maKH);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -70,7 +69,7 @@ namespace QuanLyDoDienTu.view.ClientForm
                 SqlConnection conn = db.getConnection;
                 db.openConnection();
 
-                SqlCommand cmd = new SqlCommand("sp_LayChiTietDonHang", conn);
+                SqlCommand cmd = new SqlCommand("select * from fnLayChiTietDonHang(@MaDH)", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@MaDH", maDH);
 
@@ -90,5 +89,9 @@ namespace QuanLyDoDienTu.view.ClientForm
             }
         }
 
+        private void LichSuMuaHang_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -24,8 +24,7 @@ namespace QuanLyDoDienTu.view.ClientForm
             try
             {
                 // Sử dụng Stored Procedure để lấy thông tin khuyến mãi từ bảng UNG_DUNG
-                SqlCommand cmd = new SqlCommand("sp_GetAllApplications", db.getConnection);
-                cmd.CommandType = CommandType.StoredProcedure;
+                SqlCommand cmd = new SqlCommand("select * from fnGetAllApplications()", db.getConnection);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();

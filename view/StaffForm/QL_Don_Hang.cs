@@ -29,9 +29,8 @@ namespace QuanLyDoDienTu.view.StaffForm
         {
             try
             {
-                using (SqlCommand cmd = new SqlCommand("GetDonHang", myDb.getConnection))
+                using (SqlCommand cmd = new SqlCommand("select * from fnGetDonHang()", myDb.getConnection))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
                     DataTable dataTable = new DataTable();
                     dataAdapter.Fill(dataTable);
@@ -85,7 +84,7 @@ namespace QuanLyDoDienTu.view.StaffForm
         {
             try
             {
-                using (SqlCommand cmd = new SqlCommand("GetKhachHangInfo", myDb.getConnection))
+                using (SqlCommand cmd = new SqlCommand("select * from fnGetKhachHangInfo(@MaKH)", myDb.getConnection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@MaKH", maKH);
@@ -149,7 +148,7 @@ namespace QuanLyDoDienTu.view.StaffForm
             {
                 try
                 {
-                    using (SqlCommand cmd = new SqlCommand("GetChiTietSanPhamDonHang", myDb.getConnection))
+                    using (SqlCommand cmd = new SqlCommand("select * from fnGetChiTietSanPhamDonHang(@MaDH)", myDb.getConnection))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@MaDH", selectedMaDH);

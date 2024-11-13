@@ -29,11 +29,8 @@ namespace QuanLyDoDienTu.view.ClientForm
         private void LoadThongTin()
         {
             
-            string query = "sp_GetThongTinKhachHang";
+            string query = "select * from fnGetThongTinKhachHang(@MaKH)";
             SqlCommand cmd = new SqlCommand(query, db.getConnection);
-
-            // Sử dụng stored procedure
-            cmd.CommandType = CommandType.StoredProcedure;
 
             db.openConnection();
 
