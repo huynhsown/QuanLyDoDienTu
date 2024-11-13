@@ -117,6 +117,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "XemSanPham";
             Text = "Xem và tìm kiếm sản phẩm";
+            Load += XemSanPham_Load;
             ((System.ComponentModel.ISupportInitialize)dgvSanPham).EndInit();
             ResumeLayout(false);
             PerformLayout();

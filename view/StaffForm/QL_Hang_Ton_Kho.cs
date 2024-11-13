@@ -23,7 +23,7 @@ namespace QuanLyDoDienTu.view.StaffForm
         {
             try
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM SAN_PHAM", myDb.getConnection))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM fnGetAllProducts()", myDb.getConnection))
                 {
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
                     DataTable dataTable = new DataTable();
@@ -97,8 +97,9 @@ namespace QuanLyDoDienTu.view.StaffForm
 
                     try
                     {
-                        using (SqlCommand cmd = new SqlCommand("INSERT INTO DON_NHAP_HANG (NgayNhap, GiaTri, SoLuong, DonGia, MaSP, MaNSX) VALUES (@NgayNhap, @GiaTri, @SoLuong, @DonGia, @MaSP, @MaNSX)", myDb.getConnection))
+                        using (SqlCommand cmd = new SqlCommand("InsertDonNhapHang", myDb.getConnection))
                         {
+                            cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@NgayNhap", ngayNhap);
                             cmd.Parameters.AddWithValue("@GiaTri", Gia * soLuong);
                             cmd.Parameters.AddWithValue("@SoLuong", soLuong);

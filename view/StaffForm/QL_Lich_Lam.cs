@@ -23,9 +23,8 @@ namespace QuanLyDoDienTu.view.StaffForm
         {
             try
             {
-                using (SqlCommand cmd = new SqlCommand("GetLichLamData", myDb.getConnection))
+                using (SqlCommand cmd = new SqlCommand("select * from fn_GetLichLamData()", myDb.getConnection))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(cmd);
                     DataTable dataTable = new DataTable();
                     dataAdapter.Fill(dataTable);

@@ -22,8 +22,7 @@ namespace QuanLyDoDienTu.view.ClientForm
             try
             {
                 // Sử dụng Stored Procedure thay vì truy vấn trực tiếp
-                SqlCommand cmd = new SqlCommand("sp_LoadThanhToan", db.getConnection);
-                cmd.CommandType = CommandType.StoredProcedure;
+                SqlCommand cmd = new SqlCommand("select * from fnLoadThanhToan(@MaKH)", db.getConnection);
                 cmd.Parameters.AddWithValue("@MaKH", this.maKH);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -124,6 +123,11 @@ namespace QuanLyDoDienTu.view.ClientForm
             {
                 MessageBox.Show("Vui lòng chọn một đơn hàng để thanh toán.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
+        }
+
+        private void ThanhToanForm_Load(object sender, EventArgs e)
+        {
 
         }
     }
